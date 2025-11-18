@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations - Admin - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="text">Users & Roles</span>
+                </a>
+                <a href="admin-system.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">System Config</span>
+                </a>
+                <a href="admin-integrations.html" class="nav-item active">
+                    <span class="icon">🔗</span>
+                    <span class="text">Integrations</span>
+                </a>
+                <a href="admin-security.html" class="nav-item">
+                    <span class="icon">🔒</span>
+                    <span class="text">Security</span>
+                </a>
+                <a href="admin-workflows.html" class="nav-item">
+                    <span class="icon">🔄</span>
+                    <span class="text">Workflows</span>
+                </a>
+                <a href="admin-templates.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Templates</span>
+                </a>
+                <a href="admin-audit.html" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="text">Audit Logs</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Integrations</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Robert Anderson</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="page-header">
+                    <div>
+                        <h2>Third-Party Integrations</h2>
+                        <p>Connect HRPro with external services and applications</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="showAddIntegrationModal()">
+                        <span>+ Add Integration</span>
+                    </button>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--secondary-color);">6</div>
+                        <div class="stat-label">Active Integrations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--info-color);">12</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--warning-color);">2</div>
+                        <div class="stat-label">Needs Attention</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--danger-color);">1</div>
+                        <div class="stat-label">Disconnected</div>
+                    </div>
+                </div>
+                
+                <!-- Active Integrations -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Active Integrations</h3>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <div id="activeIntegrations" style="display: grid; gap: 0;">
+                            <!-- SSO Integration -->
+                            <div class="integration-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        🔐
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Single Sign-On (SSO)</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Okta SAML 2.0 Integration</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Last synced: 5 minutes ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="configureIntegration('sso')">⚙️ Configure</button>
+                                    <button class="btn btn-sm btn-outline" onclick="testIntegration('sso')">🧪 Test</button>
+                                    <button class="btn btn-sm btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);" onclick="disconnectIntegration('sso')">✕ Disconnect</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Email Integration -->
+                            <div class="integration-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        📧
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Email Service</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">SendGrid API Integration</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">1,247 emails sent today</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="configureIntegration('email')">⚙️ Configure</button>
+                                    <button class="btn btn-sm btn-outline" onclick="testIntegration('email')">🧪 Test</button>
+                                    <button class="btn btn-sm btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);" onclick="disconnectIntegration('email')">✕ Disconnect</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Calendar Integration -->
+                            <div class="integration-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #4285F4 0%, #34A853 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        📅
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Calendar Sync</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Google Calendar API</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-warning">Needs Attention</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">API quota limit reached</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="configureIntegration('calendar')">⚙️ Configure</button>
+                                    <button class="btn btn-sm btn-outline" onclick="testIntegration('calendar')">🧪 Test</button>
+                                    <button class="btn btn-sm btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);" onclick="disconnectIntegration('calendar')">✕ Disconnect</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Payroll Integration -->
+                            <div class="integration-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #2DCE89 0%, #11CDEF 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        💰
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Payroll System</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">ADP Workforce Now</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Last payroll: Dec 15, 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="configureIntegration('payroll')">⚙️ Configure</button>
+                                    <button class="btn btn-sm btn-outline" onclick="testIntegration('payroll')">🧪 Test</button>
+                                    <button class="btn btn-sm btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);" onclick="disconnectIntegration('payroll')">✕ Disconnect</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Slack Integration -->
+                            <div class="integration-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #611f69 0%, #4a154b 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        💬
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Slack</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Team Communication & Notifications</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Connected to #hr-notifications</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="configureIntegration('slack')">⚙️ Configure</button>
+                                    <button class="btn btn-sm btn-outline" onclick="testIntegration('slack')">🧪 Test</button>
+                                    <button class="btn btn-sm btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);" onclick="disconnectIntegration('slack')">✕ Disconnect</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Background Check -->
+                            <div class="integration-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B6B 0%, #C92A2A 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        🔍
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Background Checks</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Checkr API Integration</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-danger">Disconnected</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">API key expired</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="reconnectIntegration('background')">🔄 Reconnect</button>
+                                    <button class="btn btn-sm btn-outline" onclick="configureIntegration('background')">⚙️ Configure</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Available Integrations -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Available Integrations</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Connect with popular third-party services</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                            <!-- Microsoft 365 -->
+                            <div class="available-integration-card">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0078D4 0%, #00BCF2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        📋
+                                    </div>
+                                    <h4 style="margin: 0;">Microsoft 365</h4>
+                                </div>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Integrate with Outlook, Teams, and OneDrive</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('microsoft365')">+ Connect</button>
+                            </div>
+                            
+                            <!-- Zoom -->
+                            <div class="available-integration-card">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #2D8CFF 0%, #0B5CFF 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        📹
+                                    </div>
+                                    <h4 style="margin: 0;">Zoom</h4>
+                                </div>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Schedule and manage video interviews</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('zoom')">+ Connect</button>
+                            </div>
+                            
+                            <!-- LinkedIn -->
+                            <div class="available-integration-card">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0077B5 0%, #00A0DC 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        💼
+                                    </div>
+                                    <h4 style="margin: 0;">LinkedIn</h4>
+                                </div>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Post jobs and import candidate profiles</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('linkedin')">+ Connect</button>
+                            </div>
+                            
+                            <!-- DocuSign -->
+                            <div class="available-integration-card">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #FFD000 0%, #FF9900 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        ✍️
+                                    </div>
+                                    <h4 style="margin: 0;">DocuSign</h4>
+                                </div>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Electronic signature for documents</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('docusign')">+ Connect</button>
+                            </div>
+                            
+                            <!-- QuickBooks -->
+                            <div class="available-integration-card">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #2CA01C 0%, #028A0F 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        📊
+                                    </div>
+                                    <h4 style="margin: 0;">QuickBooks</h4>
+                                </div>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Sync payroll with accounting</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('quickbooks')">+ Connect</button>
+                            </div>
+                            
+                            <!-- BambooHR -->
+                            <div class="available-integration-card">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #73C41D 0%, #5FA818 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        🎋
+                                    </div>
+                                    <h4 style="margin: 0;">BambooHR</h4>
+                                </div>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Import employee data and sync records</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('bamboohr')">+ Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- API Keys -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>API Keys & Webhooks</h3>
+                        <button class="btn btn-sm btn-primary" onclick="generateApiKey()">+ Generate New Key</button>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Key Name</th>
+                                    <th>API Key</th>
+                                    <th>Created</th>
+                                    <th>Last Used</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Production API</strong></td>
+                                    <td><code style="font-size: 12px;">hrp_live_*********************4a2b</code></td>
+                                    <td>Nov 15, 2024</td>
+                                    <td>2 minutes ago</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewApiKey('prod')">👁️ View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="revokeApiKey('prod')" style="color: var(--danger-color);">🗑️ Revoke</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Development API</strong></td>
+                                    <td><code style="font-size: 12px;">hrp_test_*********************9c1d</code></td>
+                                    <td>Nov 1, 2024</td>
+                                    <td>3 hours ago</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewApiKey('dev')">👁️ View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="revokeApiKey('dev')" style="color: var(--danger-color);">🗑️ Revoke</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mobile App API</strong></td>
+                                    <td><code style="font-size: 12px;">hrp_live_*********************7f3e</code></td>
+                                    <td>Oct 20, 2024</td>
+                                    <td>Never</td>
+                                    <td><span class="badge badge-warning">Inactive</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewApiKey('mobile')">👁️ View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="revokeApiKey('mobile')" style="color: var(--danger-color);">🗑️ Revoke</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/admin-integrations.js"></script>
+</body>
+</html>

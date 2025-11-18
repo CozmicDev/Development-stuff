@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRPro - HR Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <div class="logo-icon">HR</div>
+                <h1>HRPro</h1>
+                <p class="tagline">Your Complete HR Solution</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                
+                <div class="quick-login">
+                    <p class="divider"><span>Quick Demo Login</span></p>
+                    <div class="demo-buttons">
+                        <button type="button" class="btn btn-outline" onclick="quickLogin('employee')">
+                            <span class="icon">👤</span> Employee
+                        </button>
+                        <button type="button" class="btn btn-outline" onclick="quickLogin('manager')">
+                            <span class="icon">👔</span> Manager
+                        </button>
+                        <button type="button" class="btn btn-outline" onclick="quickLogin('hr')">
+                            <span class="icon">👥</span> HR Staff
+                        </button>
+                        <button type="button" class="btn btn-outline" onclick="quickLogin('admin')">
+                            <span class="icon">⚙️</span> Admin
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="login-footer">
+                <p>© 2025 HRPro. All rights reserved.</p>
+            </div>
+        </div>
+        
+        <div class="login-banner">
+            <div class="banner-content">
+                <h2>Welcome to HRPro</h2>
+                <p>Streamline your HR operations with our comprehensive management system</p>
+                <ul class="features-list">
+                    <li>✓ Self-Service Portal</li>
+                    <li>✓ Automated Workflows</li>
+                    <li>✓ Performance Management</li>
+                    <li>✓ Analytics & Insights</li>
+                    <li>✓ Mobile Access</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

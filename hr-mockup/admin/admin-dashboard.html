@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="text">Users & Roles</span>
+                </a>
+                <a href="admin-system.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">System Config</span>
+                </a>
+                <a href="admin-integrations.html" class="nav-item">
+                    <span class="icon">🔗</span>
+                    <span class="text">Integrations</span>
+                </a>
+                <a href="admin-security.html" class="nav-item">
+                    <span class="icon">🔒</span>
+                    <span class="text">Security</span>
+                </a>
+                <a href="admin-workflows.html" class="nav-item">
+                    <span class="icon">🔄</span>
+                    <span class="text">Workflows</span>
+                </a>
+                <a href="admin-templates.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Templates</span>
+                </a>
+                <a href="admin-audit.html" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="text">Audit Logs</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">System Administration</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="notifications">
+                        <button class="icon-btn" onclick="toggleNotifications()">
+                            🔔
+                            <span class="badge">2</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Notifications</h3>
+                                <a href="#">Mark all read</a>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">⚠️</div>
+                                <div class="notification-content">
+                                    <p><strong>High CPU Usage</strong></p>
+                                    <p>Server load above 80% for 15 minutes</p>
+                                    <span class="time">30 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">🔒</div>
+                                <div class="notification-content">
+                                    <p><strong>Failed Login Attempts</strong></p>
+                                    <p>5 failed attempts from unknown IP</p>
+                                    <span class="time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <a href="#" class="dropdown-footer">View all notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Robert Anderson</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User">
+                                <div>
+                                    <strong>Robert Anderson</strong>
+                                    <p>System Administrator</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#">My Profile</a>
+                            <a href="#">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="welcome-banner" style="background: linear-gradient(135deg, #EF4444, #DC2626);">
+                    <div>
+                        <h2>System Overview 🔧</h2>
+                        <p>All systems operational. Last backup completed 2 hours ago.</p>
+                    </div>
+                    <div class="welcome-actions">
+                        <button class="btn btn-primary" onclick="showModal('backupModal')">Run Backup</button>
+                        <button class="btn btn-outline" style="background: rgba(255,255,255,0.2); color: white; border: none;">System Health</button>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #EEF2FF; color: #4F46E5;">👥</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Active Users</p>
+                            <h3 class="stat-value">245</h3>
+                            <p class="stat-change">247 total accounts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FEF3C7; color: #D97706;">⚡</div>
+                        <div class="stat-content">
+                            <p class="stat-label">System Uptime</p>
+                            <h3 class="stat-value">99.9%</h3>
+                            <p class="stat-change positive">30 days avg</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #D1FAE5; color: #059669;">💾</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Storage Used</p>
+                            <h3 class="stat-value">2.4 TB</h3>
+                            <p class="stat-change">of 5 TB (48%)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FCE7F3; color: #DB2777;">🔐</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Security Score</p>
+                            <h3 class="stat-value">95/100</h3>
+                            <p class="stat-change positive">Excellent</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>System Health</h3>
+                            <span class="badge badge-success">Operational</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <span style="font-size: 24px;">🖥️</span>
+                                        <div>
+                                            <strong>Application Server</strong>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">CPU: 45% • Memory: 62%</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-success">Healthy</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <span style="font-size: 24px;">💾</span>
+                                        <div>
+                                            <strong>Database Server</strong>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Connections: 142/500</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-success">Healthy</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <span style="font-size: 24px;">🔗</span>
+                                        <div>
+                                            <strong>API Gateway</strong>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Requests/min: 450</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-success">Healthy</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <span style="font-size: 24px;">📦</span>
+                                        <div>
+                                            <strong>Storage Service</strong>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">2.4 TB / 5 TB used</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-success">Healthy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Active Integrations</h3>
+                            <a href="admin-integrations.html" class="card-action">Manage</a>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>Payroll System</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary);">Last sync: 2 hours ago</p>
+                                    </div>
+                                    <span class="badge badge-success">Connected</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>Single Sign-On (SSO)</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary);">245 active sessions</p>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>Email Service</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary);">1,234 emails sent today</p>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>Background Checks</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary);">3 pending checks</p>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Admin Actions</h3>
+                            <a href="admin-audit.html" class="card-action">View Audit Log</a>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>User Role Updated</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">10 min ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">Changed John Smith from Employee to Manager</p>
+                                </div>
+                                
+                                <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>System Backup Completed</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">2 hours ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">Full database backup (2.3 GB)</p>
+                                </div>
+                                
+                                <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>Integration Configured</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">5 hours ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">Connected new payroll system API</p>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>Security Policy Updated</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">1 day ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">Enabled MFA for all users</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Security Alerts</h3>
+                            <a href="admin-security.html" class="card-action">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; gap: 12px; padding: 12px; background: #FEF3C7; border-radius: 8px; border-left: 4px solid #F59E0B;">
+                                    <span style="font-size: 24px;">⚠️</span>
+                                    <div>
+                                        <strong>Failed Login Attempts</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">5 failed attempts from IP 192.168.1.100</p>
+                                        <button class="btn btn-sm btn-outline" style="margin-top: 8px;">Block IP</button>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 12px; padding: 12px; background: #DBEAFE; border-radius: 8px; border-left: 4px solid #3B82F6;">
+                                    <span style="font-size: 24px;">ℹ️</span>
+                                    <div>
+                                        <strong>SSL Certificate Renewal</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Certificate expires in 30 days</p>
+                                        <button class="btn btn-sm btn-outline" style="margin-top: 8px;">Renew Now</button>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 12px; padding: 12px; background: #D1FAE5; border-radius: 8px; border-left: 4px solid #10B981;">
+                                    <span style="font-size: 24px;">✅</span>
+                                    <div>
+                                        <strong>Security Scan Complete</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">No vulnerabilities detected</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>User Activity (Last 30 Days)</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>Active Users</span>
+                                    <strong style="font-size: 20px;">245</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>Total Logins</span>
+                                    <strong style="font-size: 20px;">8,543</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>Avg. Session Duration</span>
+                                    <strong style="font-size: 20px;">2.4 hrs</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>Mobile Access</span>
+                                    <strong style="font-size: 20px;">38%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>System Performance</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="font-weight: 500;">CPU Usage</span>
+                                        <span style="color: var(--warning-color); font-weight: 600;">45%</span>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--warning-color); width: 45%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="font-weight: 500;">Memory Usage</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">62%</span>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--primary-color); width: 62%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="font-weight: 500;">Disk Usage</span>
+                                        <span style="color: var(--secondary-color); font-weight: 600;">48%</span>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--secondary-color); width: 48%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="font-weight: 500;">Network Load</span>
+                                        <span style="color: var(--secondary-color); font-weight: 600;">28%</span>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--secondary-color); width: 28%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Scheduled Tasks</h3>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Task Name</th>
+                                    <th>Frequency</th>
+                                    <th>Last Run</th>
+                                    <th>Next Run</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Database Backup</strong></td>
+                                    <td>Daily at 2:00 AM</td>
+                                    <td>Nov 17, 2:00 AM</td>
+                                    <td>Nov 18, 2:00 AM</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline">Run Now</button></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Data Sync</strong></td>
+                                    <td>Every 4 hours</td>
+                                    <td>Nov 17, 2:00 PM</td>
+                                    <td>Nov 17, 6:00 PM</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline">Run Now</button></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email Reminders</strong></td>
+                                    <td>Daily at 9:00 AM</td>
+                                    <td>Nov 17, 9:00 AM</td>
+                                    <td>Nov 18, 9:00 AM</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline">Run Now</button></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cleanup Old Logs</strong></td>
+                                    <td>Weekly (Sunday)</td>
+                                    <td>Nov 12, 3:00 AM</td>
+                                    <td>Nov 19, 3:00 AM</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline">Run Now</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Backup Modal -->
+    <div id="backupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Run System Backup</h3>
+                <button class="close-btn" onclick="closeModal('backupModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This will create a full backup of the system including:</p>
+                <ul style="margin: 16px 0; padding-left: 20px;">
+                    <li>Database (all tables)</li>
+                    <li>User uploads and documents</li>
+                    <li>System configuration</li>
+                    <li>Application logs</li>
+                </ul>
+                <p><strong>Estimated time:</strong> 15-20 minutes</p>
+                <p><strong>Estimated size:</strong> 2.5 GB</p>
+                
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Backup Location</label>
+                    <select>
+                        <option>Primary Backup Server</option>
+                        <option>Secondary Backup Server</option>
+                        <option>Cloud Storage (AWS S3)</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('backupModal')">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="startBackup()">Start Backup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

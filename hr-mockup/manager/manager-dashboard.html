@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="manager-dashboard.html" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="manager-team.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="text">My Team</span>
+                </a>
+                <a href="manager-approvals.html" class="nav-item">
+                    <span class="icon">✅</span>
+                    <span class="text">Approvals</span>
+                </a>
+                <a href="manager-performance.html" class="nav-item">
+                    <span class="icon">🎯</span>
+                    <span class="text">Performance</span>
+                </a>
+                <a href="manager-recruitment.html" class="nav-item">
+                    <span class="icon">🔍</span>
+                    <span class="text">Recruitment</span>
+                </a>
+                <a href="manager-analytics.html" class="nav-item">
+                    <span class="icon">📈</span>
+                    <span class="text">Analytics</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Manager Dashboard</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="notifications">
+                        <button class="icon-btn" onclick="toggleNotifications()">
+                            🔔
+                            <span class="badge">5</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Notifications</h3>
+                                <a href="#">Mark all read</a>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">🏖️</div>
+                                <div class="notification-content">
+                                    <p><strong>New Leave Request</strong></p>
+                                    <p>Emily Chen requested 2 days sick leave</p>
+                                    <span class="time">10 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">⏰</div>
+                                <div class="notification-content">
+                                    <p><strong>Timesheet Pending</strong></p>
+                                    <p>3 team members haven't submitted timesheets</p>
+                                    <span class="time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <a href="#" class="dropdown-footer">View all notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Sarah Johnson</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff" alt="User">
+                                <div>
+                                    <strong>Sarah Johnson</strong>
+                                    <p>Engineering Manager</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#">My Profile</a>
+                            <a href="#">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <!-- Welcome Section -->
+                <div class="welcome-banner">
+                    <div>
+                        <h2>Welcome back, Sarah! 👋</h2>
+                        <p>You have 5 pending approvals and 2 upcoming reviews this week.</p>
+                    </div>
+                    <div class="welcome-actions">
+                        <button class="btn btn-primary" onclick="window.location.href='manager-approvals.html'">View Approvals</button>
+                    </div>
+                </div>
+                
+                <!-- Team Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #EEF2FF; color: #4F46E5;">👥</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Team Size</p>
+                            <h3 class="stat-value">12</h3>
+                            <p class="stat-change">Direct reports</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FEF3C7; color: #D97706;">⏳</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Pending Approvals</p>
+                            <h3 class="stat-value">5</h3>
+                            <p class="stat-change">3 leave, 2 expenses</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #D1FAE5; color: #059669;">📈</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Team Performance</p>
+                            <h3 class="stat-value">85%</h3>
+                            <p class="stat-change positive">+5% from last quarter</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FCE7F3; color: #DB2777;">🎯</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Goals on Track</p>
+                            <h3 class="stat-value">9/12</h3>
+                            <p class="stat-change">75% completion</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <!-- Pending Approvals -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pending Approvals</h3>
+                            <a href="manager-approvals.html" class="card-action">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="action-list">
+                                <div class="action-item">
+                                    <div class="action-icon">🏖️</div>
+                                    <div class="action-content">
+                                        <h4>Emily Chen - Sick Leave</h4>
+                                        <p>Nov 18-19, 2025 (2 days)</p>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <button class="btn btn-sm btn-primary">Approve</button>
+                                        <button class="btn btn-sm btn-outline">Reject</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="action-item">
+                                    <div class="action-icon">🏖️</div>
+                                    <div class="action-content">
+                                        <h4>Michael Davis - Personal Leave</h4>
+                                        <p>Dec 15, 2025 (1 day)</p>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <button class="btn btn-sm btn-primary">Approve</button>
+                                        <button class="btn btn-sm btn-outline">Reject</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="action-item">
+                                    <div class="action-icon">💰</div>
+                                    <div class="action-content">
+                                        <h4>John Smith - Travel Expense</h4>
+                                        <p>$450.00 - Client meeting</p>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <button class="btn btn-sm btn-primary">Approve</button>
+                                        <button class="btn btn-sm btn-outline">Reject</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Overview -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Team Overview</h3>
+                            <a href="manager-team.html" class="card-action">View Team</a>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" style="width: 40px; height: 40px; border-radius: 50%;" alt="John Smith">
+                                        <div>
+                                            <strong>John Smith</strong>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Software Engineer</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img src="https://ui-avatars.com/api/?name=Emily+Chen&background=10B981&color=fff" style="width: 40px; height: 40px; border-radius: 50%;" alt="Emily Chen">
+                                        <div>
+                                            <strong>Emily Chen</strong>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Product Manager</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-warning">On Leave</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img src="https://ui-avatars.com/api/?name=Michael+Davis&background=F59E0B&color=fff" style="width: 40px; height: 40px; border-radius: 50%;" alt="Michael Davis">
+                                        <div>
+                                            <strong>Michael Davis</strong>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Senior Designer</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Upcoming Reviews -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Upcoming Reviews</h3>
+                            <a href="manager-performance.html" class="card-action">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">
+                                        <span class="day">20</span>
+                                        <span class="month">Nov</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>John Smith - Q4 Review</h4>
+                                        <p>Quarterly performance review</p>
+                                        <span class="badge badge-warning">Due Soon</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">
+                                        <span class="day">25</span>
+                                        <span class="month">Nov</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Emily Chen - Q4 Review</h4>
+                                        <p>Quarterly performance review</p>
+                                        <span class="badge badge-info">Scheduled</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Analytics -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Team Analytics</h3>
+                            <a href="manager-analytics.html" class="card-action">View Reports</a>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="font-weight: 500;">Attendance Rate</span>
+                                        <span style="color: var(--secondary-color); font-weight: 600;">96%</span>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--secondary-color); width: 96%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="font-weight: 500;">Goal Completion</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">75%</span>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--primary-color); width: 75%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="font-weight: 500;">Training Completion</span>
+                                        <span style="color: var(--warning-color); font-weight: 600;">82%</span>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--warning-color); width: 82%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Leave Calendar -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Team Leave Calendar - Next 30 Days</h3>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Leave Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Days</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <img src="https://ui-avatars.com/api/?name=Emily+Chen&background=10B981&color=fff" style="width: 32px; height: 32px; border-radius: 50%;" alt="Emily Chen">
+                                            <strong>Emily Chen</strong>
+                                        </div>
+                                    </td>
+                                    <td>Sick Leave</td>
+                                    <td>Nov 18, 2025</td>
+                                    <td>Nov 19, 2025</td>
+                                    <td>2</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <img src="https://ui-avatars.com/api/?name=Michael+Davis&background=F59E0B&color=fff" style="width: 32px; height: 32px; border-radius: 50%;" alt="Michael Davis">
+                                            <strong>Michael Davis</strong>
+                                        </div>
+                                    </td>
+                                    <td>Personal</td>
+                                    <td>Dec 15, 2025</td>
+                                    <td>Dec 15, 2025</td>
+                                    <td>1</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" style="width: 32px; height: 32px; border-radius: 50%;" alt="John Smith">
+                                            <strong>John Smith</strong>
+                                        </div>
+                                    </td>
+                                    <td>Vacation</td>
+                                    <td>Dec 20, 2025</td>
+                                    <td>Dec 25, 2025</td>
+                                    <td>5</td>
+                                    <td><span class="badge badge-success">Approved</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

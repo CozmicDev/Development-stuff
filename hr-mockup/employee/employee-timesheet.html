@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time & Attendance - Employee - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="employee-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="employee-profile.html" class="nav-item">
+                    <span class="icon">👤</span>
+                    <span class="text">My Profile</span>
+                </a>
+                <a href="employee-timesheet.html" class="nav-item active">
+                    <span class="icon">⏰</span>
+                    <span class="text">Time & Attendance</span>
+                </a>
+                <a href="employee-leave.html" class="nav-item">
+                    <span class="icon">🏖️</span>
+                    <span class="text">Leave</span>
+                </a>
+                <a href="employee-documents.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Documents</span>
+                </a>
+                <a href="employee-performance.html" class="nav-item">
+                    <span class="icon">⭐</span>
+                    <span class="text">Performance</span>
+                </a>
+                <a href="employee-learning.html" class="nav-item">
+                    <span class="icon">📚</span>
+                    <span class="text">Learning</span>
+                </a>
+                <a href="employee-benefits.html" class="nav-item">
+                    <span class="icon">💼</span>
+                    <span class="text">Benefits</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Time & Attendance</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Miller&background=4F46E5&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Sarah Miller</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <!-- Clock In/Out Section -->
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                    <div class="card-body" style="padding: 32px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+                            <div>
+                                <h2 style="margin: 0 0 8px 0; color: white;">Good Morning, Sarah!</h2>
+                                <p style="margin: 0; font-size: 18px; opacity: 0.9;" id="currentTime">Loading...</p>
+                                <p style="margin: 8px 0 0 0; font-size: 14px; opacity: 0.8;" id="currentStatus">Not clocked in</p>
+                            </div>
+                            <div style="display: flex; gap: 16px; align-items: center;">
+                                <button class="btn" style="background: white; color: var(--primary-color); padding: 16px 32px; font-size: 16px; font-weight: 600;" id="clockBtn" onclick="toggleClock()">
+                                    🕐 Clock In
+                                </button>
+                                <div style="text-align: center; background: rgba(255,255,255,0.2); padding: 16px; border-radius: 8px; min-width: 120px;">
+                                    <div style="font-size: 28px; font-weight: 700;" id="todayHours">0:00</div>
+                                    <div style="font-size: 12px; opacity: 0.9;">Today's Hours</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--primary-color);">40.5</div>
+                        <div class="stat-label">Hours This Week</div>
+                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Target: 40 hours</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--secondary-color);">162.0</div>
+                        <div class="stat-label">Hours This Month</div>
+                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Avg: 8.1 hrs/day</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--warning-color);">3.5</div>
+                        <div class="stat-label">Overtime Hours</div>
+                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Pending approval</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--info-color);">98.5%</div>
+                        <div class="stat-label">Attendance Rate</div>
+                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Last 30 days</p>
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('timesheet')">Timesheet</button>
+                    <button class="tab-btn" onclick="switchTab('attendance')">Attendance History</button>
+                    <button class="tab-btn" onclick="switchTab('overtime')">Overtime Requests</button>
+                    <button class="tab-btn" onclick="switchTab('schedule')">Schedule</button>
+                </div>
+                
+                <!-- Timesheet Tab -->
+                <div id="timesheet-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Weekly Timesheet</h3>
+                                <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Week of Dec 16 - 22, 2024</p>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn btn-outline" onclick="previousWeek()">← Previous</button>
+                                <button class="btn btn-outline" onclick="nextWeek()">Next →</button>
+                                <button class="btn btn-primary" onclick="submitTimesheet()">Submit Timesheet</button>
+                            </div>
+                        </div>
+                        <div class="card-body" style="padding: 0; overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th style="min-width: 120px;">Date</th>
+                                        <th>Clock In</th>
+                                        <th>Clock Out</th>
+                                        <th>Break</th>
+                                        <th>Total Hours</th>
+                                        <th>Regular</th>
+                                        <th>Overtime</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="timesheetTable">
+                                    <tr>
+                                        <td><strong>Mon, Dec 16</strong></td>
+                                        <td>09:00 AM</td>
+                                        <td>05:30 PM</td>
+                                        <td>1:00 hr</td>
+                                        <td><strong>7.5 hrs</strong></td>
+                                        <td>7.5 hrs</td>
+                                        <td>0 hrs</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewTimesheetDetails('mon')">Details</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tue, Dec 17</strong></td>
+                                        <td>08:45 AM</td>
+                                        <td>06:00 PM</td>
+                                        <td>1:00 hr</td>
+                                        <td><strong>8.25 hrs</strong></td>
+                                        <td>8.0 hrs</td>
+                                        <td>0.25 hrs</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewTimesheetDetails('tue')">Details</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Wed, Dec 18</strong></td>
+                                        <td>09:00 AM</td>
+                                        <td>05:15 PM</td>
+                                        <td>0:45 hr</td>
+                                        <td><strong>7.5 hrs</strong></td>
+                                        <td>7.5 hrs</td>
+                                        <td>0 hrs</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewTimesheetDetails('wed')">Details</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Thu, Dec 19</strong></td>
+                                        <td>09:00 AM</td>
+                                        <td>07:00 PM</td>
+                                        <td>1:00 hr</td>
+                                        <td><strong>9.0 hrs</strong></td>
+                                        <td>8.0 hrs</td>
+                                        <td>1.0 hrs</td>
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="editTimesheet('thu')">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fri, Dec 20</strong></td>
+                                        <td>09:00 AM</td>
+                                        <td>Currently clocked in</td>
+                                        <td>-</td>
+                                        <td><strong>-</strong></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><span class="badge" style="background: var(--info-color);">In Progress</span></td>
+                                        <td><button class="btn btn-sm btn-outline" disabled>-</button></td>
+                                    </tr>
+                                    <tr style="background: var(--background);">
+                                        <td colspan="4"><strong>Weekly Total</strong></td>
+                                        <td><strong>32.25 hrs</strong></td>
+                                        <td><strong>31.0 hrs</strong></td>
+                                        <td><strong>1.25 hrs</strong></td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Attendance History Tab -->
+                <div id="attendance-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Attendance History</h3>
+                            <div style="display: flex; gap: 8px;">
+                                <select style="width: 150px;" onchange="filterAttendance()">
+                                    <option value="this_month">This Month</option>
+                                    <option value="last_month">Last Month</option>
+                                    <option value="last_3_months">Last 3 Months</option>
+                                    <option value="this_year">This Year</option>
+                                </select>
+                                <button class="btn btn-outline" onclick="exportAttendance()">📥 Export</button>
+                            </div>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Day</th>
+                                        <th>Check In</th>
+                                        <th>Check Out</th>
+                                        <th>Total Hours</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Dec 20, 2024</td>
+                                        <td>Friday</td>
+                                        <td>09:00 AM</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><span class="badge" style="background: var(--info-color);">Present</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 19, 2024</td>
+                                        <td>Thursday</td>
+                                        <td>09:00 AM</td>
+                                        <td>07:00 PM</td>
+                                        <td>9.0 hrs</td>
+                                        <td><span class="badge badge-success">Present</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 18, 2024</td>
+                                        <td>Wednesday</td>
+                                        <td>09:00 AM</td>
+                                        <td>05:15 PM</td>
+                                        <td>7.5 hrs</td>
+                                        <td><span class="badge badge-success">Present</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 17, 2024</td>
+                                        <td>Tuesday</td>
+                                        <td>08:45 AM</td>
+                                        <td>06:00 PM</td>
+                                        <td>8.25 hrs</td>
+                                        <td><span class="badge badge-success">Present</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 16, 2024</td>
+                                        <td>Monday</td>
+                                        <td>09:00 AM</td>
+                                        <td>05:30 PM</td>
+                                        <td>7.5 hrs</td>
+                                        <td><span class="badge badge-success">Present</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 15, 2024</td>
+                                        <td>Sunday</td>
+                                        <td colspan="3" style="text-align: center;">Weekend</td>
+                                        <td><span class="badge" style="background: #9CA3AF;">Weekend</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 14, 2024</td>
+                                        <td>Saturday</td>
+                                        <td colspan="3" style="text-align: center;">Weekend</td>
+                                        <td><span class="badge" style="background: #9CA3AF;">Weekend</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 13, 2024</td>
+                                        <td>Friday</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><span class="badge" style="background: #3B82F6;">Leave</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 12, 2024</td>
+                                        <td>Thursday</td>
+                                        <td>09:15 AM</td>
+                                        <td>05:45 PM</td>
+                                        <td>7.5 hrs</td>
+                                        <td><span class="badge badge-warning">Late</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 11, 2024</td>
+                                        <td>Wednesday</td>
+                                        <td>09:00 AM</td>
+                                        <td>05:30 PM</td>
+                                        <td>7.5 hrs</td>
+                                        <td><span class="badge badge-success">Present</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Overtime Requests Tab -->
+                <div id="overtime-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Overtime Requests</h3>
+                            <button class="btn btn-primary" onclick="requestOvertime()">+ Request Overtime</button>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Request ID</th>
+                                        <th>Date</th>
+                                        <th>Hours</th>
+                                        <th>Reason</th>
+                                        <th>Submitted</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>OT-2024-089</strong></td>
+                                        <td>Dec 19, 2024</td>
+                                        <td>1.0 hrs</td>
+                                        <td>Project deadline</td>
+                                        <td>Dec 19, 2024</td>
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewOvertimeDetails('OT-2024-089')">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>OT-2024-078</strong></td>
+                                        <td>Dec 17, 2024</td>
+                                        <td>0.25 hrs</td>
+                                        <td>Client meeting ran late</td>
+                                        <td>Dec 17, 2024</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewOvertimeDetails('OT-2024-078')">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>OT-2024-065</strong></td>
+                                        <td>Dec 10, 2024</td>
+                                        <td>2.0 hrs</td>
+                                        <td>System maintenance</td>
+                                        <td>Dec 10, 2024</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewOvertimeDetails('OT-2024-065')">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>OT-2024-052</strong></td>
+                                        <td>Dec 3, 2024</td>
+                                        <td>1.5 hrs</td>
+                                        <td>Training session</td>
+                                        <td>Dec 3, 2024</td>
+                                        <td><span class="badge badge-danger">Rejected</span></td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewOvertimeDetails('OT-2024-052')">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Schedule Tab -->
+                <div id="schedule-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>My Schedule</h3>
+                            <select style="width: 150px;">
+                                <option value="week">This Week</option>
+                                <option value="next_week">Next Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px;">
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                                    <h4 style="margin: 0 0 8px 0;">Monday</h4>
+                                    <p style="font-size: 13px; margin: 0; color: var(--text-secondary);">09:00 AM - 05:00 PM</p>
+                                    <p style="font-size: 13px; margin: 4px 0 0 0; font-weight: 600;">8 hours</p>
+                                </div>
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                                    <h4 style="margin: 0 0 8px 0;">Tuesday</h4>
+                                    <p style="font-size: 13px; margin: 0; color: var(--text-secondary);">09:00 AM - 05:00 PM</p>
+                                    <p style="font-size: 13px; margin: 4px 0 0 0; font-weight: 600;">8 hours</p>
+                                </div>
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                                    <h4 style="margin: 0 0 8px 0;">Wednesday</h4>
+                                    <p style="font-size: 13px; margin: 0; color: var(--text-secondary);">09:00 AM - 05:00 PM</p>
+                                    <p style="font-size: 13px; margin: 4px 0 0 0; font-weight: 600;">8 hours</p>
+                                </div>
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                                    <h4 style="margin: 0 0 8px 0;">Thursday</h4>
+                                    <p style="font-size: 13px; margin: 0; color: var(--text-secondary);">09:00 AM - 05:00 PM</p>
+                                    <p style="font-size: 13px; margin: 4px 0 0 0; font-weight: 600;">8 hours</p>
+                                </div>
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                                    <h4 style="margin: 0 0 8px 0;">Friday</h4>
+                                    <p style="font-size: 13px; margin: 0; color: var(--text-secondary);">09:00 AM - 05:00 PM</p>
+                                    <p style="font-size: 13px; margin: 4px 0 0 0; font-weight: 600;">8 hours</p>
+                                </div>
+                                <div style="padding: 16px; background: #E5E7EB; border-radius: 8px;">
+                                    <h4 style="margin: 0 0 8px 0; color: #6B7280;">Saturday</h4>
+                                    <p style="font-size: 13px; margin: 0; color: #6B7280;">Weekend</p>
+                                    <p style="font-size: 13px; margin: 4px 0 0 0; font-weight: 600; color: #6B7280;">Off</p>
+                                </div>
+                                <div style="padding: 16px; background: #E5E7EB; border-radius: 8px;">
+                                    <h4 style="margin: 0 0 8px 0; color: #6B7280;">Sunday</h4>
+                                    <p style="font-size: 13px; margin: 0; color: #6B7280;">Weekend</p>
+                                    <p style="font-size: 13px; margin: 4px 0 0 0; font-weight: 600; color: #6B7280;">Off</p>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 24px; padding: 16px; background: var(--background); border-radius: 8px;">
+                                <h4 style="margin: 0 0 12px 0;">Standard Working Hours</h4>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                                    <div>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Regular Hours/Week</p>
+                                        <p style="font-size: 18px; font-weight: 600; margin: 4px 0 0 0;">40 hours</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Core Hours</p>
+                                        <p style="font-size: 18px; font-weight: 600; margin: 4px 0 0 0;">10:00 AM - 03:00 PM</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Flexible Time</p>
+                                        <p style="font-size: 18px; font-weight: 600; margin: 4px 0 0 0;">±2 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/employee-timesheet.js"></script>
+</body>
+</html>

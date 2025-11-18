@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment & Hiring - HR Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- HR Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🏢 ACME Corp</h2>
+                <p>HR Portal</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="hr-dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="hr-employees.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>Employee Management</span>
+                </a>
+                <a href="hr-requests.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Leave Requests</span>
+                </a>
+                <a href="hr-onboarding.html" class="nav-item">
+                    <span class="nav-icon">✨</span>
+                    <span>Onboarding</span>
+                </a>
+                <a href="hr-offboarding.html" class="nav-item">
+                    <span class="nav-icon">👋</span>
+                    <span>Offboarding</span>
+                </a>
+                <a href="hr-payroll.html" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Payroll</span>
+                </a>
+                <a href="hr-recruitment.html" class="nav-item active">
+                    <span class="nav-icon">🎯</span>
+                    <span>Recruitment</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="btn btn-outline btn-sm">← Back to Portal</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <h1>Recruitment & Hiring</h1>
+                    <p>Manage job postings, candidates, and hiring pipeline</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="viewAnalytics()">
+                        <span>📊</span>
+                        Analytics
+                    </button>
+                    <button class="btn btn-primary" onclick="createJobPosting()">
+                        <span>+</span>
+                        New Job Posting
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                        📋
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">Active Job Postings</span>
+                        <span class="stat-value">5</span>
+                        <span class="stat-change">12 applications this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--secondary-light); color: var(--secondary-color);">
+                        👥
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">Total Candidates</span>
+                        <span class="stat-value">48</span>
+                        <span class="stat-change positive">8 new this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--warning-light); color: var(--warning-color);">
+                        📅
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">Scheduled Interviews</span>
+                        <span class="stat-value">12</span>
+                        <span class="stat-change">Next 7 days</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--info-light); color: var(--info-color);">
+                        🎯
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">Avg. Time to Hire</span>
+                        <span class="stat-value">28 days</span>
+                        <span class="stat-change positive">-4 days vs last quarter</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('jobs')">Active Jobs (5)</button>
+                    <button class="tab-btn" onclick="switchTab('candidates')">Candidates (48)</button>
+                    <button class="tab-btn" onclick="switchTab('interviews')">Interviews (12)</button>
+                    <button class="tab-btn" onclick="switchTab('offers')">Offers (3)</button>
+                    <button class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
+                </div>
+
+                <!-- Active Jobs Tab -->
+                <div id="jobs-tab" class="tab-content active">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Active Job Postings</h3>
+                            <div class="header-actions">
+                                <input type="search" placeholder="Search jobs..." onkeyup="filterJobs(this.value)" style="width: 250px;">
+                                <button class="btn btn-sm btn-primary" onclick="createJobPosting()">+ New Job</button>
+                            </div>
+                        </div>
+
+                        <div class="job-cards">
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div>
+                                        <h4>Senior Full Stack Developer</h4>
+                                        <p class="job-meta">Engineering • Full-time • Remote</p>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                <div class="job-content">
+                                    <p class="job-description">
+                                        We're seeking an experienced Full Stack Developer to join our engineering team. 
+                                        Build scalable web applications using React, Node.js, and cloud technologies.
+                                    </p>
+                                    <div class="job-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">📍 Location:</span>
+                                            <span>Remote (US)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">💰 Salary:</span>
+                                            <span>$120,000 - $160,000</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">📅 Posted:</span>
+                                            <span>5 days ago</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">👥 Applicants:</span>
+                                            <span><strong>18 candidates</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-mini">
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Applied</span>
+                                            <span class="stage-count">18</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Screening</span>
+                                            <span class="stage-count">6</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Interview</span>
+                                            <span class="stage-count">3</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Offer</span>
+                                            <span class="stage-count">1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="job-actions">
+                                    <button class="btn btn-sm btn-outline" onclick="viewJobDetails('senior-fullstack')">View Details</button>
+                                    <button class="btn btn-sm btn-outline" onclick="viewCandidates('senior-fullstack')">View Candidates</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editJob('senior-fullstack')">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="closeJob('senior-fullstack')">Close</button>
+                                </div>
+                            </div>
+
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div>
+                                        <h4>UX/UI Designer</h4>
+                                        <p class="job-meta">Design • Full-time • Hybrid</p>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                <div class="job-content">
+                                    <p class="job-description">
+                                        Join our design team to create beautiful, user-centered interfaces. 
+                                        Experience with Figma, user research, and design systems required.
+                                    </p>
+                                    <div class="job-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">📍 Location:</span>
+                                            <span>San Francisco, CA (Hybrid)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">💰 Salary:</span>
+                                            <span>$90,000 - $120,000</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">📅 Posted:</span>
+                                            <span>12 days ago</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">👥 Applicants:</span>
+                                            <span><strong>24 candidates</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-mini">
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Applied</span>
+                                            <span class="stage-count">24</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Screening</span>
+                                            <span class="stage-count">8</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Interview</span>
+                                            <span class="stage-count">4</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Offer</span>
+                                            <span class="stage-count">1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="job-actions">
+                                    <button class="btn btn-sm btn-outline" onclick="viewJobDetails('ux-designer')">View Details</button>
+                                    <button class="btn btn-sm btn-outline" onclick="viewCandidates('ux-designer')">View Candidates</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editJob('ux-designer')">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="closeJob('ux-designer')">Close</button>
+                                </div>
+                            </div>
+
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div>
+                                        <h4>Product Manager</h4>
+                                        <p class="job-meta">Product • Full-time • Remote</p>
+                                    </div>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                <div class="job-content">
+                                    <p class="job-description">
+                                        Lead product strategy and execution for our core platform. 
+                                        Work cross-functionally with engineering, design, and stakeholders.
+                                    </p>
+                                    <div class="job-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">📍 Location:</span>
+                                            <span>Remote (Global)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">💰 Salary:</span>
+                                            <span>$110,000 - $140,000</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">📅 Posted:</span>
+                                            <span>3 days ago</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">👥 Applicants:</span>
+                                            <span><strong>6 candidates</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-mini">
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Applied</span>
+                                            <span class="stage-count">6</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Screening</span>
+                                            <span class="stage-count">2</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Interview</span>
+                                            <span class="stage-count">0</span>
+                                        </div>
+                                        <div class="pipeline-stage">
+                                            <span class="stage-label">Offer</span>
+                                            <span class="stage-count">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="job-actions">
+                                    <button class="btn btn-sm btn-outline" onclick="viewJobDetails('product-manager')">View Details</button>
+                                    <button class="btn btn-sm btn-outline" onclick="viewCandidates('product-manager')">View Candidates</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editJob('product-manager')">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="closeJob('product-manager')">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Candidates Tab -->
+                <div id="candidates-tab" class="tab-content">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Candidate Pipeline</h3>
+                            <div class="header-actions">
+                                <select onchange="filterCandidatesByPosition(this.value)">
+                                    <option value="all">All Positions</option>
+                                    <option value="senior-fullstack">Senior Full Stack Developer</option>
+                                    <option value="ux-designer">UX/UI Designer</option>
+                                    <option value="product-manager">Product Manager</option>
+                                </select>
+                                <select onchange="filterCandidatesByStage(this.value)">
+                                    <option value="all">All Stages</option>
+                                    <option value="applied">Applied</option>
+                                    <option value="screening">Screening</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="hired">Hired</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="candidate-pipeline">
+                            <div class="pipeline-column">
+                                <div class="pipeline-header">
+                                    <h4>Applied (48)</h4>
+                                </div>
+                                <div class="pipeline-cards">
+                                    <div class="candidate-card" draggable="true">
+                                        <div class="candidate-header">
+                                            <div class="candidate-avatar">JD</div>
+                                            <div class="candidate-info">
+                                                <h5>John Doe</h5>
+                                                <p>Senior Full Stack Developer</p>
+                                            </div>
+                                        </div>
+                                        <div class="candidate-meta">
+                                            <span class="meta-item">📧 john.doe@email.com</span>
+                                            <span class="meta-item">📞 (555) 123-4567</span>
+                                            <span class="meta-item">📍 San Francisco, CA</span>
+                                            <span class="meta-item">⏱️ Applied 2 days ago</span>
+                                        </div>
+                                        <div class="candidate-tags">
+                                            <span class="tag">React</span>
+                                            <span class="tag">Node.js</span>
+                                            <span class="tag">AWS</span>
+                                        </div>
+                                        <div class="candidate-actions">
+                                            <button class="btn btn-sm btn-outline" onclick="viewCandidate('john-doe')">View Profile</button>
+                                            <button class="btn btn-sm btn-primary" onclick="moveCandidateStage('john-doe', 'screening')">→ Screen</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="candidate-card" draggable="true">
+                                        <div class="candidate-header">
+                                            <div class="candidate-avatar">AS</div>
+                                            <div class="candidate-info">
+                                                <h5>Alice Smith</h5>
+                                                <p>UX/UI Designer</p>
+                                            </div>
+                                        </div>
+                                        <div class="candidate-meta">
+                                            <span class="meta-item">📧 alice.smith@email.com</span>
+                                            <span class="meta-item">📞 (555) 234-5678</span>
+                                            <span class="meta-item">📍 New York, NY</span>
+                                            <span class="meta-item">⏱️ Applied 1 day ago</span>
+                                        </div>
+                                        <div class="candidate-tags">
+                                            <span class="tag">Figma</span>
+                                            <span class="tag">User Research</span>
+                                            <span class="tag">Prototyping</span>
+                                        </div>
+                                        <div class="candidate-actions">
+                                            <button class="btn btn-sm btn-outline" onclick="viewCandidate('alice-smith')">View Profile</button>
+                                            <button class="btn btn-sm btn-primary" onclick="moveCandidateStage('alice-smith', 'screening')">→ Screen</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="show-more" onclick="showMoreCandidates('applied')">
+                                        + 46 more candidates
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pipeline-column">
+                                <div class="pipeline-header">
+                                    <h4>Screening (16)</h4>
+                                </div>
+                                <div class="pipeline-cards">
+                                    <div class="candidate-card" draggable="true">
+                                        <div class="candidate-header">
+                                            <div class="candidate-avatar">MB</div>
+                                            <div class="candidate-info">
+                                                <h5>Maria Brown</h5>
+                                                <p>Senior Full Stack Developer</p>
+                                            </div>
+                                        </div>
+                                        <div class="candidate-meta">
+                                            <span class="meta-item">📧 maria.brown@email.com</span>
+                                            <span class="meta-item">⭐ Rating: 4.5/5</span>
+                                            <span class="meta-item">⏱️ In stage: 3 days</span>
+                                        </div>
+                                        <div class="candidate-tags">
+                                            <span class="tag">React</span>
+                                            <span class="tag">Python</span>
+                                            <span class="tag">Docker</span>
+                                        </div>
+                                        <div class="candidate-actions">
+                                            <button class="btn btn-sm btn-outline" onclick="viewCandidate('maria-brown')">View Profile</button>
+                                            <button class="btn btn-sm btn-primary" onclick="scheduleInterview('maria-brown')">Schedule Interview</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="show-more" onclick="showMoreCandidates('screening')">
+                                        + 15 more candidates
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pipeline-column">
+                                <div class="pipeline-header">
+                                    <h4>Interview (7)</h4>
+                                </div>
+                                <div class="pipeline-cards">
+                                    <div class="candidate-card" draggable="true">
+                                        <div class="candidate-header">
+                                            <div class="candidate-avatar">TW</div>
+                                            <div class="candidate-info">
+                                                <h5>Tom Wilson</h5>
+                                                <p>UX/UI Designer</p>
+                                            </div>
+                                        </div>
+                                        <div class="candidate-meta">
+                                            <span class="meta-item">📅 Interview: Dec 20, 2PM</span>
+                                            <span class="meta-item">⭐ Rating: 5/5</span>
+                                            <span class="meta-item">✅ Technical: Passed</span>
+                                        </div>
+                                        <div class="candidate-tags">
+                                            <span class="tag">Figma Expert</span>
+                                            <span class="tag">10+ years exp</span>
+                                        </div>
+                                        <div class="candidate-actions">
+                                            <button class="btn btn-sm btn-outline" onclick="viewCandidate('tom-wilson')">View Profile</button>
+                                            <button class="btn btn-sm btn-primary" onclick="makeOffer('tom-wilson')">Make Offer</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="show-more" onclick="showMoreCandidates('interview')">
+                                        + 6 more candidates
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pipeline-column">
+                                <div class="pipeline-header">
+                                    <h4>Offer (3)</h4>
+                                </div>
+                                <div class="pipeline-cards">
+                                    <div class="candidate-card" draggable="true">
+                                        <div class="candidate-header">
+                                            <div class="candidate-avatar">SL</div>
+                                            <div class="candidate-info">
+                                                <h5>Sarah Lee</h5>
+                                                <p>Senior Full Stack Developer</p>
+                                            </div>
+                                        </div>
+                                        <div class="candidate-meta">
+                                            <span class="meta-item">💰 Offer: $145,000</span>
+                                            <span class="meta-item">📅 Sent: Dec 15</span>
+                                            <span class="meta-item">⏱️ Expires: Dec 29</span>
+                                        </div>
+                                        <div class="candidate-tags">
+                                            <span class="tag tag-success">Pending Response</span>
+                                        </div>
+                                        <div class="candidate-actions">
+                                            <button class="btn btn-sm btn-outline" onclick="viewCandidate('sarah-lee')">View Profile</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewOffer('sarah-lee')">View Offer</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="show-more" onclick="showMoreCandidates('offer')">
+                                        + 2 more candidates
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interviews Tab -->
+                <div id="interviews-tab" class="tab-content">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Scheduled Interviews</h3>
+                            <button class="btn btn-sm btn-primary" onclick="scheduleInterview()">+ Schedule Interview</button>
+                        </div>
+
+                        <div class="interview-calendar">
+                            <div class="calendar-header">
+                                <button class="btn btn-sm btn-outline" onclick="previousWeek()">← Previous</button>
+                                <h4>Week of December 18 - 24, 2024</h4>
+                                <button class="btn btn-sm btn-outline" onclick="nextWeek()">Next →</button>
+                            </div>
+
+                            <div class="interview-list">
+                                <div class="interview-item">
+                                    <div class="interview-time">
+                                        <span class="date">Dec 20</span>
+                                        <span class="time">2:00 PM</span>
+                                    </div>
+                                    <div class="interview-details">
+                                        <h5>Tom Wilson - UX/UI Designer</h5>
+                                        <p>Final Round Interview</p>
+                                        <div class="interview-meta">
+                                            <span>👤 Interviewer: Sarah Johnson</span>
+                                            <span>📍 Conference Room A</span>
+                                            <span>⏱️ 60 minutes</span>
+                                        </div>
+                                    </div>
+                                    <div class="interview-actions">
+                                        <button class="btn btn-sm btn-outline" onclick="viewInterview('tom-wilson-final')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="rescheduleInterview('tom-wilson-final')">Reschedule</button>
+                                        <button class="btn btn-sm btn-danger" onclick="cancelInterview('tom-wilson-final')">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="interview-item">
+                                    <div class="interview-time">
+                                        <span class="date">Dec 21</span>
+                                        <span class="time">10:00 AM</span>
+                                    </div>
+                                    <div class="interview-details">
+                                        <h5>Maria Brown - Senior Full Stack Developer</h5>
+                                        <p>Technical Interview</p>
+                                        <div class="interview-meta">
+                                            <span>👤 Interviewer: Mike Chen</span>
+                                            <span>📍 Zoom Meeting</span>
+                                            <span>⏱️ 90 minutes</span>
+                                        </div>
+                                    </div>
+                                    <div class="interview-actions">
+                                        <button class="btn btn-sm btn-outline" onclick="viewInterview('maria-tech')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="rescheduleInterview('maria-tech')">Reschedule</button>
+                                        <button class="btn btn-sm btn-danger" onclick="cancelInterview('maria-tech')">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="interview-item">
+                                    <div class="interview-time">
+                                        <span class="date">Dec 22</span>
+                                        <span class="time">3:00 PM</span>
+                                    </div>
+                                    <div class="interview-details">
+                                        <h5>John Doe - Senior Full Stack Developer</h5>
+                                        <p>Phone Screening</p>
+                                        <div class="interview-meta">
+                                            <span>👤 Interviewer: HR Team</span>
+                                            <span>📍 Phone Call</span>
+                                            <span>⏱️ 30 minutes</span>
+                                        </div>
+                                    </div>
+                                    <div class="interview-actions">
+                                        <button class="btn btn-sm btn-outline" onclick="viewInterview('john-screening')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="rescheduleInterview('john-screening')">Reschedule</button>
+                                        <button class="btn btn-sm btn-danger" onclick="cancelInterview('john-screening')">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offers Tab -->
+                <div id="offers-tab" class="tab-content">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Job Offers</h3>
+                        </div>
+
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Candidate</th>
+                                    <th>Position</th>
+                                    <th>Offer Amount</th>
+                                    <th>Start Date</th>
+                                    <th>Sent Date</th>
+                                    <th>Expires</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Sarah Lee</strong></td>
+                                    <td>Senior Full Stack Developer</td>
+                                    <td>$145,000</td>
+                                    <td>Jan 15, 2025</td>
+                                    <td>Dec 15, 2024</td>
+                                    <td>Dec 29, 2024</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewOffer('sarah-lee')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tom Wilson</strong></td>
+                                    <td>UX/UI Designer</td>
+                                    <td>$105,000</td>
+                                    <td>Jan 8, 2025</td>
+                                    <td>Dec 12, 2024</td>
+                                    <td>Dec 26, 2024</td>
+                                    <td><span class="badge badge-success">Accepted</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewOffer('tom-wilson')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Chris Martin</strong></td>
+                                    <td>Product Manager</td>
+                                    <td>$125,000</td>
+                                    <td>Jan 22, 2025</td>
+                                    <td>Dec 10, 2024</td>
+                                    <td>Dec 24, 2024</td>
+                                    <td><span class="badge badge-danger">Declined</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewOffer('chris-martin')">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div id="analytics-tab" class="tab-content">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Recruitment Analytics</h3>
+                            <select onchange="changeAnalyticsPeriod(this.value)">
+                                <option value="q4-2024">Q4 2024</option>
+                                <option value="q3-2024">Q3 2024</option>
+                                <option value="ytd">Year to Date</option>
+                            </select>
+                        </div>
+
+                        <div class="analytics-grid">
+                            <div class="metric-card">
+                                <h4>Time to Hire</h4>
+                                <div class="metric-value">28 days</div>
+                                <div class="metric-change positive">-4 days vs last quarter</div>
+                                <div class="mini-chart" id="timeToHireChart">📊</div>
+                            </div>
+                            <div class="metric-card">
+                                <h4>Cost per Hire</h4>
+                                <div class="metric-value">$4,250</div>
+                                <div class="metric-change positive">-$320 vs last quarter</div>
+                                <div class="mini-chart" id="costPerHireChart">📊</div>
+                            </div>
+                            <div class="metric-card">
+                                <h4>Offer Acceptance Rate</h4>
+                                <div class="metric-value">85%</div>
+                                <div class="metric-change positive">+5% vs last quarter</div>
+                                <div class="mini-chart" id="acceptanceRateChart">📊</div>
+                            </div>
+                            <div class="metric-card">
+                                <h4>Quality of Hire</h4>
+                                <div class="metric-value">4.2/5</div>
+                                <div class="metric-change">Based on 90-day reviews</div>
+                                <div class="mini-chart" id="qualityChart">📊</div>
+                            </div>
+                        </div>
+
+                        <div class="charts-row">
+                            <div class="chart-card">
+                                <h4>Application Sources</h4>
+                                <div class="chart-placeholder" id="sourcesChart">
+                                    <canvas id="sourcesCanvas"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-card">
+                                <h4>Hiring Funnel</h4>
+                                <div class="funnel-chart">
+                                    <div class="funnel-stage" style="width: 100%;">
+                                        <span>Applications</span>
+                                        <strong>125</strong>
+                                    </div>
+                                    <div class="funnel-stage" style="width: 60%;">
+                                        <span>Screening</span>
+                                        <strong>75</strong>
+                                    </div>
+                                    <div class="funnel-stage" style="width: 35%;">
+                                        <span>Interviews</span>
+                                        <strong>44</strong>
+                                    </div>
+                                    <div class="funnel-stage" style="width: 15%;">
+                                        <span>Offers</span>
+                                        <strong>18</strong>
+                                    </div>
+                                    <div class="funnel-stage" style="width: 12%;">
+                                        <span>Hired</span>
+                                        <strong>15</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/data-service.js"></script>
+    <script src="../js/hr-recruitment.js"></script>
+</body>
+</html>

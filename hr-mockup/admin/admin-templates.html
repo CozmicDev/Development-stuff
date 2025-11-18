@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates - Admin - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="text">Users & Roles</span>
+                </a>
+                <a href="admin-system.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">System Config</span>
+                </a>
+                <a href="admin-integrations.html" class="nav-item">
+                    <span class="icon">🔗</span>
+                    <span class="text">Integrations</span>
+                </a>
+                <a href="admin-security.html" class="nav-item">
+                    <span class="icon">🔒</span>
+                    <span class="text">Security</span>
+                </a>
+                <a href="admin-workflows.html" class="nav-item">
+                    <span class="icon">🔄</span>
+                    <span class="text">Workflows</span>
+                </a>
+                <a href="admin-templates.html" class="nav-item active">
+                    <span class="icon">📄</span>
+                    <span class="text">Templates</span>
+                </a>
+                <a href="admin-audit.html" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="text">Audit Logs</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Document Templates</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Robert Anderson</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="page-header">
+                    <div>
+                        <h2>Template Library</h2>
+                        <p>Manage email and document templates</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="createTemplate()">
+                        <span>+ Create Template</span>
+                    </button>
+                </div>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('email')">Email Templates</button>
+                    <button class="tab-btn" onclick="switchTab('document')">Document Templates</button>
+                    <button class="tab-btn" onclick="switchTab('offer')">Offer Letters</button>
+                    <button class="tab-btn" onclick="switchTab('policy')">Policies</button>
+                </div>
+                
+                <!-- Email Templates Tab -->
+                <div id="email-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Email Templates</h3>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="text" placeholder="Search templates..." style="width: 250px;" onkeyup="searchTemplates(this.value)">
+                            </div>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Template Name</th>
+                                        <th>Category</th>
+                                        <th>Subject</th>
+                                        <th>Last Modified</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Welcome Email</strong></td>
+                                        <td><span class="badge" style="background: var(--info-color);">Onboarding</span></td>
+                                        <td>Welcome to {{company_name}}!</td>
+                                        <td>Dec 10, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewTemplate('welcome')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editTemplate('welcome')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="duplicateTemplate('welcome')">📋 Duplicate</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Leave Approved</strong></td>
+                                        <td><span class="badge badge-success">Leave</span></td>
+                                        <td>Your leave request has been approved</td>
+                                        <td>Dec 5, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewTemplate('leave_approved')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editTemplate('leave_approved')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="duplicateTemplate('leave_approved')">📋 Duplicate</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Leave Rejected</strong></td>
+                                        <td><span class="badge badge-danger">Leave</span></td>
+                                        <td>Your leave request requires revision</td>
+                                        <td>Dec 5, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewTemplate('leave_rejected')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editTemplate('leave_rejected')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="duplicateTemplate('leave_rejected')">📋 Duplicate</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Performance Review Due</strong></td>
+                                        <td><span class="badge badge-warning">Performance</span></td>
+                                        <td>Your performance review is due</td>
+                                        <td>Nov 28, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewTemplate('review_due')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editTemplate('review_due')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="duplicateTemplate('review_due')">📋 Duplicate</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Password Reset</strong></td>
+                                        <td><span class="badge" style="background: var(--primary-color);">Security</span></td>
+                                        <td>Reset your password</td>
+                                        <td>Nov 20, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewTemplate('password_reset')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editTemplate('password_reset')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="duplicateTemplate('password_reset')">📋 Duplicate</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Birthday Wishes</strong></td>
+                                        <td><span class="badge" style="background: #EC4899;">Engagement</span></td>
+                                        <td>Happy Birthday, {{employee_name}}! 🎉</td>
+                                        <td>Nov 15, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewTemplate('birthday')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editTemplate('birthday')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="duplicateTemplate('birthday')">📋 Duplicate</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Document Templates Tab -->
+                <div id="document-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Document Templates</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                                <div class="document-template-card" onclick="viewDocumentTemplate('employment_certificate')">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                            📜
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 style="margin: 0 0 4px 0;">Employment Certificate</h4>
+                                            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Last used: 2 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="editDocumentTemplate('employment_certificate'); event.stopPropagation();">✏️ Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="downloadTemplate('employment_certificate'); event.stopPropagation();">⬇️ Download</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-template-card" onclick="viewDocumentTemplate('salary_certificate')">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                            💰
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 style="margin: 0 0 4px 0;">Salary Certificate</h4>
+                                            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Last used: 1 week ago</p>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="editDocumentTemplate('salary_certificate'); event.stopPropagation();">✏️ Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="downloadTemplate('salary_certificate'); event.stopPropagation();">⬇️ Download</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-template-card" onclick="viewDocumentTemplate('experience_letter')">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                            🎓
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 style="margin: 0 0 4px 0;">Experience Letter</h4>
+                                            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Last used: 3 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="editDocumentTemplate('experience_letter'); event.stopPropagation();">✏️ Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="downloadTemplate('experience_letter'); event.stopPropagation();">⬇️ Download</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-template-card" onclick="viewDocumentTemplate('nda')">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                            🔒
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 style="margin: 0 0 4px 0;">NDA Agreement</h4>
+                                            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Last used: 5 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="editDocumentTemplate('nda'); event.stopPropagation();">✏️ Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="downloadTemplate('nda'); event.stopPropagation();">⬇️ Download</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-template-card" onclick="viewDocumentTemplate('warning_letter')">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                            ⚠️
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 style="margin: 0 0 4px 0;">Warning Letter</h4>
+                                            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Last used: 2 weeks ago</p>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="editDocumentTemplate('warning_letter'); event.stopPropagation();">✏️ Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="downloadTemplate('warning_letter'); event.stopPropagation();">⬇️ Download</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-template-card" onclick="viewDocumentTemplate('promotion_letter')">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                            🚀
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 style="margin: 0 0 4px 0;">Promotion Letter</h4>
+                                            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Last used: 1 month ago</p>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="editDocumentTemplate('promotion_letter'); event.stopPropagation();">✏️ Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="downloadTemplate('promotion_letter'); event.stopPropagation();">⬇️ Download</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer Letters Tab -->
+                <div id="offer-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Offer Letter Templates</h3>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Template Name</th>
+                                        <th>Position Level</th>
+                                        <th>Department</th>
+                                        <th>Last Used</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Software Engineer - Offer</strong></td>
+                                        <td><span class="badge" style="background: var(--info-color);">Mid-Level</span></td>
+                                        <td>Engineering</td>
+                                        <td>Dec 8, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewOffer('swe')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editOffer('swe')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="generateOffer('swe')">📄 Generate</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Senior Manager - Offer</strong></td>
+                                        <td><span class="badge badge-warning">Senior</span></td>
+                                        <td>Management</td>
+                                        <td>Dec 1, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewOffer('manager')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editOffer('manager')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="generateOffer('manager')">📄 Generate</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Intern - Offer</strong></td>
+                                        <td><span class="badge badge-success">Entry</span></td>
+                                        <td>Multiple</td>
+                                        <td>Nov 20, 2024</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="previewOffer('intern')">👁️ Preview</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editOffer('intern')">✏️ Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="generateOffer('intern')">📄 Generate</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Policies Tab -->
+                <div id="policy-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Company Policies</h3>
+                            <button class="btn btn-sm btn-primary" onclick="uploadPolicy()">+ Upload Policy</button>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Policy Name</th>
+                                        <th>Category</th>
+                                        <th>Version</th>
+                                        <th>Effective Date</th>
+                                        <th>Acknowledgments</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Code of Conduct</strong></td>
+                                        <td>General</td>
+                                        <td>v2.1</td>
+                                        <td>Jan 1, 2024</td>
+                                        <td><span class="badge badge-success">247/247</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewPolicy('code_conduct')">👁️ View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editPolicy('code_conduct')">✏️ Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Remote Work Policy</strong></td>
+                                        <td>Work Arrangement</td>
+                                        <td>v1.3</td>
+                                        <td>Mar 15, 2024</td>
+                                        <td><span class="badge badge-success">247/247</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewPolicy('remote_work')">👁️ View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editPolicy('remote_work')">✏️ Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Information Security</strong></td>
+                                        <td>Security</td>
+                                        <td>v3.0</td>
+                                        <td>June 1, 2024</td>
+                                        <td><span class="badge badge-warning">245/247</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewPolicy('info_security')">👁️ View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editPolicy('info_security')">✏️ Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Leave Policy</strong></td>
+                                        <td>Benefits</td>
+                                        <td>v1.8</td>
+                                        <td>Jan 1, 2024</td>
+                                        <td><span class="badge badge-success">247/247</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewPolicy('leave_policy')">👁️ View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="editPolicy('leave_policy')">✏️ Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/admin-templates.js"></script>
+</body>
+</html>

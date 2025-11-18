@@ -1,0 +1,1276 @@
+{
+  "name": "HR Management System - Employee Dashboard",
+  "version": "1.0",
+  "description": "Employee Dashboard with widgets for quick actions, stats, and recent activity",
+  "pages": [
+    {
+      "id": "page-2",
+      "name": "Employee Dashboard",
+      "type": "CANVAS",
+      "children": [
+        {
+          "id": "frame-dashboard",
+          "name": "Desktop - 1920x1080",
+          "type": "FRAME",
+          "width": 1920,
+          "height": 1080,
+          "x": 0,
+          "y": 0,
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {"r": 0.96, "g": 0.97, "b": 0.98, "a": 1}
+            }
+          ],
+          "children": [
+            {
+              "id": "top-navbar",
+              "name": "Top Navigation Bar",
+              "type": "FRAME",
+              "width": 1920,
+              "height": 70,
+              "x": 0,
+              "y": 0,
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                }
+              ],
+              "effects": [
+                {
+                  "type": "DROP_SHADOW",
+                  "color": {"r": 0, "g": 0, "b": 0, "a": 0.08},
+                  "offset": {"x": 0, "y": 2},
+                  "radius": 8
+                }
+              ],
+              "children": [
+                {
+                  "id": "nav-left",
+                  "name": "Left Section",
+                  "type": "FRAME",
+                  "width": 400,
+                  "height": 70,
+                  "x": 40,
+                  "y": 0,
+                  "fills": [],
+                  "layoutMode": "HORIZONTAL",
+                  "itemSpacing": 16,
+                  "counterAxisAlignItems": "CENTER",
+                  "children": [
+                    {
+                      "type": "TEXT",
+                      "characters": "🏢",
+                      "fontSize": 32,
+                      "fills": [{"type": "SOLID", "color": {"r": 0.31, "g": 0.53, "b": 0.96, "a": 1}}]
+                    },
+                    {
+                      "type": "TEXT",
+                      "characters": "HRPro",
+                      "fontSize": 24,
+                      "fontName": {"family": "Inter", "style": "Bold"},
+                      "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                    }
+                  ]
+                },
+                {
+                  "id": "nav-center",
+                  "name": "Navigation Links",
+                  "type": "FRAME",
+                  "width": 800,
+                  "height": 70,
+                  "x": 560,
+                  "y": 0,
+                  "fills": [],
+                  "layoutMode": "HORIZONTAL",
+                  "itemSpacing": 32,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "children": [
+                    {
+                      "name": "Nav Link - Dashboard",
+                      "type": "FRAME",
+                      "width": 120,
+                      "height": 40,
+                      "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 0.1}}],
+                      "cornerRadius": 6,
+                      "children": [
+                        {
+                          "type": "TEXT",
+                          "characters": "📊 Dashboard",
+                          "fontSize": 15,
+                          "fontName": {"family": "Inter", "style": "SemiBold"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "TEXT",
+                      "characters": "👤 Profile",
+                      "fontSize": 15,
+                      "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                    },
+                    {
+                      "type": "TEXT",
+                      "characters": "🕒 Timesheet",
+                      "fontSize": 15,
+                      "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                    },
+                    {
+                      "type": "TEXT",
+                      "characters": "🏖️ Leave",
+                      "fontSize": 15,
+                      "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                    },
+                    {
+                      "type": "TEXT",
+                      "characters": "📚 Learning",
+                      "fontSize": 15,
+                      "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                    }
+                  ]
+                },
+                {
+                  "id": "nav-right",
+                  "name": "Right Section",
+                  "type": "FRAME",
+                  "width": 300,
+                  "height": 70,
+                  "x": 1540,
+                  "y": 0,
+                  "fills": [],
+                  "layoutMode": "HORIZONTAL",
+                  "itemSpacing": 20,
+                  "primaryAxisAlignItems": "MAX",
+                  "counterAxisAlignItems": "CENTER",
+                  "children": [
+                    {
+                      "name": "Notifications",
+                      "type": "FRAME",
+                      "width": 40,
+                      "height": 40,
+                      "fills": [{"type": "SOLID", "color": {"r": 0.96, "g": 0.97, "b": 0.98, "a": 1}}],
+                      "cornerRadius": 20,
+                      "children": [
+                        {
+                          "type": "TEXT",
+                          "characters": "🔔",
+                          "fontSize": 20,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                        },
+                        {
+                          "name": "Badge",
+                          "type": "ELLIPSE",
+                          "width": 18,
+                          "height": 18,
+                          "x": 26,
+                          "y": -2,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.93, "g": 0.26, "b": 0.26, "a": 1}}],
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "3",
+                              "fontSize": 11,
+                              "fontName": {"family": "Inter", "style": "Bold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "User Profile",
+                      "type": "FRAME",
+                      "width": 180,
+                      "height": 40,
+                      "fills": [],
+                      "layoutMode": "HORIZONTAL",
+                      "itemSpacing": 12,
+                      "counterAxisAlignItems": "CENTER",
+                      "children": [
+                        {
+                          "name": "Avatar",
+                          "type": "ELLIPSE",
+                          "width": 40,
+                          "height": 40,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}],
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "JS",
+                              "fontSize": 16,
+                              "fontName": {"family": "Inter", "style": "Bold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "FRAME",
+                          "width": 110,
+                          "fills": [],
+                          "layoutMode": "VERTICAL",
+                          "itemSpacing": 2,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "John Smith",
+                              "fontSize": 14,
+                              "fontName": {"family": "Inter", "style": "SemiBold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "characters": "Employee",
+                              "fontSize": 12,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "main-content",
+              "name": "Main Content Area",
+              "type": "FRAME",
+              "width": 1840,
+              "height": 970,
+              "x": 40,
+              "y": 90,
+              "fills": [],
+              "layoutMode": "VERTICAL",
+              "itemSpacing": 24,
+              "children": [
+                {
+                  "id": "page-header",
+                  "name": "Page Header",
+                  "type": "FRAME",
+                  "width": 1840,
+                  "height": 80,
+                  "fills": [],
+                  "layoutMode": "HORIZONTAL",
+                  "primaryAxisAlignItems": "SPACE_BETWEEN",
+                  "counterAxisAlignItems": "CENTER",
+                  "children": [
+                    {
+                      "type": "FRAME",
+                      "fills": [],
+                      "layoutMode": "VERTICAL",
+                      "itemSpacing": 4,
+                      "children": [
+                        {
+                          "type": "TEXT",
+                          "characters": "Welcome back, John! 👋",
+                          "fontSize": 32,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "Tuesday, November 18, 2025 • 9:47 AM",
+                          "fontSize": 16,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Quick Actions",
+                      "type": "FRAME",
+                      "layoutMode": "HORIZONTAL",
+                      "itemSpacing": 12,
+                      "children": [
+                        {
+                          "type": "FRAME",
+                          "width": 140,
+                          "height": 44,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}],
+                          "cornerRadius": 8,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "🕒 Clock In",
+                              "fontSize": 15,
+                              "fontName": {"family": "Inter", "style": "SemiBold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "FRAME",
+                          "width": 160,
+                          "height": 44,
+                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                          "cornerRadius": 8,
+                          "strokes": [{"type": "SOLID", "color": {"r": 0.88, "g": 0.88, "b": 0.9, "a": 1}}],
+                          "strokeWeight": 1,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "🏖️ Request Leave",
+                              "fontSize": 15,
+                              "fontName": {"family": "Inter", "style": "SemiBold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "stats-row",
+                  "name": "Stats Cards Row",
+                  "type": "FRAME",
+                  "width": 1840,
+                  "height": 140,
+                  "fills": [],
+                  "layoutMode": "HORIZONTAL",
+                  "itemSpacing": 24,
+                  "children": [
+                    {
+                      "name": "Stat Card - Hours",
+                      "type": "FRAME",
+                      "width": 442,
+                      "height": 140,
+                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                      "cornerRadius": 12,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                          "offset": {"x": 0, "y": 2},
+                          "radius": 8
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 24,
+                      "paddingBottom": 24,
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                      "itemSpacing": 12,
+                      "children": [
+                        {
+                          "type": "FRAME",
+                          "layoutMode": "HORIZONTAL",
+                          "primaryAxisAlignItems": "SPACE_BETWEEN",
+                          "width": 394,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "Hours This Week",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "characters": "🕒",
+                              "fontSize": 24
+                            }
+                          ]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "32.5",
+                          "fontSize": 36,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "↑ 2.5 hours vs last week",
+                          "fontSize": 13,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Stat Card - Leave",
+                      "type": "FRAME",
+                      "width": 442,
+                      "height": 140,
+                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                      "cornerRadius": 12,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                          "offset": {"x": 0, "y": 2},
+                          "radius": 8
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 24,
+                      "paddingBottom": 24,
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                      "itemSpacing": 12,
+                      "children": [
+                        {
+                          "type": "FRAME",
+                          "layoutMode": "HORIZONTAL",
+                          "primaryAxisAlignItems": "SPACE_BETWEEN",
+                          "width": 394,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "Leave Balance",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "characters": "🏖️",
+                              "fontSize": 24
+                            }
+                          ]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "18 Days",
+                          "fontSize": 36,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "22 total • 4 used • 18 remaining",
+                          "fontSize": 13,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Stat Card - Tasks",
+                      "type": "FRAME",
+                      "width": 442,
+                      "height": 140,
+                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                      "cornerRadius": 12,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                          "offset": {"x": 0, "y": 2},
+                          "radius": 8
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 24,
+                      "paddingBottom": 24,
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                      "itemSpacing": 12,
+                      "children": [
+                        {
+                          "type": "FRAME",
+                          "layoutMode": "HORIZONTAL",
+                          "primaryAxisAlignItems": "SPACE_BETWEEN",
+                          "width": 394,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "Pending Tasks",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "characters": "✓",
+                              "fontSize": 24
+                            }
+                          ]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "5",
+                          "fontSize": 36,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "3 urgent • 2 for this week",
+                          "fontSize": 13,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.96, "g": 0.62, "b": 0.04, "a": 1}}]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Stat Card - Performance",
+                      "type": "FRAME",
+                      "width": 442,
+                      "height": 140,
+                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                      "cornerRadius": 12,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                          "offset": {"x": 0, "y": 2},
+                          "radius": 8
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 24,
+                      "paddingBottom": 24,
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                      "itemSpacing": 12,
+                      "children": [
+                        {
+                          "type": "FRAME",
+                          "layoutMode": "HORIZONTAL",
+                          "primaryAxisAlignItems": "SPACE_BETWEEN",
+                          "width": 394,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "Performance Score",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "characters": "⭐",
+                              "fontSize": 24
+                            }
+                          ]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "4.8/5.0",
+                          "fontSize": 36,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "characters": "Excellent performance this quarter",
+                          "fontSize": 13,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "content-grid",
+                  "name": "Dashboard Grid",
+                  "type": "FRAME",
+                  "width": 1840,
+                  "height": 622,
+                  "fills": [],
+                  "layoutMode": "HORIZONTAL",
+                  "itemSpacing": 24,
+                  "children": [
+                    {
+                      "name": "Left Column",
+                      "type": "FRAME",
+                      "width": 1208,
+                      "height": 622,
+                      "fills": [],
+                      "layoutMode": "VERTICAL",
+                      "itemSpacing": 24,
+                      "children": [
+                        {
+                          "name": "Upcoming Events Card",
+                          "type": "FRAME",
+                          "width": 1208,
+                          "height": 299,
+                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                          "cornerRadius": 12,
+                          "effects": [
+                            {
+                              "type": "DROP_SHADOW",
+                              "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                              "offset": {"x": 0, "y": 2},
+                              "radius": 8
+                            }
+                          ],
+                          "layoutMode": "VERTICAL",
+                          "paddingTop": 24,
+                          "paddingBottom": 24,
+                          "paddingLeft": 24,
+                          "paddingRight": 24,
+                          "itemSpacing": 20,
+                          "children": [
+                            {
+                              "type": "FRAME",
+                              "layoutMode": "HORIZONTAL",
+                              "primaryAxisAlignItems": "SPACE_BETWEEN",
+                              "width": 1160,
+                              "children": [
+                                {
+                                  "type": "TEXT",
+                                  "characters": "📅 Upcoming Events",
+                                  "fontSize": 20,
+                                  "fontName": {"family": "Inter", "style": "Bold"},
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                },
+                                {
+                                  "type": "TEXT",
+                                  "characters": "View All →",
+                                  "fontSize": 14,
+                                  "fontName": {"family": "Inter", "style": "SemiBold"},
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "Event Item 1",
+                              "type": "FRAME",
+                              "width": 1160,
+                              "height": 70,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.98, "g": 0.99, "b": 1, "a": 1}}],
+                              "cornerRadius": 8,
+                              "layoutMode": "HORIZONTAL",
+                              "paddingTop": 16,
+                              "paddingBottom": 16,
+                              "paddingLeft": 16,
+                              "paddingRight": 16,
+                              "itemSpacing": 16,
+                              "children": [
+                                {
+                                  "name": "Date Badge",
+                                  "type": "FRAME",
+                                  "width": 60,
+                                  "height": 60,
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 0.1}}],
+                                  "cornerRadius": 8,
+                                  "layoutMode": "VERTICAL",
+                                  "primaryAxisAlignItems": "CENTER",
+                                  "counterAxisAlignItems": "CENTER",
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "NOV",
+                                      "fontSize": 11,
+                                      "fontName": {"family": "Inter", "style": "Bold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "22",
+                                      "fontSize": 20,
+                                      "fontName": {"family": "Inter", "style": "Bold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "FRAME",
+                                  "layoutMode": "VERTICAL",
+                                  "itemSpacing": 4,
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "Team Building Event",
+                                      "fontSize": 16,
+                                      "fontName": {"family": "Inter", "style": "SemiBold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "10:00 AM - 2:00 PM • Conference Room A",
+                                      "fontSize": 14,
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "Event Item 2",
+                              "type": "FRAME",
+                              "width": 1160,
+                              "height": 70,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.98, "g": 0.99, "b": 1, "a": 1}}],
+                              "cornerRadius": 8,
+                              "layoutMode": "HORIZONTAL",
+                              "paddingTop": 16,
+                              "paddingBottom": 16,
+                              "paddingLeft": 16,
+                              "paddingRight": 16,
+                              "itemSpacing": 16,
+                              "children": [
+                                {
+                                  "name": "Date Badge",
+                                  "type": "FRAME",
+                                  "width": 60,
+                                  "height": 60,
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.54, "g": 0.36, "b": 0.97, "a": 0.1}}],
+                                  "cornerRadius": 8,
+                                  "layoutMode": "VERTICAL",
+                                  "primaryAxisAlignItems": "CENTER",
+                                  "counterAxisAlignItems": "CENTER",
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "NOV",
+                                      "fontSize": 11,
+                                      "fontName": {"family": "Inter", "style": "Bold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.54, "g": 0.36, "b": 0.97, "a": 1}}]
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "25",
+                                      "fontSize": 20,
+                                      "fontName": {"family": "Inter", "style": "Bold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.54, "g": 0.36, "b": 0.97, "a": 1}}]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "FRAME",
+                                  "layoutMode": "VERTICAL",
+                                  "itemSpacing": 4,
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "Performance Review Meeting",
+                                      "fontSize": 16,
+                                      "fontName": {"family": "Inter", "style": "SemiBold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "2:00 PM - 3:00 PM • With Sarah Johnson",
+                                      "fontSize": 14,
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Recent Activity Card",
+                          "type": "FRAME",
+                          "width": 1208,
+                          "height": 299,
+                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                          "cornerRadius": 12,
+                          "effects": [
+                            {
+                              "type": "DROP_SHADOW",
+                              "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                              "offset": {"x": 0, "y": 2},
+                              "radius": 8
+                            }
+                          ],
+                          "layoutMode": "VERTICAL",
+                          "paddingTop": 24,
+                          "paddingBottom": 24,
+                          "paddingLeft": 24,
+                          "paddingRight": 24,
+                          "itemSpacing": 16,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "🔔 Recent Activity",
+                              "fontSize": 20,
+                              "fontName": {"family": "Inter", "style": "Bold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                            },
+                            {
+                              "name": "Activity List",
+                              "type": "FRAME",
+                              "width": 1160,
+                              "fills": [],
+                              "layoutMode": "VERTICAL",
+                              "itemSpacing": 12,
+                              "children": [
+                                {
+                                  "name": "Activity Item",
+                                  "type": "FRAME",
+                                  "width": 1160,
+                                  "layoutMode": "HORIZONTAL",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "FRAME",
+                                      "width": 36,
+                                      "height": 36,
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 0.1}}],
+                                      "cornerRadius": 18,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "✓",
+                                          "fontSize": 18,
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "FRAME",
+                                      "layoutMode": "VERTICAL",
+                                      "itemSpacing": 2,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "Leave request approved",
+                                          "fontSize": 15,
+                                          "fontName": {"family": "Inter", "style": "SemiBold"},
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                        },
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "Your leave request for Dec 20-22 has been approved • 2 hours ago",
+                                          "fontSize": 13,
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Activity Item",
+                                  "type": "FRAME",
+                                  "width": 1160,
+                                  "layoutMode": "HORIZONTAL",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "FRAME",
+                                      "width": 36,
+                                      "height": 36,
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.31, "g": 0.53, "b": 0.96, "a": 0.1}}],
+                                      "cornerRadius": 18,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "📚",
+                                          "fontSize": 18
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "FRAME",
+                                      "layoutMode": "VERTICAL",
+                                      "itemSpacing": 2,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "New training course available",
+                                          "fontSize": 15,
+                                          "fontName": {"family": "Inter", "style": "SemiBold"},
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                        },
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "\"Advanced Leadership Skills\" has been assigned to you • Yesterday",
+                                          "fontSize": 13,
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Activity Item",
+                                  "type": "FRAME",
+                                  "width": 1160,
+                                  "layoutMode": "HORIZONTAL",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "FRAME",
+                                      "width": 36,
+                                      "height": 36,
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.96, "g": 0.62, "b": 0.04, "a": 0.1}}],
+                                      "cornerRadius": 18,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "💰",
+                                          "fontSize": 18
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "FRAME",
+                                      "layoutMode": "VERTICAL",
+                                      "itemSpacing": 2,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "Payslip available",
+                                          "fontSize": 15,
+                                          "fontName": {"family": "Inter", "style": "SemiBold"},
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                        },
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "Your payslip for November 2025 is now available • 2 days ago",
+                                          "fontSize": 13,
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Activity Item",
+                                  "type": "FRAME",
+                                  "width": 1160,
+                                  "layoutMode": "HORIZONTAL",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "FRAME",
+                                      "width": 36,
+                                      "height": 36,
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.54, "g": 0.36, "b": 0.97, "a": 0.1}}],
+                                      "cornerRadius": 18,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "⭐",
+                                          "fontSize": 18
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "FRAME",
+                                      "layoutMode": "VERTICAL",
+                                      "itemSpacing": 2,
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "Goal completed",
+                                          "fontSize": 15,
+                                          "fontName": {"family": "Inter", "style": "SemiBold"},
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                        },
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "You completed your Q4 project goal ahead of schedule • 3 days ago",
+                                          "fontSize": 13,
+                                          "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Right Sidebar",
+                      "type": "FRAME",
+                      "width": 608,
+                      "height": 622,
+                      "fills": [],
+                      "layoutMode": "VERTICAL",
+                      "itemSpacing": 24,
+                      "children": [
+                        {
+                          "name": "Quick Links Card",
+                          "type": "FRAME",
+                          "width": 608,
+                          "height": 299,
+                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                          "cornerRadius": 12,
+                          "effects": [
+                            {
+                              "type": "DROP_SHADOW",
+                              "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                              "offset": {"x": 0, "y": 2},
+                              "radius": 8
+                            }
+                          ],
+                          "layoutMode": "VERTICAL",
+                          "paddingTop": 24,
+                          "paddingBottom": 24,
+                          "paddingLeft": 24,
+                          "paddingRight": 24,
+                          "itemSpacing": 16,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "🔗 Quick Links",
+                              "fontSize": 20,
+                              "fontName": {"family": "Inter", "style": "Bold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                            },
+                            {
+                              "name": "Link Grid",
+                              "type": "FRAME",
+                              "width": 560,
+                              "fills": [],
+                              "layoutMode": "VERTICAL",
+                              "itemSpacing": 12,
+                              "children": [
+                                {
+                                  "type": "FRAME",
+                                  "width": 560,
+                                  "height": 50,
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.98, "g": 0.99, "b": 1, "a": 1}}],
+                                  "cornerRadius": 8,
+                                  "layoutMode": "HORIZONTAL",
+                                  "paddingLeft": 16,
+                                  "counterAxisAlignItems": "CENTER",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "👤",
+                                      "fontSize": 20
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "My Profile",
+                                      "fontSize": 15,
+                                      "fontName": {"family": "Inter", "style": "SemiBold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "FRAME",
+                                  "width": 560,
+                                  "height": 50,
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.98, "g": 0.99, "b": 1, "a": 1}}],
+                                  "cornerRadius": 8,
+                                  "layoutMode": "HORIZONTAL",
+                                  "paddingLeft": 16,
+                                  "counterAxisAlignItems": "CENTER",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "📄",
+                                      "fontSize": 20
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "My Documents",
+                                      "fontSize": 15,
+                                      "fontName": {"family": "Inter", "style": "SemiBold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "FRAME",
+                                  "width": 560,
+                                  "height": 50,
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.98, "g": 0.99, "b": 1, "a": 1}}],
+                                  "cornerRadius": 8,
+                                  "layoutMode": "HORIZONTAL",
+                                  "paddingLeft": 16,
+                                  "counterAxisAlignItems": "CENTER",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "💊",
+                                      "fontSize": 20
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "Benefits & Insurance",
+                                      "fontSize": 15,
+                                      "fontName": {"family": "Inter", "style": "SemiBold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "FRAME",
+                                  "width": 560,
+                                  "height": 50,
+                                  "fills": [{"type": "SOLID", "color": {"r": 0.98, "g": 0.99, "b": 1, "a": 1}}],
+                                  "cornerRadius": 8,
+                                  "layoutMode": "HORIZONTAL",
+                                  "paddingLeft": 16,
+                                  "counterAxisAlignItems": "CENTER",
+                                  "itemSpacing": 12,
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "🎯",
+                                      "fontSize": 20
+                                    },
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "Performance Goals",
+                                      "fontSize": 15,
+                                      "fontName": {"family": "Inter", "style": "SemiBold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Team Card",
+                          "type": "FRAME",
+                          "width": 608,
+                          "height": 299,
+                          "fills": [
+                            {
+                              "type": "GRADIENT_LINEAR",
+                              "gradientStops": [
+                                {
+                                  "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1},
+                                  "position": 0
+                                },
+                                {
+                                  "color": {"r": 0.04, "g": 0.6, "b": 0.42, "a": 1},
+                                  "position": 1
+                                }
+                              ],
+                              "gradientTransform": [[1, 0, 0], [0, 1, 0]]
+                            }
+                          ],
+                          "cornerRadius": 12,
+                          "effects": [
+                            {
+                              "type": "DROP_SHADOW",
+                              "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                              "offset": {"x": 0, "y": 2},
+                              "radius": 8
+                            }
+                          ],
+                          "layoutMode": "VERTICAL",
+                          "paddingTop": 24,
+                          "paddingBottom": 24,
+                          "paddingLeft": 24,
+                          "paddingRight": 24,
+                          "itemSpacing": 20,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "👥 My Team",
+                              "fontSize": 20,
+                              "fontName": {"family": "Inter", "style": "Bold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                            },
+                            {
+                              "name": "Team Info",
+                              "type": "FRAME",
+                              "width": 560,
+                              "fills": [],
+                              "layoutMode": "VERTICAL",
+                              "itemSpacing": 12,
+                              "children": [
+                                {
+                                  "type": "TEXT",
+                                  "characters": "Engineering Department",
+                                  "fontSize": 18,
+                                  "fontName": {"family": "Inter", "style": "SemiBold"},
+                                  "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.95}}]
+                                },
+                                {
+                                  "type": "TEXT",
+                                  "characters": "Manager: Sarah Johnson",
+                                  "fontSize": 15,
+                                  "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.8}}]
+                                },
+                                {
+                                  "type": "FRAME",
+                                  "layoutMode": "HORIZONTAL",
+                                  "itemSpacing": 8,
+                                  "paddingTop": 12,
+                                  "children": [
+                                    {
+                                      "type": "FRAME",
+                                      "width": 170,
+                                      "height": 60,
+                                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.15}}],
+                                      "cornerRadius": 8,
+                                      "layoutMode": "VERTICAL",
+                                      "primaryAxisAlignItems": "CENTER",
+                                      "counterAxisAlignItems": "CENTER",
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "12",
+                                          "fontSize": 24,
+                                          "fontName": {"family": "Inter", "style": "Bold"},
+                                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                                        },
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "Team Members",
+                                          "fontSize": 12,
+                                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.8}}]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "FRAME",
+                                      "width": 170,
+                                      "height": 60,
+                                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.15}}],
+                                      "cornerRadius": 8,
+                                      "layoutMode": "VERTICAL",
+                                      "primaryAxisAlignItems": "CENTER",
+                                      "counterAxisAlignItems": "CENTER",
+                                      "children": [
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "8",
+                                          "fontSize": 24,
+                                          "fontName": {"family": "Inter", "style": "Bold"},
+                                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                                        },
+                                        {
+                                          "type": "TEXT",
+                                          "characters": "Active Projects",
+                                          "fontSize": 12,
+                                          "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.8}}]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "FRAME",
+                                  "width": 560,
+                                  "height": 44,
+                                  "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                                  "cornerRadius": 8,
+                                  "layoutMode": "VERTICAL",
+                                  "primaryAxisAlignItems": "CENTER",
+                                  "counterAxisAlignItems": "CENTER",
+                                  "paddingTop": 12,
+                                  "paddingBottom": 12,
+                                  "children": [
+                                    {
+                                      "type": "TEXT",
+                                      "characters": "View Team Directory",
+                                      "fontSize": 15,
+                                      "fontName": {"family": "Inter", "style": "SemiBold"},
+                                      "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

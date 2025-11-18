@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approvals - Manager Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏢 Manager Portal</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="manager-dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="manager-team.html" class="nav-item">
+                    <span>👥</span> My Team
+                </a>
+                <a href="manager-approvals.html" class="nav-item active">
+                    <span>✅</span> Approvals
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📈</span> Performance Reviews
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📅</span> Team Calendar
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📊</span> Reports & Analytics
+                </a>
+                <a href="#" class="nav-item">
+                    <span>🎯</span> Goal Management
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                <div class="top-bar-right">
+                    <button class="icon-btn" onclick="toggleNotifications()">
+                        🔔
+                        <span class="notification-badge">8</span>
+                    </button>
+                    <div class="dropdown">
+                        <button class="user-menu" onclick="toggleDropdown()">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Manager&background=4F46E5&color=fff" alt="User">
+                            <span>Sarah Manager</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h1>Pending Approvals</h1>
+                        <p class="text-secondary">Review and approve team requests</p>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-outline" onclick="showModal('bulkActionModal')">
+                            ⚡ Bulk Actions
+                        </button>
+                        <button class="btn btn-outline" onclick="viewApprovalHistory()">
+                            📋 History
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Summary Stats -->
+                <div class="grid grid-4" style="margin-bottom: 24px;">
+                    <div class="stat-card">
+                        <div class="stat-label">Pending Requests</div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-change">Requires action</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Leave Requests</div>
+                        <div class="stat-value">5</div>
+                        <div class="stat-change warning">3 urgent</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Expense Reports</div>
+                        <div class="stat-value">2</div>
+                        <div class="stat-change">$3,240 total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Other Requests</div>
+                        <div class="stat-value">1</div>
+                        <div class="stat-change">Equipment</div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <div style="display: flex; gap: 12px; align-items: end; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <label class="form-label">Search Requests</label>
+                            <input type="text" class="form-control" id="searchRequests" placeholder="Search by employee name or request..." onkeyup="filterRequests()">
+                        </div>
+                        <div style="min-width: 180px;">
+                            <label class="form-label">Request Type</label>
+                            <select class="form-control" id="typeFilter" onchange="filterRequests()">
+                                <option value="all">All Types</option>
+                                <option value="leave">Leave Requests</option>
+                                <option value="expense">Expense Reports</option>
+                                <option value="timeoff">Time Off</option>
+                                <option value="equipment">Equipment</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div style="min-width: 180px;">
+                            <label class="form-label">Priority</label>
+                            <select class="form-control" id="priorityFilter" onchange="filterRequests()">
+                                <option value="all">All Priorities</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="normal">Normal</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline" onclick="resetApprovalFilters()">Clear Filters</button>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs" style="margin-bottom: 20px;">
+                    <button class="tab-btn active" onclick="switchApprovalTab('pending')">
+                        Pending (8)
+                    </button>
+                    <button class="tab-btn" onclick="switchApprovalTab('recent')">
+                        Recent Decisions
+                    </button>
+                </div>
+
+                <!-- Pending Approvals Tab -->
+                <div id="pending-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="table-container">
+                            <table id="approvalsTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 40px;">
+                                            <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                                        </th>
+                                        <th>Employee</th>
+                                        <th>Request Type</th>
+                                        <th>Details</th>
+                                        <th>Submitted</th>
+                                        <th>Priority</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="approvalsTableBody">
+                                    <!-- Leave Request -->
+                                    <tr data-type="leave" data-priority="urgent" data-request-id="1">
+                                        <td><input type="checkbox" class="request-checkbox" value="1"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" 
+                                                     alt="John Smith" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>John Smith</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>
+                                            <strong>Vacation Leave</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Dec 20-27 (6 days)</span>
+                                        </td>
+                                        <td>2 hours ago</td>
+                                        <td><span class="badge badge-danger">Urgent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(1, 'leave')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(1)">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Expense Report -->
+                                    <tr data-type="expense" data-priority="normal" data-request-id="2">
+                                        <td><input type="checkbox" class="request-checkbox" value="2"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Emily+Chen&background=10B981&color=fff" 
+                                                     alt="Emily Chen" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Emily Chen</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Expense Report</span></td>
+                                        <td>
+                                            <strong>Conference Travel</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Total: $1,850.00</span>
+                                        </td>
+                                        <td>5 hours ago</td>
+                                        <td><span class="badge">Normal</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(2, 'expense')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(2)">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Leave Request -->
+                                    <tr data-type="leave" data-priority="urgent" data-request-id="3">
+                                        <td><input type="checkbox" class="request-checkbox" value="3"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Sarah+Davis&background=8B5CF6&color=fff" 
+                                                     alt="Sarah Davis" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Sarah Davis</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>
+                                            <strong>Personal Leave</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Nov 25-26 (2 days)</span>
+                                        </td>
+                                        <td>1 day ago</td>
+                                        <td><span class="badge badge-danger">Urgent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(3, 'leave')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(3)">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Equipment Request -->
+                                    <tr data-type="equipment" data-priority="normal" data-request-id="4">
+                                        <td><input type="checkbox" class="request-checkbox" value="4"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=David+Wilson&background=EF4444&color=fff" 
+                                                     alt="David Wilson" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>David Wilson</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Equipment</span></td>
+                                        <td>
+                                            <strong>Monitor Upgrade</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">27" 4K Display</span>
+                                        </td>
+                                        <td>1 day ago</td>
+                                        <td><span class="badge">Normal</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(4, 'equipment')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(4)">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Leave Request -->
+                                    <tr data-type="leave" data-priority="urgent" data-request-id="5">
+                                        <td><input type="checkbox" class="request-checkbox" value="5"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Michael+Brown&background=F59E0B&color=fff" 
+                                                     alt="Michael Brown" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Michael Brown</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>
+                                            <strong>Sick Leave</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Nov 18 (1 day)</span>
+                                        </td>
+                                        <td>3 hours ago</td>
+                                        <td><span class="badge badge-danger">Urgent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(5, 'leave')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(5)">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Expense Report -->
+                                    <tr data-type="expense" data-priority="normal" data-request-id="6">
+                                        <td><input type="checkbox" class="request-checkbox" value="6"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Lisa+Anderson&background=06B6D4&color=fff" 
+                                                     alt="Lisa Anderson" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Lisa Anderson</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Expense Report</span></td>
+                                        <td>
+                                            <strong>Client Meeting</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Total: $1,390.00</span>
+                                        </td>
+                                        <td>2 days ago</td>
+                                        <td><span class="badge">Normal</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(6, 'expense')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(6)">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Leave Request -->
+                                    <tr data-type="leave" data-priority="normal" data-request-id="7">
+                                        <td><input type="checkbox" class="request-checkbox" value="7"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" 
+                                                     alt="John Smith" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>John Smith</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>
+                                            <strong>Remote Work</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Dec 1-5 (5 days)</span>
+                                        </td>
+                                        <td>3 days ago</td>
+                                        <td><span class="badge">Normal</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(7, 'leave')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(7)">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Timeoff Request -->
+                                    <tr data-type="timeoff" data-priority="normal" data-request-id="8">
+                                        <td><input type="checkbox" class="request-checkbox" value="8"></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Sarah+Davis&background=8B5CF6&color=fff" 
+                                                     alt="Sarah Davis" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Sarah Davis</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Time Off</span></td>
+                                        <td>
+                                            <strong>Half Day</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Nov 22 PM (0.5 days)</span>
+                                        </td>
+                                        <td>4 days ago</td>
+                                        <td><span class="badge">Normal</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="approveRequest(8, 'timeoff')">✓ Approve</button>
+                                            <button class="btn btn-sm btn-outline" onclick="showRequestDetails(8)">View</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Decisions Tab -->
+                <div id="recent-tab" class="tab-content">
+                    <div class="card">
+                        <h3 style="margin-bottom: 16px;">Recent Approval Decisions (Last 30 Days)</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Request Type</th>
+                                        <th>Details</th>
+                                        <th>Decision</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Emily Chen</strong></td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>Vacation - Nov 17 (1 day)</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Nov 15, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Michael Brown</strong></td>
+                                        <td><span class="badge badge-warning">Expense Report</span></td>
+                                        <td>Training Course - $850</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Nov 14, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lisa Anderson</strong></td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>Personal Leave - Nov 10-12 (3 days)</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Nov 8, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>David Wilson</strong></td>
+                                        <td><span class="badge badge-primary">Equipment</span></td>
+                                        <td>Laptop Upgrade</td>
+                                        <td><span class="badge badge-danger">Rejected</span></td>
+                                        <td>Nov 5, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>John Smith</strong></td>
+                                        <td><span class="badge badge-warning">Expense Report</span></td>
+                                        <td>Client Dinner - $420</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Nov 3, 2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Request Details Modal -->
+    <div id="requestDetailsModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2 id="requestModalTitle">Request Details</h2>
+                <button class="modal-close" onclick="closeModal('requestDetailsModal')">×</button>
+            </div>
+            <div class="modal-body" id="requestModalBody">
+                <!-- Details populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="rejectRequest()">✗ Reject</button>
+                <button class="btn btn-success" onclick="approveFromModal()">✓ Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Action Modal -->
+    <div id="bulkActionModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2>Bulk Actions</h2>
+                <button class="modal-close" onclick="closeModal('bulkActionModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Select requests from the table and choose an action:</p>
+                <div style="display: grid; gap: 12px; margin-top: 20px;">
+                    <button class="btn btn-success btn-block" onclick="bulkApprove()">
+                        ✓ Approve Selected (<span id="selectedCount">0</span>)
+                    </button>
+                    <button class="btn btn-outline btn-block" onclick="bulkReject()">
+                        ✗ Reject Selected (<span id="selectedCount2">0</span>)
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('bulkActionModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/approvals-management.js"></script>
+</body>
+</html>

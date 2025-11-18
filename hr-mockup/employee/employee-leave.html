@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="employee-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="employee-profile.html" class="nav-item">
+                    <span class="icon">👤</span>
+                    <span class="text">My Profile</span>
+                </a>
+                <a href="employee-leave.html" class="nav-item active">
+                    <span class="icon">🏖️</span>
+                    <span class="text">Leave & Time Off</span>
+                </a>
+                <a href="employee-documents.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Documents</span>
+                </a>
+                <a href="employee-benefits.html" class="nav-item">
+                    <span class="icon">💼</span>
+                    <span class="text">Benefits</span>
+                </a>
+                <a href="employee-performance.html" class="nav-item">
+                    <span class="icon">🎯</span>
+                    <span class="text">Performance</span>
+                </a>
+                <a href="employee-learning.html" class="nav-item">
+                    <span class="icon">📚</span>
+                    <span class="text">Learning</span>
+                </a>
+                <a href="employee-payroll.html" class="nav-item">
+                    <span class="icon">💰</span>
+                    <span class="text">Payroll</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Leave & Time Off</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="notifications">
+                        <button class="icon-btn" onclick="toggleNotifications()">
+                            🔔
+                            <span class="badge">3</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Notifications</h3>
+                                <a href="#">Mark all read</a>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">✅</div>
+                                <div class="notification-content">
+                                    <p><strong>Leave Approved</strong></p>
+                                    <p>Your vacation request for Dec 20-25 has been approved</p>
+                                    <span class="time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <a href="#" class="dropdown-footer">View all notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">John Smith</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <p>Software Engineer</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="employee-profile.html">My Profile</a>
+                            <a href="#">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <!-- Leave Balance Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #EEF2FF; color: #4F46E5;">🏖️</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Vacation Leave</p>
+                            <h3 class="stat-value">18 days</h3>
+                            <p class="stat-change">of 25 days annual</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FEF3C7; color: #D97706;">🤒</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Sick Leave</p>
+                            <h3 class="stat-value">8 days</h3>
+                            <p class="stat-change">of 10 days annual</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #D1FAE5; color: #059669;">📅</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Personal Days</p>
+                            <h3 class="stat-value">3 days</h3>
+                            <p class="stat-change">of 5 days annual</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FCE7F3; color: #DB2777;">⏰</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Used This Year</p>
+                            <h3 class="stat-value">12 days</h3>
+                            <p class="stat-change">30% of total</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-links">
+                            <a href="#" class="quick-link-item" onclick="showModal('requestLeaveModal'); return false;">
+                                <span class="icon">➕</span>
+                                <span>Request Leave</span>
+                            </a>
+                            <a href="#" class="quick-link-item" onclick="showLeaveCalendar(); return false;">
+                                <span class="icon">📅</span>
+                                <span>View Calendar</span>
+                            </a>
+                            <a href="#" class="quick-link-item" onclick="downloadLeaveReport(); return false;">
+                                <span class="icon">📊</span>
+                                <span>Leave Report</span>
+                            </a>
+                            <a href="#" class="quick-link-item" onclick="viewTeamLeave(); return false;">
+                                <span class="icon">👥</span>
+                                <span>Team Calendar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Navigation -->
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('upcoming')">Upcoming Leave</button>
+                    <button class="tab-btn" onclick="switchTab('history')">Leave History</button>
+                    <button class="tab-btn" onclick="switchTab('pending')">Pending Requests</button>
+                </div>
+                
+                <!-- Upcoming Leave Tab -->
+                <div id="upcoming-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Upcoming Leave</h3>
+                        </div>
+                        <div class="card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Leave Type</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Days</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="upcomingLeaveTable">
+                                    <tr>
+                                        <td><span class="badge badge-info">Vacation</span></td>
+                                        <td>Dec 20, 2025</td>
+                                        <td>Dec 25, 2025</td>
+                                        <td>5 days</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="cancelLeave(1)">Cancel</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Leave History Tab -->
+                <div id="history-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Leave History (2025)</h3>
+                            <div style="display: flex; gap: 12px;">
+                                <select class="form-control" style="width: 150px;">
+                                    <option>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                </select>
+                                <button class="btn btn-sm btn-outline" onclick="downloadLeaveReport()">
+                                    📥 Export
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Leave Type</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Days</th>
+                                        <th>Status</th>
+                                        <th>Approved By</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge badge-info">Vacation</span></td>
+                                        <td>Jul 15, 2025</td>
+                                        <td>Jul 22, 2025</td>
+                                        <td>7 days</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Sarah Johnson</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-warning">Sick</span></td>
+                                        <td>May 10, 2025</td>
+                                        <td>May 11, 2025</td>
+                                        <td>2 days</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Sarah Johnson</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-success">Personal</span></td>
+                                        <td>Mar 20, 2025</td>
+                                        <td>Mar 20, 2025</td>
+                                        <td>1 day</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Sarah Johnson</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-info">Vacation</span></td>
+                                        <td>Jan 2, 2025</td>
+                                        <td>Jan 5, 2025</td>
+                                        <td>3 days</td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>Sarah Johnson</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pending Requests Tab -->
+                <div id="pending-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pending Leave Requests</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="pendingRequestsContainer">
+                                <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                                    <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
+                                    <h3>No Pending Requests</h3>
+                                    <p>You don't have any pending leave requests at the moment.</p>
+                                    <button class="btn btn-primary mt-3" onclick="showModal('requestLeaveModal')">Request Leave</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Leave Policy Information -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Leave Policy Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-grid">
+                            <div>
+                                <h4 style="margin-bottom: 12px;">📋 Vacation Leave</h4>
+                                <ul style="padding-left: 20px; color: var(--text-secondary);">
+                                    <li>25 days per year</li>
+                                    <li>Accrued monthly (2.08 days/month)</li>
+                                    <li>Max carryover: 5 days to next year</li>
+                                    <li>Requires 2 weeks advance notice</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 12px;">🤒 Sick Leave</h4>
+                                <ul style="padding-left: 20px; color: var(--text-secondary);">
+                                    <li>10 days per year</li>
+                                    <li>No advance notice required</li>
+                                    <li>Medical certificate required for 3+ days</li>
+                                    <li>Does not roll over</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 12px;">📅 Personal Days</h4>
+                                <ul style="padding-left: 20px; color: var(--text-secondary);">
+                                    <li>5 days per year</li>
+                                    <li>Requires 1 week advance notice</li>
+                                    <li>Cannot be combined with vacation</li>
+                                    <li>Does not roll over</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 12px;">🎉 Public Holidays</h4>
+                                <ul style="padding-left: 20px; color: var(--text-secondary);">
+                                    <li>12 public holidays</li>
+                                    <li>Paid time off</li>
+                                    <li>View company calendar for dates</li>
+                                    <li>Additional religious holidays available</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Request Leave Modal -->
+    <div id="requestLeaveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Request Leave</h3>
+                <button class="close-btn" onclick="closeModal('requestLeaveModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="leaveRequestForm" onsubmit="submitLeaveRequest(event)">
+                    <div class="form-group">
+                        <label>Leave Type *</label>
+                        <select id="leaveType" required onchange="updateLeaveDays()">
+                            <option value="">Select leave type</option>
+                            <option value="vacation">Vacation Leave (18 days available)</option>
+                            <option value="sick">Sick Leave (8 days available)</option>
+                            <option value="personal">Personal Day (3 days available)</option>
+                            <option value="unpaid">Unpaid Leave</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Start Date *</label>
+                            <input type="date" id="startDate" required onchange="calculateDays()">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date *</label>
+                            <input type="date" id="endDate" required onchange="calculateDays()">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Duration</label>
+                        <div style="padding: 12px; background: var(--background); border-radius: 8px;">
+                            <strong id="calculatedDays">0 days</strong>
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Excluding weekends and public holidays</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Reason *</label>
+                        <textarea id="leaveReason" rows="3" placeholder="Enter reason for leave" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" required>
+                            <span>I confirm that I have reviewed the leave policy and this request complies with company guidelines</span>
+                        </label>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('requestLeaveModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/leave-management.js"></script>
+</body>
+</html>

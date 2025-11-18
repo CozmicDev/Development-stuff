@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="employee-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="employee-profile.html" class="nav-item active">
+                    <span class="icon">👤</span>
+                    <span class="text">My Profile</span>
+                </a>
+                <a href="employee-leave.html" class="nav-item">
+                    <span class="icon">🏖️</span>
+                    <span class="text">Leave & Time Off</span>
+                </a>
+                <a href="employee-documents.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Documents</span>
+                </a>
+                <a href="employee-benefits.html" class="nav-item">
+                    <span class="icon">💼</span>
+                    <span class="text">Benefits</span>
+                </a>
+                <a href="employee-performance.html" class="nav-item">
+                    <span class="icon">🎯</span>
+                    <span class="text">Performance</span>
+                </a>
+                <a href="employee-learning.html" class="nav-item">
+                    <span class="icon">📚</span>
+                    <span class="text">Learning</span>
+                </a>
+                <a href="employee-payroll.html" class="nav-item">
+                    <span class="icon">💰</span>
+                    <span class="text">Payroll</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">My Profile</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="notifications">
+                        <button class="icon-btn" onclick="toggleNotifications()">
+                            🔔
+                            <span class="badge">3</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Notifications</h3>
+                                <a href="#">Mark all read</a>
+                            </div>
+                            <a href="#" class="dropdown-footer">View all notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">John Smith</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <p>Software Engineer</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="employee-profile.html">My Profile</a>
+                            <a href="#">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <!-- Profile Header -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div style="display: flex; align-items: center; gap: 24px;">
+                            <div style="position: relative;">
+                                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff&size=128" 
+                                     style="width: 128px; height: 128px; border-radius: 50%; box-shadow: var(--shadow-md);" 
+                                     alt="Profile Picture"
+                                     id="profileImage">
+                                <button class="btn btn-sm btn-primary" 
+                                        style="position: absolute; bottom: 0; right: 0; border-radius: 50%; width: 36px; height: 36px; padding: 0;"
+                                        onclick="uploadProfilePicture()">
+                                    📷
+                                </button>
+                            </div>
+                            <div style="flex: 1;">
+                                <h2 id="displayName">John Smith</h2>
+                                <p style="color: var(--text-secondary); font-size: 16px; margin: 4px 0;" id="displayPosition">Software Engineer</p>
+                                <p style="color: var(--text-secondary);">
+                                    <span>📧 john.smith@company.com</span>
+                                    <span style="margin: 0 12px;">•</span>
+                                    <span>📞 +1 (555) 123-4567</span>
+                                    <span style="margin: 0 12px;">•</span>
+                                    <span>🏢 Engineering</span>
+                                </p>
+                                <div style="margin-top: 12px;">
+                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-info">Full-time</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" onclick="toggleEditMode()">
+                                    <span id="editButtonText">✏️ Edit Profile</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Navigation -->
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchProfileTab('personal')">Personal Information</button>
+                    <button class="tab-btn" onclick="switchProfileTab('employment')">Employment Details</button>
+                    <button class="tab-btn" onclick="switchProfileTab('emergency')">Emergency Contacts</button>
+                    <button class="tab-btn" onclick="switchProfileTab('documents')">My Documents</button>
+                </div>
+                
+                <!-- Personal Information Tab -->
+                <div id="personal-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Personal Information</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="personalInfoForm">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>First Name *</label>
+                                        <input type="text" id="firstName" value="John" class="readonly" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name *</label>
+                                        <input type="text" id="lastName" value="Smith" class="readonly" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <input type="date" id="dob" value="1990-05-15" class="readonly" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select id="gender" class="readonly" disabled>
+                                            <option value="male" selected>Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                            <option value="prefer-not">Prefer not to say</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-section-title" style="margin-top: 24px;">Contact Information</div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Email *</label>
+                                        <input type="email" id="email" value="john.smith@company.com" class="readonly" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Number *</label>
+                                        <input type="tel" id="phone" value="+1 (555) 123-4567">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Personal Email</label>
+                                        <input type="email" id="personalEmail" value="john.smith.personal@email.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mobile Number</label>
+                                        <input type="tel" id="mobile" value="+1 (555) 987-6543">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-section-title" style="margin-top: 24px;">Address</div>
+                                <div class="form-group">
+                                    <label>Street Address</label>
+                                    <input type="text" id="address" value="123 Main Street">
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" id="city" value="San Francisco">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>State/Province</label>
+                                        <input type="text" id="state" value="California">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Zip/Postal Code</label>
+                                        <input type="text" id="zip" value="94105">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" id="country" value="United States">
+                                    </div>
+                                </div>
+                                
+                                <div id="saveButtonContainer" style="display: none; margin-top: 24px;">
+                                    <button type="button" class="btn btn-primary" onclick="savePersonalInfo()">Save Changes</button>
+                                    <button type="button" class="btn btn-outline" onclick="cancelEdit()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Employment Details Tab -->
+                <div id="employment-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Employment Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Employee ID</label>
+                                    <input type="text" value="EMP-2025-001" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Job Title</label>
+                                    <input type="text" value="Software Engineer" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="text" value="Engineering" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Team</label>
+                                    <input type="text" value="Platform Team" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Manager</label>
+                                    <input type="text" value="Sarah Johnson" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Employment Type</label>
+                                    <input type="text" value="Full-time" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    <input type="date" value="2022-03-15" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Years of Service</label>
+                                    <input type="text" value="3.7 years" readonly class="readonly">
+                                </div>
+                            </div>
+                            
+                            <div class="form-section-title" style="margin-top: 24px;">Work Schedule</div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Work Location</label>
+                                    <input type="text" value="San Francisco Office" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Work Arrangement</label>
+                                    <input type="text" value="Hybrid (3 days office, 2 days remote)" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Working Hours</label>
+                                    <input type="text" value="9:00 AM - 5:00 PM PST" readonly class="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Time Zone</label>
+                                    <input type="text" value="Pacific Time (PT)" readonly class="readonly">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emergency Contacts Tab -->
+                <div id="emergency-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Emergency Contacts</h3>
+                            <button class="btn btn-sm btn-primary" onclick="addEmergencyContact()">+ Add Contact</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="emergencyContactsList">
+                                <div class="emergency-contact-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                                        <div>
+                                            <h4>Jane Smith</h4>
+                                            <p style="color: var(--text-secondary); margin: 4px 0;">Spouse</p>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline" onclick="editEmergencyContact(0)">Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="deleteEmergencyContact(0)">Delete</button>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                                        <div>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Phone</p>
+                                            <p>+1 (555) 234-5678</p>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Email</p>
+                                            <p>jane.smith@email.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="emergency-contact-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                                        <div>
+                                            <h4>Robert Smith</h4>
+                                            <p style="color: var(--text-secondary); margin: 4px 0;">Father</p>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline" onclick="editEmergencyContact(1)">Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="deleteEmergencyContact(1)">Delete</button>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                                        <div>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Phone</p>
+                                            <p>+1 (555) 345-6789</p>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 12px; color: var(--text-secondary);">Email</p>
+                                            <p>robert.smith@email.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- My Documents Tab -->
+                <div id="documents-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>My Documents</h3>
+                            <button class="btn btn-sm btn-primary" onclick="uploadDocument()">📤 Upload Document</button>
+                        </div>
+                        <div class="card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Document Name</th>
+                                        <th>Type</th>
+                                        <th>Upload Date</th>
+                                        <th>Size</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <span style="font-size: 20px;">📄</span>
+                                                <strong>Employment Contract</strong>
+                                            </div>
+                                        </td>
+                                        <td>Contract</td>
+                                        <td>Mar 15, 2022</td>
+                                        <td>245 KB</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="downloadDocument('contract')">Download</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <span style="font-size: 20px;">📋</span>
+                                                <strong>Offer Letter</strong>
+                                            </div>
+                                        </td>
+                                        <td>Offer</td>
+                                        <td>Feb 28, 2022</td>
+                                        <td>128 KB</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="downloadDocument('offer')">Download</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <span style="font-size: 20px;">🆔</span>
+                                                <strong>ID Verification</strong>
+                                            </div>
+                                        </td>
+                                        <td>Identification</td>
+                                        <td>Mar 10, 2022</td>
+                                        <td>512 KB</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="downloadDocument('id')">Download</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/profile-management.js"></script>
+</body>
+</html>

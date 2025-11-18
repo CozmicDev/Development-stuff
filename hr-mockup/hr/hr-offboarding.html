@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Offboarding - HR Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- HR Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🏢 ACME Corp</h2>
+                <p>HR Portal</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="hr-dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="hr-employees.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>Employee Management</span>
+                </a>
+                <a href="hr-requests.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Leave Requests</span>
+                </a>
+                <a href="hr-onboarding.html" class="nav-item">
+                    <span class="nav-icon">✨</span>
+                    <span>Onboarding</span>
+                </a>
+                <a href="hr-offboarding.html" class="nav-item active">
+                    <span class="nav-icon">👋</span>
+                    <span>Offboarding</span>
+                </a>
+                <a href="hr-payroll.html" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Payroll</span>
+                </a>
+                <a href="hr-recruitment.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span>Recruitment</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="btn btn-outline btn-sm">← Back to Portal</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <h1>Employee Offboarding</h1>
+                    <p>Manage employee exits and offboarding processes</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="viewOffboardingReports()">
+                        <span>📊</span>
+                        View Reports
+                    </button>
+                    <button class="btn btn-primary" onclick="initiateOffboarding()">
+                        <span>+</span>
+                        Initiate Offboarding
+                    </button>
+                </div>
+            </div>
+
+            <!-- Status Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--warning-light); color: var(--warning-color);">
+                        ⏳
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">In Progress</span>
+                        <span class="stat-value">4</span>
+                        <span class="stat-change">Active offboarding</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--info-light); color: var(--info-color);">
+                        📅
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">Scheduled Exits</span>
+                        <span class="stat-value">2</span>
+                        <span class="stat-change">Next 30 days</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--secondary-light); color: var(--secondary-color);">
+                        ✓
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">Completed</span>
+                        <span class="stat-value">8</span>
+                        <span class="stat-change">This quarter</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--danger-light); color: var(--danger-color);">
+                        📋
+                    </div>
+                    <div class="stat-details">
+                        <span class="stat-label">Pending Clearance</span>
+                        <span class="stat-value">3</span>
+                        <span class="stat-change">Requires action</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('active')">Active Offboarding (4)</button>
+                    <button class="tab-btn" onclick="switchTab('scheduled')">Scheduled (2)</button>
+                    <button class="tab-btn" onclick="switchTab('completed')">Completed (8)</button>
+                    <button class="tab-btn" onclick="switchTab('interviews')">Exit Interviews</button>
+                </div>
+
+                <!-- Active Offboarding Tab -->
+                <div id="active-tab" class="tab-content active">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Active Offboarding Processes</h3>
+                            <input type="text" placeholder="Search by name..." style="width: 250px;" onkeyup="filterOffboarding(this.value)">
+                        </div>
+
+                        <!-- Offboarding Card 1 -->
+                        <div class="offboarding-card">
+                            <div class="offboarding-header">
+                                <div class="employee-info">
+                                    <div class="avatar">👨‍💼</div>
+                                    <div>
+                                        <h4>James Wilson</h4>
+                                        <p>Senior Software Engineer | Engineering</p>
+                                        <div class="badges">
+                                            <span class="badge badge-warning">Last Day: Dec 30, 2024</span>
+                                            <span class="badge badge-info">12 days remaining</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="offboarding-meta">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Resignation Date:</span>
+                                        <span>Dec 1, 2024</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Reason:</span>
+                                        <span>New Opportunity</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Tenure:</span>
+                                        <span>3 years 4 months</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Eligible for Rehire:</span>
+                                        <span style="color: var(--secondary-color); font-weight: 600;">Yes</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span>Offboarding Progress</span>
+                                    <span class="progress-percentage">70%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 70%; background: var(--primary-color);"></div>
+                                </div>
+                                <div class="progress-details">
+                                    <span>14 of 20 tasks completed</span>
+                                </div>
+                            </div>
+
+                            <!-- Clearance Checklist -->
+                            <div class="clearance-checklist">
+                                <h5>Clearance Checklist</h5>
+                                
+                                <div class="clearance-category">
+                                    <div class="category-header">
+                                        <span>✓ Documentation (100%)</span>
+                                        <button class="btn btn-sm btn-outline" onclick="toggleCategory(this)">Expand</button>
+                                    </div>
+                                    <div class="category-items collapsed">
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Resignation letter received</span>
+                                            <span class="item-status">Completed Dec 1</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Exit interview scheduled</span>
+                                            <span class="item-status">Dec 28 at 2:00 PM</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Non-compete agreement reviewed</span>
+                                            <span class="item-status">Completed Dec 3</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="clearance-category">
+                                    <div class="category-header">
+                                        <span>✓ IT & Equipment (100%)</span>
+                                        <button class="btn btn-sm btn-outline" onclick="toggleCategory(this)">Expand</button>
+                                    </div>
+                                    <div class="category-items collapsed">
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Laptop returned (Model: MacBook Pro)</span>
+                                            <span class="item-status">Returned Dec 15</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Phone returned (iPhone 14)</span>
+                                            <span class="item-status">Returned Dec 15</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Chargers and accessories returned</span>
+                                            <span class="item-status">Verified Dec 15</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>System access revoked</span>
+                                            <span class="item-status">Scheduled Dec 30</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="clearance-category">
+                                    <div class="category-header">
+                                        <span>⏳ Knowledge Transfer (75%)</span>
+                                        <button class="btn btn-sm btn-outline" onclick="toggleCategory(this)">Collapse</button>
+                                    </div>
+                                    <div class="category-items">
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Project documentation updated</span>
+                                            <span class="item-status">Completed Dec 12</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Handover meeting with successor</span>
+                                            <span class="item-status">Completed Dec 14</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Code repositories transferred</span>
+                                            <span class="item-status">Completed Dec 16</span>
+                                        </label>
+                                        <label class="clearance-item pending">
+                                            <input type="checkbox" onchange="updateClearanceStatus(this, 'james', 'client-handover')">
+                                            <span>Client relationship handover</span>
+                                            <span class="badge badge-warning">Pending</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="clearance-category">
+                                    <div class="category-header">
+                                        <span>○ Finance & Benefits (40%)</span>
+                                        <button class="btn btn-sm btn-outline" onclick="toggleCategory(this)">Collapse</button>
+                                    </div>
+                                    <div class="category-items">
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Final timesheet submitted</span>
+                                            <span class="item-status">Completed Dec 15</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Expense reports finalized</span>
+                                            <span class="item-status">Completed Dec 10</span>
+                                        </label>
+                                        <label class="clearance-item pending">
+                                            <input type="checkbox" onchange="updateClearanceStatus(this, 'james', 'final-paycheck')">
+                                            <span>Final paycheck calculation</span>
+                                            <span class="badge badge-info">Due Dec 30</span>
+                                        </label>
+                                        <label class="clearance-item pending">
+                                            <input type="checkbox" onchange="updateClearanceStatus(this, 'james', 'vacation-payout')">
+                                            <span>Vacation payout (12 days)</span>
+                                            <span class="badge badge-info">Calculated: $4,800</span>
+                                        </label>
+                                        <label class="clearance-item pending">
+                                            <input type="checkbox" onchange="updateClearanceStatus(this, 'james', 'cobra-info')">
+                                            <span>COBRA information sent</span>
+                                            <span class="badge badge-warning">Pending</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="clearance-category">
+                                    <div class="category-header">
+                                        <span>○ Facilities & Access (60%)</span>
+                                        <button class="btn btn-sm btn-outline" onclick="toggleCategory(this)">Collapse</button>
+                                    </div>
+                                    <div class="category-items">
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Office keys returned</span>
+                                            <span class="item-status">Returned Dec 15</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Badge/access card returned</span>
+                                            <span class="item-status">Returned Dec 15</span>
+                                        </label>
+                                        <label class="clearance-item completed">
+                                            <input type="checkbox" checked disabled>
+                                            <span>Parking pass deactivated</span>
+                                            <span class="item-status">Completed Dec 15</span>
+                                        </label>
+                                        <label class="clearance-item pending">
+                                            <input type="checkbox" onchange="updateClearanceStatus(this, 'james', 'desk-cleared')">
+                                            <span>Personal items removed from desk</span>
+                                            <span class="badge badge-warning">Pending</span>
+                                        </label>
+                                        <label class="clearance-item pending">
+                                            <input type="checkbox" onchange="updateClearanceStatus(this, 'james', 'locker-cleared')">
+                                            <span>Locker cleared and key returned</span>
+                                            <span class="badge badge-warning">Pending</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Final Settlement -->
+                            <div class="settlement-section">
+                                <h5>Final Settlement Summary</h5>
+                                <div class="settlement-grid">
+                                    <div class="settlement-item">
+                                        <span>Final Salary (Dec 1-30):</span>
+                                        <span class="amount">$8,500</span>
+                                    </div>
+                                    <div class="settlement-item">
+                                        <span>Unused Vacation (12 days):</span>
+                                        <span class="amount">$4,800</span>
+                                    </div>
+                                    <div class="settlement-item">
+                                        <span>Prorated Bonus:</span>
+                                        <span class="amount">$2,000</span>
+                                    </div>
+                                    <div class="settlement-item">
+                                        <span>Outstanding Expenses:</span>
+                                        <span class="amount">$240</span>
+                                    </div>
+                                    <div class="settlement-item total">
+                                        <span><strong>Total Final Payment:</strong></span>
+                                        <span class="amount"><strong>$15,540</strong></span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline" onclick="viewSettlementDetails('james')">View Full Breakdown</button>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="card-actions">
+                                <button class="btn btn-sm btn-outline" onclick="viewOffboardingDetails('james')">View Full Details</button>
+                                <button class="btn btn-sm btn-outline" onclick="conductExitInterview('james')">📋 Exit Interview</button>
+                                <button class="btn btn-sm btn-outline" onclick="sendClearanceReminder('james')">📧 Send Reminder</button>
+                                <button class="btn btn-sm btn-primary" onclick="completeOffboarding('james')">✓ Complete Offboarding</button>
+                            </div>
+                        </div>
+
+                        <!-- Offboarding Card 2 (Condensed) -->
+                        <div class="offboarding-card">
+                            <div class="offboarding-header">
+                                <div class="employee-info">
+                                    <div class="avatar">👩‍💼</div>
+                                    <div>
+                                        <h4>Patricia Chen</h4>
+                                        <p>Product Manager | Product</p>
+                                        <div class="badges">
+                                            <span class="badge badge-warning">Last Day: Jan 15, 2025</span>
+                                            <span class="badge badge-info">28 days remaining</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="offboarding-meta">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Reason:</span>
+                                        <span>Relocation</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Tenure:</span>
+                                        <span>2 years 1 month</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span>Offboarding Progress</span>
+                                    <span class="progress-percentage">30%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30%; background: var(--warning-color);"></div>
+                                </div>
+                                <div class="progress-details">
+                                    <span>6 of 20 tasks completed</span>
+                                </div>
+                            </div>
+
+                            <div class="clearance-summary">
+                                <div class="summary-item">
+                                    <span class="summary-icon">✓</span>
+                                    <span>Documentation: 3/3 completed</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-icon">○</span>
+                                    <span>IT & Equipment: 1/4 pending</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-icon">○</span>
+                                    <span>Knowledge Transfer: 2/4 pending</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-icon">○</span>
+                                    <span>Finance: 0/5 pending</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-icon">○</span>
+                                    <span>Facilities: 0/5 pending</span>
+                                </div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-sm btn-outline" onclick="viewOffboardingDetails('patricia')">View Full Details</button>
+                                <button class="btn btn-sm btn-outline" onclick="conductExitInterview('patricia')">📋 Exit Interview</button>
+                            </div>
+                        </div>
+
+                        <!-- More condensed cards... -->
+                        <div class="offboarding-card">
+                            <div class="offboarding-header">
+                                <div class="employee-info">
+                                    <div class="avatar">👨‍💼</div>
+                                    <div>
+                                        <h4>Robert Taylor</h4>
+                                        <p>UX Designer | Design</p>
+                                        <div class="badges">
+                                            <span class="badge badge-danger">Last Day: Dec 22, 2024</span>
+                                            <span class="badge badge-warning">4 days remaining</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="offboarding-meta">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Reason:</span>
+                                        <span>Career Change</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Tenure:</span>
+                                        <span>1 year 8 months</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span>Offboarding Progress</span>
+                                    <span class="progress-percentage">85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%; background: var(--secondary-color);"></div>
+                                </div>
+                                <div class="progress-details">
+                                    <span>17 of 20 tasks completed</span>
+                                </div>
+                            </div>
+
+                            <div class="clearance-summary">
+                                <div class="summary-item">
+                                    <span class="summary-icon">✓</span>
+                                    <span>All major clearances completed</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-icon">⏳</span>
+                                    <span>Final settlement in progress</span>
+                                </div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-sm btn-outline" onclick="viewOffboardingDetails('robert')">View Full Details</button>
+                                <button class="btn btn-sm btn-primary" onclick="completeOffboarding('robert')">✓ Complete Offboarding</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scheduled Tab -->
+                <div id="scheduled-tab" class="tab-content">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Scheduled Departures</h3>
+                        </div>
+
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                    <th>Notice Date</th>
+                                    <th>Last Day</th>
+                                    <th>Days Remaining</th>
+                                    <th>Reason</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Amanda Foster</strong></td>
+                                    <td>Software Engineer</td>
+                                    <td>Engineering</td>
+                                    <td>Dec 10, 2024</td>
+                                    <td>Jan 10, 2025</td>
+                                    <td><span class="badge badge-info">23 days</span></td>
+                                    <td>Personal Reasons</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="startOffboarding('amanda')">Start Process</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Marcus Johnson</strong></td>
+                                    <td>Data Analyst</td>
+                                    <td>Analytics</td>
+                                    <td>Dec 5, 2024</td>
+                                    <td>Jan 20, 2025</td>
+                                    <td><span class="badge badge-info">33 days</span></td>
+                                    <td>Higher Education</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="startOffboarding('marcus')">Start Process</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Completed Tab -->
+                <div id="completed-tab" class="tab-content">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Completed Offboarding - Q4 2024</h3>
+                            <select onchange="filterCompletedPeriod(this.value)">
+                                <option value="q4-2024">Q4 2024</option>
+                                <option value="q3-2024">Q3 2024</option>
+                                <option value="all-2024">All 2024</option>
+                            </select>
+                        </div>
+
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                    <th>Last Day</th>
+                                    <th>Reason</th>
+                                    <th>Final Settlement</th>
+                                    <th>Rehire Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>John Smith</strong></td>
+                                    <td>Senior Engineer</td>
+                                    <td>Engineering</td>
+                                    <td>Nov 30, 2024</td>
+                                    <td>Retirement</td>
+                                    <td>$28,500</td>
+                                    <td><span class="badge badge-success">Eligible</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewCompletedOffboarding('john')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Lisa Wang</strong></td>
+                                    <td>UI/UX Designer</td>
+                                    <td>Design</td>
+                                    <td>Nov 15, 2024</td>
+                                    <td>New Opportunity</td>
+                                    <td>$12,400</td>
+                                    <td><span class="badge badge-success">Eligible</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewCompletedOffboarding('lisa')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tom Anderson</strong></td>
+                                    <td>Marketing Manager</td>
+                                    <td>Marketing</td>
+                                    <td>Oct 31, 2024</td>
+                                    <td>Relocation</td>
+                                    <td>$18,900</td>
+                                    <td><span class="badge badge-success">Eligible</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewCompletedOffboarding('tom')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sarah Miller</strong></td>
+                                    <td>Sales Representative</td>
+                                    <td>Sales</td>
+                                    <td>Oct 20, 2024</td>
+                                    <td>Performance</td>
+                                    <td>$8,200</td>
+                                    <td><span class="badge badge-danger">Not Eligible</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewCompletedOffboarding('sarah-m')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Kevin Brown</strong></td>
+                                    <td>Junior Developer</td>
+                                    <td>Engineering</td>
+                                    <td>Oct 10, 2024</td>
+                                    <td>Better Offer</td>
+                                    <td>$9,500</td>
+                                    <td><span class="badge badge-success">Eligible</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewCompletedOffboarding('kevin')">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Exit Interviews Tab -->
+                <div id="interviews-tab" class="tab-content">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Exit Interview Summaries</h3>
+                            <button class="btn btn-sm btn-primary" onclick="generateExitReport()">📊 Generate Report</button>
+                        </div>
+
+                        <div class="interview-stats">
+                            <h4>Exit Reasons (Q4 2024)</h4>
+                            <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                                <div class="mini-stat">
+                                    <span class="mini-label">New Opportunity</span>
+                                    <span class="mini-value">45%</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-label">Relocation</span>
+                                    <span class="mini-value">20%</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-label">Career Change</span>
+                                    <span class="mini-value">15%</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-label">Personal Reasons</span>
+                                    <span class="mini-value">10%</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-label">Other</span>
+                                    <span class="mini-value">10%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="interview-list">
+                            <div class="interview-card">
+                                <div class="interview-header">
+                                    <div>
+                                        <h4>John Smith - Senior Engineer</h4>
+                                        <p>Exit Date: Nov 30, 2024 | Interview Date: Nov 28, 2024</p>
+                                    </div>
+                                    <span class="badge badge-success">Completed</span>
+                                </div>
+                                <div class="interview-content">
+                                    <div class="interview-section">
+                                        <strong>Reason for Leaving:</strong>
+                                        <p>Retirement after 15 years of service</p>
+                                    </div>
+                                    <div class="interview-section">
+                                        <strong>Would Recommend Company:</strong>
+                                        <span class="rating">⭐⭐⭐⭐⭐ (5/5)</span>
+                                    </div>
+                                    <div class="interview-section">
+                                        <strong>Key Feedback:</strong>
+                                        <p>"Great work culture and supportive team. Excellent growth opportunities. Management is responsive to feedback."</p>
+                                    </div>
+                                    <div class="interview-section">
+                                        <strong>Areas for Improvement:</strong>
+                                        <p>"Could improve remote work flexibility and update some legacy systems."</p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline" onclick="viewFullInterview('john')">View Full Interview</button>
+                            </div>
+
+                            <div class="interview-card">
+                                <div class="interview-header">
+                                    <div>
+                                        <h4>Lisa Wang - UI/UX Designer</h4>
+                                        <p>Exit Date: Nov 15, 2024 | Interview Date: Nov 13, 2024</p>
+                                    </div>
+                                    <span class="badge badge-success">Completed</span>
+                                </div>
+                                <div class="interview-content">
+                                    <div class="interview-section">
+                                        <strong>Reason for Leaving:</strong>
+                                        <p>Accepted senior position at larger company</p>
+                                    </div>
+                                    <div class="interview-section">
+                                        <strong>Would Recommend Company:</strong>
+                                        <span class="rating">⭐⭐⭐⭐ (4/5)</span>
+                                    </div>
+                                    <div class="interview-section">
+                                        <strong>Key Feedback:</strong>
+                                        <p>"Amazing team and creative freedom. Loved the design process and collaborative environment."</p>
+                                    </div>
+                                    <div class="interview-section">
+                                        <strong>Areas for Improvement:</strong>
+                                        <p>"Limited career advancement opportunities in design. Salary not competitive for market rates."</p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline" onclick="viewFullInterview('lisa')">View Full Interview</button>
+                            </div>
+
+                            <div class="interview-card">
+                                <div class="interview-header">
+                                    <div>
+                                        <h4>James Wilson - Senior Software Engineer</h4>
+                                        <p>Exit Date: Dec 30, 2024</p>
+                                    </div>
+                                    <span class="badge badge-warning">Scheduled: Dec 28, 2PM</span>
+                                </div>
+                                <div class="interview-content">
+                                    <p style="color: var(--text-secondary);">Exit interview scheduled. Questionnaire sent to employee.</p>
+                                </div>
+                                <button class="btn btn-sm btn-primary" onclick="conductExitInterview('james')">Conduct Interview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/data-service.js"></script>
+    <script src="../js/hr-offboarding.js"></script>
+</body>
+</html>

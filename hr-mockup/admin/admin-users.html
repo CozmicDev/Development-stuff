@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users & Roles - Admin - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="admin-users.html" class="nav-item active">
+                    <span class="icon">👥</span>
+                    <span class="text">Users & Roles</span>
+                </a>
+                <a href="admin-system.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">System Config</span>
+                </a>
+                <a href="admin-integrations.html" class="nav-item">
+                    <span class="icon">🔗</span>
+                    <span class="text">Integrations</span>
+                </a>
+                <a href="admin-security.html" class="nav-item">
+                    <span class="icon">🔒</span>
+                    <span class="text">Security</span>
+                </a>
+                <a href="admin-workflows.html" class="nav-item">
+                    <span class="icon">🔄</span>
+                    <span class="text">Workflows</span>
+                </a>
+                <a href="admin-templates.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Templates</span>
+                </a>
+                <a href="admin-audit.html" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="text">Audit Logs</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">User & Role Management</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search users...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="notifications">
+                        <button class="icon-btn" onclick="toggleNotifications()">
+                            🔔
+                            <span class="badge">2</span>
+                        </button>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Robert Anderson</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="page-header">
+                    <div>
+                        <h2>User Management</h2>
+                        <p>Manage user accounts, roles, and permissions</p>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-outline" onclick="showModal('inviteUserModal')">
+                            <span>✉️</span> Invite User
+                        </button>
+                        <button class="btn btn-primary" onclick="showModal('addUserModal')">
+                            <span>➕</span> Add User
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #EEF2FF; color: #4F46E5;">👥</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Users</p>
+                            <h3 class="stat-value">247</h3>
+                            <p class="stat-change positive">+8 this month</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #D1FAE5; color: #059669;">✅</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Active Users</p>
+                            <h3 class="stat-value">238</h3>
+                            <p class="stat-change">96% of total</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FEF3C7; color: #D97706;">⏸️</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Inactive Users</p>
+                            <h3 class="stat-value">9</h3>
+                            <p class="stat-change">On leave or suspended</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #DBEAFE; color: #2563EB;">🔐</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Roles Defined</p>
+                            <h3 class="stat-value">12</h3>
+                            <p class="stat-change">4 custom roles</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3>User Accounts</h3>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Manage all user accounts and their access levels</p>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-bar">
+                        <div class="search-box">
+                            <input type="text" id="searchUsers" placeholder="Search by name, email, or employee ID..." onkeyup="filterUsers()" style="width: 350px;">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px;">
+                            <select id="roleFilter" onchange="filterUsers()">
+                                <option value="all">All Roles</option>
+                                <option value="employee">Employee</option>
+                                <option value="manager">Manager</option>
+                                <option value="hr">HR Staff</option>
+                                <option value="admin">Administrator</option>
+                                <option value="contractor">Contractor</option>
+                            </select>
+                            
+                            <select id="statusFilter" onchange="filterUsers()">
+                                <option value="active">Active Users</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="suspended">Suspended</option>
+                                <option value="all">All Status</option>
+                            </select>
+                            
+                            <button class="btn btn-outline" onclick="resetUserFilters()">Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body" style="padding: 0;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;">
+                                        <input type="checkbox" id="selectAllUsers" onclick="toggleSelectAllUsers()">
+                                    </th>
+                                    <th>User</th>
+                                    <th>Employee ID</th>
+                                    <th>Role</th>
+                                    <th>Department</th>
+                                    <th>Status</th>
+                                    <th>Last Login</th>
+                                    <th style="width: 150px;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <tr data-role="admin" data-status="active">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Robert Anderson</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">robert.anderson@company.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>EMP001</strong></td>
+                                    <td><span class="badge badge-danger">Administrator</span></td>
+                                    <td>IT</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>2 hours ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('EMP001')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('EMP001')">View</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr data-role="hr" data-status="active">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Jennifer+Martinez&background=10B981&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Jennifer Martinez</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">jennifer.m@company.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>EMP007</strong></td>
+                                    <td><span class="badge badge-info">HR Staff</span></td>
+                                    <td>Human Resources</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>5 hours ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('EMP007')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('EMP007')">View</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr data-role="manager" data-status="active">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Sarah+Manager&background=4F46E5&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Sarah Manager</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">sarah.manager@company.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>EMP015</strong></td>
+                                    <td><span class="badge badge-primary">Manager</span></td>
+                                    <td>Engineering</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>1 hour ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('EMP015')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('EMP015')">View</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr data-role="employee" data-status="active">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=10B981&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>John Smith</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">john.smith@company.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>EMP042</strong></td>
+                                    <td><span class="badge">Employee</span></td>
+                                    <td>Engineering</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>30 minutes ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('EMP042')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('EMP042')">View</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr data-role="employee" data-status="active">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Emily+Chen&background=F59E0B&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Emily Chen</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">emily.chen@company.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>EMP089</strong></td>
+                                    <td><span class="badge">Employee</span></td>
+                                    <td>Marketing</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>4 hours ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('EMP089')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('EMP089')">View</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr data-role="contractor" data-status="active">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Michael+Brown&background=8B5CF6&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Michael Brown</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">michael.b@contractor.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>CON012</strong></td>
+                                    <td><span class="badge" style="background: #8B5CF6;">Contractor</span></td>
+                                    <td>Engineering</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>1 day ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('CON012')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('CON012')">View</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr data-role="employee" data-status="inactive">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=David+Wilson&background=6B7280&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>David Wilson</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">david.wilson@company.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>EMP123</strong></td>
+                                    <td><span class="badge">Employee</span></td>
+                                    <td>Sales</td>
+                                    <td><span class="badge badge-warning">Inactive</span></td>
+                                    <td>30 days ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('EMP123')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('EMP123')">View</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr data-role="manager" data-status="active">
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Lisa+Anderson&background=EC4899&color=fff" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Lisa Anderson</strong>
+                                                <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">lisa.a@company.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>EMP078</strong></td>
+                                    <td><span class="badge badge-primary">Manager</span></td>
+                                    <td>Sales</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>3 hours ago</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="editUser('EMP078')">Edit</button>
+                                        <button class="btn btn-sm btn-outline" onclick="viewUserDetails('EMP078')">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span id="selectedCount">0</span> users selected
+                        </div>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-outline" onclick="showBulkActionsModal()" id="bulkActionsBtn" disabled>
+                                Bulk Actions
+                            </button>
+                            <button class="btn btn-outline" onclick="exportUsers()">
+                                📥 Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Role Management</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid #EF4444;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <strong>Administrator</strong>
+                                        <span class="badge badge-danger">3 users</span>
+                                    </div>
+                                    <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Full system access and configuration</p>
+                                    <div style="font-size: 12px;">
+                                        <strong>Permissions:</strong> All system permissions
+                                    </div>
+                                </div>
+                                
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid #3B82F6;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <strong>HR Staff</strong>
+                                        <span class="badge badge-info">12 users</span>
+                                    </div>
+                                    <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Employee management and HR operations</p>
+                                    <div style="font-size: 12px;">
+                                        <strong>Permissions:</strong> Employee records, Benefits, Requests
+                                    </div>
+                                </div>
+                                
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid #4F46E5;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <strong>Manager</strong>
+                                        <span class="badge badge-primary">28 users</span>
+                                    </div>
+                                    <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Team management and approvals</p>
+                                    <div style="font-size: 12px;">
+                                        <strong>Permissions:</strong> Team view, Approvals, Reports
+                                    </div>
+                                </div>
+                                
+                                <div style="padding: 16px; background: var(--background); border-radius: 8px; border-left: 4px solid #10B981;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <strong>Employee</strong>
+                                        <span class="badge badge-success">204 users</span>
+                                    </div>
+                                    <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Standard employee access</p>
+                                    <div style="font-size: 12px;">
+                                        <strong>Permissions:</strong> Profile, Leave, Benefits, Documents
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-outline" onclick="showModal('manageRolesModal')" style="margin-top: 8px;">
+                                    ⚙️ Manage Roles & Permissions
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent User Activity</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>New User Added</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">10 min ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">Emily Chen added to Marketing team</p>
+                                </div>
+                                
+                                <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>Role Updated</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">2 hours ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">John Smith promoted to Senior Engineer</p>
+                                </div>
+                                
+                                <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>User Deactivated</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">1 day ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">David Wilson account suspended</p>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <strong>Password Reset</strong>
+                                        <span style="font-size: 11px; color: var(--text-light);">2 days ago</span>
+                                    </div>
+                                    <p style="font-size: 12px; color: var(--text-secondary);">Michael Brown reset password</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>Add New User</h3>
+                <button class="close-btn" onclick="closeModal('addUserModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm" onsubmit="addNewUser(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name *</label>
+                            <input type="text" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Employee ID</label>
+                        <input type="text" placeholder="Auto-generated if left blank">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Role *</label>
+                            <select required>
+                                <option value="">Select role...</option>
+                                <option value="employee">Employee</option>
+                                <option value="manager">Manager</option>
+                                <option value="hr">HR Staff</option>
+                                <option value="admin">Administrator</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Department *</label>
+                            <select required>
+                                <option value="">Select department...</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="sales">Sales</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="finance">Finance</option>
+                                <option value="operations">Operations</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Start Date *</label>
+                        <input type="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" checked>
+                            <span>Send welcome email with login credentials</span>
+                        </label>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('addUserModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Invite User Modal -->
+    <div id="inviteUserModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Invite User</h3>
+                <button class="close-btn" onclick="closeModal('inviteUserModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="sendInvite(event)">
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" required placeholder="user@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Role *</label>
+                        <select required>
+                            <option value="">Select role...</option>
+                            <option value="employee">Employee</option>
+                            <option value="manager">Manager</option>
+                            <option value="hr">HR Staff</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Personal Message (Optional)</label>
+                        <textarea rows="3" placeholder="Add a personal message to the invitation email..."></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('inviteUserModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Send Invitation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/admin-users.js"></script>
+</body>
+</html>

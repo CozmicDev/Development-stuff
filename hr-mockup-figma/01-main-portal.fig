@@ -1,0 +1,682 @@
+{
+  "name": "HR Management System - Main Portal",
+  "version": "1.0",
+  "description": "Main portal/login page design for HR Management System",
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Main Portal",
+      "type": "CANVAS",
+      "children": [
+        {
+          "id": "frame-main",
+          "name": "Desktop - 1920x1080",
+          "type": "FRAME",
+          "width": 1920,
+          "height": 1080,
+          "x": 0,
+          "y": 0,
+          "fills": [
+            {
+              "type": "GRADIENT_LINEAR",
+              "gradientStops": [
+                {
+                  "color": {"r": 0.31, "g": 0.53, "b": 0.96, "a": 1},
+                  "position": 0
+                },
+                {
+                  "color": {"r": 0.54, "g": 0.36, "b": 0.97, "a": 1},
+                  "position": 1
+                }
+              ],
+              "gradientTransform": [[1, 0, 0], [0, 1, 0]]
+            }
+          ],
+          "children": [
+            {
+              "id": "header-section",
+              "name": "Header",
+              "type": "FRAME",
+              "width": 1920,
+              "height": 120,
+              "x": 0,
+              "y": 0,
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {"r": 1, "g": 1, "b": 1, "a": 0.1}
+                }
+              ],
+              "children": [
+                {
+                  "id": "logo",
+                  "name": "Logo",
+                  "type": "TEXT",
+                  "x": 80,
+                  "y": 35,
+                  "width": 400,
+                  "height": 50,
+                  "characters": "🏢 ACME Corporation",
+                  "fontSize": 36,
+                  "fontName": {"family": "Inter", "style": "Bold"},
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                    }
+                  ]
+                },
+                {
+                  "id": "tagline",
+                  "name": "Tagline",
+                  "type": "TEXT",
+                  "x": 80,
+                  "y": 85,
+                  "width": 400,
+                  "height": 24,
+                  "characters": "HR Management System",
+                  "fontSize": 18,
+                  "fontName": {"family": "Inter", "style": "Regular"},
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 1, "g": 1, "b": 1, "a": 0.8}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "content-center",
+              "name": "Center Content",
+              "type": "FRAME",
+              "width": 1200,
+              "height": 700,
+              "x": 360,
+              "y": 200,
+              "fills": [],
+              "layoutMode": "VERTICAL",
+              "layoutAlign": "CENTER",
+              "itemSpacing": 60,
+              "children": [
+                {
+                  "id": "welcome-text",
+                  "name": "Welcome Section",
+                  "type": "FRAME",
+                  "width": 1200,
+                  "height": 140,
+                  "fills": [],
+                  "layoutMode": "VERTICAL",
+                  "layoutAlign": "CENTER",
+                  "itemSpacing": 16,
+                  "children": [
+                    {
+                      "id": "main-title",
+                      "name": "Main Title",
+                      "type": "TEXT",
+                      "width": 1200,
+                      "height": 72,
+                      "characters": "Welcome to HRPro",
+                      "fontSize": 64,
+                      "fontName": {"family": "Inter", "style": "Bold"},
+                      "textAlignHorizontal": "CENTER",
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                        }
+                      ]
+                    },
+                    {
+                      "id": "subtitle",
+                      "name": "Subtitle",
+                      "type": "TEXT",
+                      "width": 1200,
+                      "height": 32,
+                      "characters": "Your Complete HR Management Solution",
+                      "fontSize": 24,
+                      "fontName": {"family": "Inter", "style": "Regular"},
+                      "textAlignHorizontal": "CENTER",
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 1, "g": 1, "b": 1, "a": 0.9}
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "portal-cards",
+                  "name": "Portal Cards",
+                  "type": "FRAME",
+                  "width": 1200,
+                  "height": 480,
+                  "fills": [],
+                  "layoutMode": "HORIZONTAL",
+                  "itemSpacing": 40,
+                  "children": [
+                    {
+                      "id": "card-admin",
+                      "name": "Admin Portal Card",
+                      "type": "FRAME",
+                      "width": 280,
+                      "height": 480,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                        }
+                      ],
+                      "cornerRadius": 16,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.15},
+                          "offset": {"x": 0, "y": 4},
+                          "radius": 24,
+                          "spread": 0
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 40,
+                      "paddingBottom": 40,
+                      "paddingLeft": 32,
+                      "paddingRight": 32,
+                      "itemSpacing": 24,
+                      "children": [
+                        {
+                          "id": "admin-icon",
+                          "name": "Icon",
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 80,
+                          "characters": "⚙️",
+                          "fontSize": 72,
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.31, "g": 0.53, "b": 0.96, "a": 1}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "admin-title",
+                          "name": "Title",
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 36,
+                          "characters": "Admin Portal",
+                          "fontSize": 28,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "admin-desc",
+                          "name": "Description",
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 120,
+                          "characters": "System administration, user management, security configuration, and system settings.",
+                          "fontSize": 16,
+                          "fontName": {"family": "Inter", "style": "Regular"},
+                          "textAlignHorizontal": "CENTER",
+                          "lineHeight": {"value": 150, "unit": "PERCENT"},
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "admin-features",
+                          "name": "Features",
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 100,
+                          "fills": [],
+                          "layoutMode": "VERTICAL",
+                          "itemSpacing": 8,
+                          "children": [
+                            {
+                              "id": "feature-1",
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ User Management",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "id": "feature-2",
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Security & Access",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "id": "feature-3",
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Audit Logs",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "id": "feature-4",
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Integrations",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "admin-button",
+                          "name": "Button",
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 48,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.31, "g": 0.53, "b": 0.96, "a": 1}
+                            }
+                          ],
+                          "cornerRadius": 8,
+                          "layoutMode": "VERTICAL",
+                          "layoutAlign": "CENTER",
+                          "primaryAxisAlignItems": "CENTER",
+                          "counterAxisAlignItems": "CENTER",
+                          "children": [
+                            {
+                              "id": "button-text",
+                              "type": "TEXT",
+                              "characters": "Enter Portal",
+                              "fontSize": 16,
+                              "fontName": {"family": "Inter", "style": "SemiBold"},
+                              "fills": [
+                                {
+                                  "type": "SOLID",
+                                  "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card-employee",
+                      "name": "Employee Portal Card",
+                      "type": "FRAME",
+                      "width": 280,
+                      "height": 480,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                        }
+                      ],
+                      "cornerRadius": 16,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.15},
+                          "offset": {"x": 0, "y": 4},
+                          "radius": 24,
+                          "spread": 0
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 40,
+                      "paddingBottom": 40,
+                      "paddingLeft": 32,
+                      "paddingRight": 32,
+                      "itemSpacing": 24,
+                      "children": [
+                        {
+                          "id": "employee-icon",
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 80,
+                          "characters": "👤",
+                          "fontSize": 72,
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}]
+                        },
+                        {
+                          "id": "employee-title",
+                          "type": "TEXT",
+                          "width": 216,
+                          "characters": "Employee Portal",
+                          "fontSize": 28,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "id": "employee-desc",
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 120,
+                          "characters": "Access your personal information, request leave, view payslips, and manage benefits.",
+                          "fontSize": 16,
+                          "textAlignHorizontal": "CENTER",
+                          "lineHeight": {"value": 150, "unit": "PERCENT"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                        },
+                        {
+                          "id": "employee-features",
+                          "name": "Features",
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 100,
+                          "fills": [],
+                          "layoutMode": "VERTICAL",
+                          "itemSpacing": 8,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Time & Attendance",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Leave Requests",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Performance Goals",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Learning Courses",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "employee-button",
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 48,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.06, "g": 0.73, "b": 0.51, "a": 1}}],
+                          "cornerRadius": 8,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "Enter Portal",
+                              "fontSize": 16,
+                              "fontName": {"family": "Inter", "style": "SemiBold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card-manager",
+                      "name": "Manager Portal Card",
+                      "type": "FRAME",
+                      "width": 280,
+                      "height": 480,
+                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                      "cornerRadius": 16,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.15},
+                          "offset": {"x": 0, "y": 4},
+                          "radius": 24
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 40,
+                      "paddingBottom": 40,
+                      "paddingLeft": 32,
+                      "paddingRight": 32,
+                      "itemSpacing": 24,
+                      "children": [
+                        {
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 80,
+                          "characters": "📊",
+                          "fontSize": 72,
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [{"type": "SOLID", "color": {"r": 0.96, "g": 0.62, "b": 0.04, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "width": 216,
+                          "characters": "Manager Portal",
+                          "fontSize": 28,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 120,
+                          "characters": "Manage your team, approve requests, conduct reviews, and view analytics.",
+                          "fontSize": 16,
+                          "textAlignHorizontal": "CENTER",
+                          "lineHeight": {"value": 150, "unit": "PERCENT"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                        },
+                        {
+                          "name": "Features",
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 100,
+                          "fills": [],
+                          "layoutMode": "VERTICAL",
+                          "itemSpacing": 8,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Team Management",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Approvals",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Performance Reviews",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Team Analytics",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 48,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.96, "g": 0.62, "b": 0.04, "a": 1}}],
+                          "cornerRadius": 8,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "Enter Portal",
+                              "fontSize": 16,
+                              "fontName": {"family": "Inter", "style": "SemiBold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card-hr",
+                      "name": "HR Portal Card",
+                      "type": "FRAME",
+                      "width": 280,
+                      "height": 480,
+                      "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}],
+                      "cornerRadius": 16,
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "color": {"r": 0, "g": 0, "b": 0, "a": 0.15},
+                          "offset": {"x": 0, "y": 4},
+                          "radius": 24
+                        }
+                      ],
+                      "layoutMode": "VERTICAL",
+                      "paddingTop": 40,
+                      "paddingBottom": 40,
+                      "paddingLeft": 32,
+                      "paddingRight": 32,
+                      "itemSpacing": 24,
+                      "children": [
+                        {
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 80,
+                          "characters": "💼",
+                          "fontSize": 72,
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [{"type": "SOLID", "color": {"r": 0.54, "g": 0.36, "b": 0.97, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "width": 216,
+                          "characters": "HR Portal",
+                          "fontSize": 28,
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "textAlignHorizontal": "CENTER",
+                          "fills": [{"type": "SOLID", "color": {"r": 0.11, "g": 0.11, "b": 0.13, "a": 1}}]
+                        },
+                        {
+                          "type": "TEXT",
+                          "width": 216,
+                          "height": 120,
+                          "characters": "Complete HR operations including onboarding, payroll, recruitment, and more.",
+                          "fontSize": 16,
+                          "textAlignHorizontal": "CENTER",
+                          "lineHeight": {"value": 150, "unit": "PERCENT"},
+                          "fills": [{"type": "SOLID", "color": {"r": 0.4, "g": 0.4, "b": 0.45, "a": 1}}]
+                        },
+                        {
+                          "name": "Features",
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 100,
+                          "fills": [],
+                          "layoutMode": "VERTICAL",
+                          "itemSpacing": 8,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Onboarding/Offboarding",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Payroll Processing",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Recruitment Pipeline",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            },
+                            {
+                              "type": "TEXT",
+                              "width": 216,
+                              "characters": "✓ Employee Database",
+                              "fontSize": 14,
+                              "fills": [{"type": "SOLID", "color": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1}}]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "FRAME",
+                          "width": 216,
+                          "height": 48,
+                          "fills": [{"type": "SOLID", "color": {"r": 0.54, "g": 0.36, "b": 0.97, "a": 1}}],
+                          "cornerRadius": 8,
+                          "children": [
+                            {
+                              "type": "TEXT",
+                              "characters": "Enter Portal",
+                              "fontSize": 16,
+                              "fontName": {"family": "Inter", "style": "SemiBold"},
+                              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 1}}]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "footer",
+              "name": "Footer",
+              "type": "FRAME",
+              "width": 1920,
+              "height": 80,
+              "x": 0,
+              "y": 1000,
+              "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.05}}],
+              "children": [
+                {
+                  "type": "TEXT",
+                  "x": 860,
+                  "y": 30,
+                  "characters": "© 2024 ACME Corporation. All rights reserved.",
+                  "fontSize": 14,
+                  "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1, "a": 0.7}}]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

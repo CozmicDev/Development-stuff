@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflows - Admin - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="text">Users & Roles</span>
+                </a>
+                <a href="admin-system.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">System Config</span>
+                </a>
+                <a href="admin-integrations.html" class="nav-item">
+                    <span class="icon">🔗</span>
+                    <span class="text">Integrations</span>
+                </a>
+                <a href="admin-security.html" class="nav-item">
+                    <span class="icon">🔒</span>
+                    <span class="text">Security</span>
+                </a>
+                <a href="admin-workflows.html" class="nav-item active">
+                    <span class="icon">🔄</span>
+                    <span class="text">Workflows</span>
+                </a>
+                <a href="admin-templates.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Templates</span>
+                </a>
+                <a href="admin-audit.html" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="text">Audit Logs</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Approval Workflows</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Robert Anderson</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="page-header">
+                    <div>
+                        <h2>Workflow Management</h2>
+                        <p>Configure approval workflows and automation rules</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="createWorkflow()">
+                        <span>+ Create Workflow</span>
+                    </button>
+                </div>
+                
+                <!-- Stats -->
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--primary-color);">8</div>
+                        <div class="stat-label">Active Workflows</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--secondary-color);">124</div>
+                        <div class="stat-label">Processed Today</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--warning-color);">15</div>
+                        <div class="stat-label">Pending Approval</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--info-color);">98.5%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+                
+                <!-- Workflow List -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Configured Workflows</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-sm btn-outline" onclick="importWorkflow()">📥 Import</button>
+                            <button class="btn btn-sm btn-outline" onclick="exportAllWorkflows()">📤 Export All</button>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <div id="workflowsList" style="display: flex; flex-direction: column; gap: 0;">
+                            <!-- Leave Request Workflow -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        🏖️
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Leave Request Approval</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Manager → HR → Auto-approve if ≤3 days</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">2 approvers • Avg. 4 hours</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('leave')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('leave')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('leave')">⏸️ Pause</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Expense Approval -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        💰
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Expense Reimbursement</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Manager → Finance (if >$500) → Auto-process</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">2 approvers • Avg. 6 hours</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('expense')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('expense')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('expense')">⏸️ Pause</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Document Request -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        📄
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Document Request</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">HR Review → Auto-generate → Email to employee</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">1 approver • Avg. 2 hours</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('document')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('document')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('document')">⏸️ Pause</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Onboarding -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        👋
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Employee Onboarding</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Offer accepted → IT setup → HR docs → Manager intro</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">4 steps • Avg. 3 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('onboarding')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('onboarding')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('onboarding')">⏸️ Pause</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Offboarding -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        👋
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Employee Offboarding</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Exit interview → Asset return → System access removal</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">5 steps • Avg. 2 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('offboarding')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('offboarding')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('offboarding')">⏸️ Pause</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Performance Review -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        ⭐
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Performance Review Cycle</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Self-assessment → Manager review → HR approval → Notification</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-warning">Paused</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">3 approvers • Avg. 7 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('performance')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('performance')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('performance')">▶️ Resume</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Training Approval -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        📚
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Training Request</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Manager approval → Budget check → HR enrollment</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">2 approvers • Avg. 3 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('training')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('training')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('training')">⏸️ Pause</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Time Off Adjustment -->
+                            <div class="workflow-item">
+                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                        ⏰
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h4 style="margin: 0 0 4px 0;">Time Off Adjustment</h4>
+                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Manager request → HR approval → Balance update</p>
+                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
+                                            <span class="badge badge-success">Active</span>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">2 approvers • Avg. 1 hour</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-sm btn-outline" onclick="viewWorkflow('timeoff')">👁️ View</button>
+                                    <button class="btn btn-sm btn-outline" onclick="editWorkflow('timeoff')">✏️ Edit</button>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleWorkflow('timeoff')">⏸️ Pause</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Workflow Templates -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Workflow Templates</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Start with pre-built workflow templates</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                            <div class="template-card">
+                                <h4 style="margin: 0 0 8px 0;">🎯 Budget Approval</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Multi-level approval for budget requests</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="useTemplate('budget')">Use Template</button>
+                            </div>
+                            
+                            <div class="template-card">
+                                <h4 style="margin: 0 0 8px 0;">🚀 Project Kickoff</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Automated project initialization workflow</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="useTemplate('project')">Use Template</button>
+                            </div>
+                            
+                            <div class="template-card">
+                                <h4 style="margin: 0 0 8px 0;">🎓 Certification Tracking</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Track and renew employee certifications</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="useTemplate('certification')">Use Template</button>
+                            </div>
+                            
+                            <div class="template-card">
+                                <h4 style="margin: 0 0 8px 0;">📝 Policy Acknowledgment</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Require employees to acknowledge policies</p>
+                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="useTemplate('policy')">Use Template</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/admin-workflows.js"></script>
+</body>
+</html>

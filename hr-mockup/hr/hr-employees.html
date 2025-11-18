@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management - HR Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏢 HR Portal</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="hr-dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="hr-employees.html" class="nav-item active">
+                    <span>👥</span> Employees
+                </a>
+                <a href="hr-requests.html" class="nav-item">
+                    <span>📋</span> Requests
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📄</span> Documents
+                </a>
+                <a href="#" class="nav-item">
+                    <span>🎓</span> Training & Compliance
+                </a>
+                <a href="#" class="nav-item">
+                    <span>💼</span> Benefits Administration
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📈</span> Reports & Analytics
+                </a>
+                <a href="#" class="nav-item">
+                    <span>⚙️</span> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                <div class="top-bar-right">
+                    <button class="icon-btn" onclick="toggleNotifications()">
+                        🔔
+                        <span class="notification-badge">12</span>
+                    </button>
+                    <div class="dropdown">
+                        <button class="user-menu" onclick="toggleDropdown()">
+                            <img src="https://ui-avatars.com/api/?name=HR+Admin&background=4F46E5&color=fff" alt="User">
+                            <span>HR Admin</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h1>Employee Directory</h1>
+                        <p class="text-secondary">Manage all company employees</p>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-outline" onclick="exportEmployees()">
+                            📥 Export
+                        </button>
+                        <button class="btn btn-outline" onclick="showModal('bulkActionsModal')">
+                            ⚡ Bulk Actions
+                        </button>
+                        <button class="btn btn-primary" onclick="showModal('addEmployeeModal')">
+                            ➕ Add Employee
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="grid grid-4" style="margin-bottom: 24px;">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Employees</div>
+                        <div class="stat-value">247</div>
+                        <div class="stat-change positive">+15 this year</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Active</div>
+                        <div class="stat-value">238</div>
+                        <div class="stat-change positive">96.4%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">On Leave</div>
+                        <div class="stat-value">9</div>
+                        <div class="stat-change">Various types</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">New Hires (30d)</div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-change">Onboarding</div>
+                    </div>
+                </div>
+
+                <!-- Advanced Filters -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <h3 style="margin-bottom: 16px;">🔍 Advanced Search & Filters</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                        <div>
+                            <label class="form-label">Search</label>
+                            <input type="text" class="form-control" id="employeeSearch" placeholder="Name, email, ID..." onkeyup="filterEmployees()">
+                        </div>
+                        <div>
+                            <label class="form-label">Department</label>
+                            <select class="form-control" id="deptFilter" onchange="filterEmployees()">
+                                <option value="all">All Departments</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="sales">Sales</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="finance">Finance</option>
+                                <option value="operations">Operations</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Status</label>
+                            <select class="form-control" id="statusFilter" onchange="filterEmployees()">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="on-leave">On Leave</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="terminated">Terminated</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Employment Type</label>
+                            <select class="form-control" id="typeFilter" onchange="filterEmployees()">
+                                <option value="all">All Types</option>
+                                <option value="full-time">Full-Time</option>
+                                <option value="part-time">Part-Time</option>
+                                <option value="contract">Contract</option>
+                                <option value="intern">Intern</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Location</label>
+                            <select class="form-control" id="locationFilter" onchange="filterEmployees()">
+                                <option value="all">All Locations</option>
+                                <option value="san-francisco">San Francisco</option>
+                                <option value="new-york">New York</option>
+                                <option value="austin">Austin</option>
+                                <option value="remote">Remote</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; align-items: end;">
+                            <button class="btn btn-outline btn-block" onclick="resetEmployeeFilters()">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Bar -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <span id="resultCount" style="color: var(--text-secondary);">Showing 247 employees</span>
+                        <button class="btn btn-sm btn-outline" onclick="selectAllVisible()">
+                            Select All
+                        </button>
+                        <span id="selectedCount" style="color: var(--primary); font-weight: 500;"></span>
+                    </div>
+                    <div>
+                        <label style="font-size: 14px; margin-right: 8px;">Sort by:</label>
+                        <select class="form-control" style="display: inline-block; width: auto;" id="sortBy" onchange="sortEmployees()">
+                            <option value="name">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="hire-date">Hire Date (Newest)</option>
+                            <option value="hire-date-desc">Hire Date (Oldest)</option>
+                            <option value="department">Department</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Employee Table -->
+                <div class="card">
+                    <div class="table-container">
+                        <table id="employeeTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;">
+                                        <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAllEmployees()">
+                                    </th>
+                                    <th>Employee</th>
+                                    <th>Employee ID</th>
+                                    <th>Department</th>
+                                    <th>Position</th>
+                                    <th>Status</th>
+                                    <th>Hire Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTableBody">
+                                <!-- Engineering Department -->
+                                <tr data-dept="engineering" data-status="active" data-type="full-time" data-location="san-francisco">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP001"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" 
+                                                 alt="John Smith" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>John Smith</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">john.smith@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP001</td>
+                                    <td>Engineering</td>
+                                    <td>Senior Developer</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Jan 15, 2020</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP001')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP001')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <tr data-dept="engineering" data-status="on-leave" data-type="full-time" data-location="remote">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP002"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Emily+Chen&background=10B981&color=fff" 
+                                                 alt="Emily Chen" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Emily Chen</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">emily.chen@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP002</td>
+                                    <td>Engineering</td>
+                                    <td>Software Developer</td>
+                                    <td><span class="badge badge-warning">On Leave</span></td>
+                                    <td>Mar 10, 2021</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP002')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP002')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Sales Department -->
+                                <tr data-dept="sales" data-status="active" data-type="full-time" data-location="new-york">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP003"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Robert+Johnson&background=F59E0B&color=fff" 
+                                                 alt="Robert Johnson" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Robert Johnson</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">robert.johnson@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP003</td>
+                                    <td>Sales</td>
+                                    <td>Sales Manager</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Jun 8, 2019</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP003')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP003')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <tr data-dept="sales" data-status="active" data-type="full-time" data-location="new-york">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP004"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Jennifer+Martinez&background=8B5CF6&color=fff" 
+                                                 alt="Jennifer Martinez" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Jennifer Martinez</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">jennifer.martinez@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP004</td>
+                                    <td>Sales</td>
+                                    <td>Account Executive</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Nov 20, 2021</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP004')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP004')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Marketing Department -->
+                                <tr data-dept="marketing" data-status="active" data-type="full-time" data-location="san-francisco">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP005"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Sarah+Williams&background=EF4444&color=fff" 
+                                                 alt="Sarah Williams" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Sarah Williams</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">sarah.williams@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP005</td>
+                                    <td>Marketing</td>
+                                    <td>Marketing Director</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Apr 3, 2020</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP005')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP005')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <!-- HR Department -->
+                                <tr data-dept="hr" data-status="active" data-type="full-time" data-location="san-francisco">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP006"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=David+Brown&background=06B6D4&color=fff" 
+                                                 alt="David Brown" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>David Brown</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">david.brown@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP006</td>
+                                    <td>Human Resources</td>
+                                    <td>HR Manager</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Sep 15, 2018</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP006')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP006')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Finance Department -->
+                                <tr data-dept="finance" data-status="active" data-type="full-time" data-location="new-york">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP007"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Lisa+Anderson&background=10B981&color=fff" 
+                                                 alt="Lisa Anderson" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Lisa Anderson</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">lisa.anderson@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP007</td>
+                                    <td>Finance</td>
+                                    <td>Financial Analyst</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Jul 12, 2022</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP007')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP007')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Contract/Part-time -->
+                                <tr data-dept="operations" data-status="active" data-type="contract" data-location="remote">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP008"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Michael+Davis&background=8B5CF6&color=fff" 
+                                                 alt="Michael Davis" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Michael Davis</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">michael.davis@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP008</td>
+                                    <td>Operations</td>
+                                    <td>Operations Specialist</td>
+                                    <td><span class="badge badge-info">Contract</span></td>
+                                    <td>Jan 5, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP008')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP008')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Intern -->
+                                <tr data-dept="marketing" data-status="active" data-type="intern" data-location="austin">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP009"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=Amanda+Taylor&background=F59E0B&color=fff" 
+                                                 alt="Amanda Taylor" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>Amanda Taylor</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">amanda.taylor@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP009</td>
+                                    <td>Marketing</td>
+                                    <td>Marketing Intern</td>
+                                    <td><span class="badge badge-primary">Intern</span></td>
+                                    <td>Jun 1, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP009')">View</button>
+                                        <button class="btn btn-sm btn-outline" onclick="editEmployee('EMP009')">Edit</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Terminated -->
+                                <tr data-dept="sales" data-status="terminated" data-type="full-time" data-location="new-york">
+                                    <td><input type="checkbox" class="emp-checkbox" value="EMP010"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://ui-avatars.com/api/?name=James+Wilson&background=gray&color=fff" 
+                                                 alt="James Wilson" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            <div>
+                                                <strong>James Wilson</strong>
+                                                <div style="font-size: 12px; color: var(--text-secondary);">james.wilson@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>EMP010</td>
+                                    <td>Sales</td>
+                                    <td>Sales Representative</td>
+                                    <td><span class="badge">Terminated</span></td>
+                                    <td>Feb 1, 2023</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline" onclick="viewEmployeeDetails('EMP010')">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Employee Details Modal -->
+    <div id="employeeDetailsModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h2 id="empDetailName">Employee Details</h2>
+                <button class="modal-close" onclick="closeModal('employeeDetailsModal')">×</button>
+            </div>
+            <div class="modal-body" id="empDetailBody">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('employeeDetailsModal')">Close</button>
+                <button class="btn btn-primary" onclick="editEmployeeFromModal()">Edit Employee</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Employee Modal -->
+    <div id="addEmployeeModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2>Add New Employee</h2>
+                <button class="modal-close" onclick="closeModal('addEmployeeModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addEmployeeForm">
+                    <div class="grid grid-2" style="gap: 16px;">
+                        <div class="form-group">
+                            <label class="form-label">First Name *</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name *</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Department *</label>
+                            <select class="form-control" required>
+                                <option value="">Select department...</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="sales">Sales</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="finance">Finance</option>
+                                <option value="operations">Operations</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Position/Title *</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Employment Type *</label>
+                            <select class="form-control" required>
+                                <option value="">Select type...</option>
+                                <option value="full-time">Full-Time</option>
+                                <option value="part-time">Part-Time</option>
+                                <option value="contract">Contract</option>
+                                <option value="intern">Intern</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Start Date *</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Manager</label>
+                            <select class="form-control">
+                                <option value="">Select manager...</option>
+                                <option value="MGR001">Sarah Manager - Engineering</option>
+                                <option value="MGR002">Robert Johnson - Sales</option>
+                                <option value="MGR003">Sarah Williams - Marketing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select class="form-control" required>
+                                <option value="">Select location...</option>
+                                <option value="san-francisco">San Francisco, CA</option>
+                                <option value="new-york">New York, NY</option>
+                                <option value="austin">Austin, TX</option>
+                                <option value="remote">Remote</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-control" rows="3" placeholder="Additional information..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('addEmployeeModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitNewEmployee()">Add Employee</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Actions Modal -->
+    <div id="bulkActionsModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2>Bulk Actions</h2>
+                <button class="modal-close" onclick="closeModal('bulkActionsModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p><strong><span id="bulkSelectedCount">0</span> employee(s) selected</strong></p>
+                <p style="margin-bottom: 20px; color: var(--text-secondary);">Choose an action to apply to all selected employees:</p>
+                
+                <div style="display: grid; gap: 12px;">
+                    <button class="btn btn-outline btn-block" onclick="bulkExport()">
+                        📥 Export Selected
+                    </button>
+                    <button class="btn btn-outline btn-block" onclick="bulkUpdateDept()">
+                        🏢 Update Department
+                    </button>
+                    <button class="btn btn-outline btn-block" onclick="bulkUpdateStatus()">
+                        ⚡ Update Status
+                    </button>
+                    <button class="btn btn-outline btn-block" onclick="bulkSendMessage()">
+                        ✉️ Send Message
+                    </button>
+                    <hr>
+                    <button class="btn btn-outline btn-block" style="color: var(--danger);" onclick="bulkTerminate()">
+                        ⚠️ Terminate Employees
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('bulkActionsModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/hr-employee-management.js"></script>
+</body>
+</html>

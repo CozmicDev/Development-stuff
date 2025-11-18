@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Reviews - HR Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>📊 HR Portal</h2>
+                <p>Manager Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="manager-dashboard.html">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="manager-team.html">
+                    <span class="icon">👥</span>
+                    <span>My Team</span>
+                </a>
+                <a href="manager-approvals.html">
+                    <span class="icon">✓</span>
+                    <span>Approvals</span>
+                </a>
+                <a href="manager-performance.html" class="active">
+                    <span class="icon">⭐</span>
+                    <span>Performance Reviews</span>
+                </a>
+                <a href="manager-reports.html">
+                    <span class="icon">📈</span>
+                    <span>Reports & Analytics</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../index.html">
+                    <span class="icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Performance Reviews</h1>
+                    <p>Conduct and manage team performance evaluations</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="viewReviewCalendar()">
+                        📅 Review Calendar
+                    </button>
+                    <button class="btn btn-primary" onclick="startNewReview()">
+                        ⭐ Start New Review
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card" style="border-left: 4px solid var(--warning-color);">
+                    <div class="stat-icon" style="background: var(--warning-light);">⏱️</div>
+                    <div class="stat-details">
+                        <h3>3</h3>
+                        <p>Pending Reviews</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" style="border-left: 4px solid var(--secondary-color);">
+                    <div class="stat-icon" style="background: var(--secondary-light);">✓</div>
+                    <div class="stat-details">
+                        <h3>12</h3>
+                        <p>Completed This Quarter</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" style="border-left: 4px solid var(--primary-color);">
+                    <div class="stat-icon" style="background: var(--primary-light);">📋</div>
+                    <div class="stat-details">
+                        <h3>2</h3>
+                        <p>In Draft</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" style="border-left: 4px solid var(--info-color);">
+                    <div class="stat-icon" style="background: var(--info-light);">🎯</div>
+                    <div class="stat-details">
+                        <h3>4.3</h3>
+                        <p>Avg Team Rating</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="switchTab('pending')">
+                        Pending Reviews (3)
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('in-progress')">
+                        In Progress (2)
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('completed')">
+                        Completed (12)
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('schedule')">
+                        Review Schedule
+                    </button>
+                </div>
+
+                <!-- Pending Reviews Tab -->
+                <div id="pending-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pending Performance Reviews</h3>
+                            <p style="margin: 8px 0 0 0; color: var(--text-secondary);">
+                                Reviews due by December 31, 2024
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="review-list">
+                                <!-- Pending Review 1 -->
+                                <div class="review-card pending">
+                                    <div class="review-header">
+                                        <div class="employee-info">
+                                            <div class="avatar">👤</div>
+                                            <div>
+                                                <h4>Sarah Johnson</h4>
+                                                <p>Senior Software Engineer • Engineering</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-warning">Due in 5 days</span>
+                                    </div>
+                                    
+                                    <div class="review-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Period:</span>
+                                            <span>Q4 2024 (Oct 1 - Dec 31)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Type:</span>
+                                            <span>Quarterly Performance Review</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Last Review:</span>
+                                            <span>Q3 2024 - Rating: 4.3/5.0</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="review-actions">
+                                        <button class="btn btn-outline" onclick="viewEmployeeProfile('sarah')">View Profile</button>
+                                        <button class="btn btn-outline" onclick="viewGoals('sarah')">View Goals</button>
+                                        <button class="btn btn-primary" onclick="startReview('sarah')">Start Review</button>
+                                    </div>
+                                </div>
+
+                                <!-- Pending Review 2 -->
+                                <div class="review-card pending">
+                                    <div class="review-header">
+                                        <div class="employee-info">
+                                            <div class="avatar">👤</div>
+                                            <div>
+                                                <h4>Mike Chen</h4>
+                                                <p>Software Engineer • Engineering</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-warning">Due in 5 days</span>
+                                    </div>
+                                    
+                                    <div class="review-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Period:</span>
+                                            <span>Q4 2024 (Oct 1 - Dec 31)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Type:</span>
+                                            <span>Quarterly Performance Review</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Last Review:</span>
+                                            <span>Q3 2024 - Rating: 4.0/5.0</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="review-actions">
+                                        <button class="btn btn-outline" onclick="viewEmployeeProfile('mike')">View Profile</button>
+                                        <button class="btn btn-outline" onclick="viewGoals('mike')">View Goals</button>
+                                        <button class="btn btn-primary" onclick="startReview('mike')">Start Review</button>
+                                    </div>
+                                </div>
+
+                                <!-- Pending Review 3 -->
+                                <div class="review-card pending">
+                                    <div class="review-header">
+                                        <div class="employee-info">
+                                            <div class="avatar">👤</div>
+                                            <div>
+                                                <h4>Emily Rodriguez</h4>
+                                                <p>Junior Software Engineer • Engineering</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-warning">Due in 5 days</span>
+                                    </div>
+                                    
+                                    <div class="review-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Period:</span>
+                                            <span>Q4 2024 (Oct 1 - Dec 31)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Type:</span>
+                                            <span>Quarterly Performance Review</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Last Review:</span>
+                                            <span>Q3 2024 - Rating: 3.8/5.0</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="review-actions">
+                                        <button class="btn btn-outline" onclick="viewEmployeeProfile('emily')">View Profile</button>
+                                        <button class="btn btn-outline" onclick="viewGoals('emily')">View Goals</button>
+                                        <button class="btn btn-primary" onclick="startReview('emily')">Start Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- In Progress Tab -->
+                <div id="in-progress-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reviews In Progress</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="review-list">
+                                <!-- In Progress Review 1 -->
+                                <div class="review-card in-progress">
+                                    <div class="review-header">
+                                        <div class="employee-info">
+                                            <div class="avatar">👤</div>
+                                            <div>
+                                                <h4>Alex Turner</h4>
+                                                <p>Software Engineer • Engineering</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-primary">Draft - 60% Complete</span>
+                                    </div>
+                                    
+                                    <div class="review-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Period:</span>
+                                            <span>Q4 2024 (Oct 1 - Dec 31)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Last Edited:</span>
+                                            <span>Dec 18, 2024 at 2:30 PM</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Completed Sections:</span>
+                                            <span>Ratings, Strengths (Missing: Areas for Development, Goals)</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="margin: 16px 0;">
+                                        <div style="height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
+                                            <div style="width: 60%; height: 100%; background: var(--primary-color);"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="review-actions">
+                                        <button class="btn btn-outline" onclick="viewDraft('alex')">View Draft</button>
+                                        <button class="btn btn-primary" onclick="continueReview('alex')">Continue Review</button>
+                                    </div>
+                                </div>
+
+                                <!-- In Progress Review 2 -->
+                                <div class="review-card in-progress">
+                                    <div class="review-header">
+                                        <div class="employee-info">
+                                            <div class="avatar">👤</div>
+                                            <div>
+                                                <h4>Lisa Wang</h4>
+                                                <p>UI/UX Designer • Design</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-primary">Draft - 40% Complete</span>
+                                    </div>
+                                    
+                                    <div class="review-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Review Period:</span>
+                                            <span>Q4 2024 (Oct 1 - Dec 31)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Last Edited:</span>
+                                            <span>Dec 15, 2024 at 10:15 AM</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Completed Sections:</span>
+                                            <span>Ratings only (Missing: All written feedback)</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="margin: 16px 0;">
+                                        <div style="height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
+                                            <div style="width: 40%; height: 100%; background: var(--primary-color);"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="review-actions">
+                                        <button class="btn btn-outline" onclick="viewDraft('lisa')">View Draft</button>
+                                        <button class="btn btn-primary" onclick="continueReview('lisa')">Continue Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed Tab -->
+                <div id="completed-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Completed Reviews</h3>
+                            <div class="filter-group">
+                                <select onchange="filterCompleted(this.value)">
+                                    <option value="q4-2024">Q4 2024</option>
+                                    <option value="q3-2024">Q3 2024</option>
+                                    <option value="q2-2024">Q2 2024</option>
+                                    <option value="all-2024">All 2024</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Position</th>
+                                        <th>Review Period</th>
+                                        <th>Completed Date</th>
+                                        <th>Overall Rating</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>John Smith</strong></td>
+                                        <td>Senior Engineer</td>
+                                        <td>Q3 2024</td>
+                                        <td>Oct 15, 2024</td>
+                                        <td><span class="rating-badge excellent">4.8</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewCompletedReview('john-q3')">View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="exportReview('john-q3')">Export</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sarah Johnson</strong></td>
+                                        <td>Senior Engineer</td>
+                                        <td>Q3 2024</td>
+                                        <td>Oct 12, 2024</td>
+                                        <td><span class="rating-badge excellent">4.5</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewCompletedReview('sarah-q3')">View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="exportReview('sarah-q3')">Export</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Mike Chen</strong></td>
+                                        <td>Software Engineer</td>
+                                        <td>Q3 2024</td>
+                                        <td>Oct 10, 2024</td>
+                                        <td><span class="rating-badge good">4.0</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewCompletedReview('mike-q3')">View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="exportReview('mike-q3')">Export</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Emily Rodriguez</strong></td>
+                                        <td>Junior Engineer</td>
+                                        <td>Q3 2024</td>
+                                        <td>Oct 8, 2024</td>
+                                        <td><span class="rating-badge satisfactory">3.8</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewCompletedReview('emily-q3')">View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="exportReview('emily-q3')">Export</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Alex Turner</strong></td>
+                                        <td>Software Engineer</td>
+                                        <td>Q3 2024</td>
+                                        <td>Oct 5, 2024</td>
+                                        <td><span class="rating-badge good">4.2</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="viewCompletedReview('alex-q3')">View</button>
+                                            <button class="btn btn-sm btn-outline" onclick="exportReview('alex-q3')">Export</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule Tab -->
+                <div id="schedule-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Review Schedule - 2025</h3>
+                            <button class="btn btn-primary" onclick="exportSchedule()">
+                                📥 Export Schedule
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-timeline">
+                                <!-- Q1 2025 -->
+                                <div class="schedule-quarter">
+                                    <h4>Q1 2025 Reviews</h4>
+                                    <p class="schedule-period">Review Period: Jan 1 - Mar 31 | Due: Apr 15, 2025</p>
+                                    
+                                    <div class="schedule-employees">
+                                        <div class="employee-chip">Sarah Johnson</div>
+                                        <div class="employee-chip">Mike Chen</div>
+                                        <div class="employee-chip">Emily Rodriguez</div>
+                                        <div class="employee-chip">Alex Turner</div>
+                                        <div class="employee-chip">Lisa Wang</div>
+                                        <div class="employee-chip">+3 more</div>
+                                    </div>
+                                    
+                                    <button class="btn btn-sm btn-outline" onclick="scheduleReviewCycle('q1-2025')">
+                                        ⚙️ Configure Cycle
+                                    </button>
+                                </div>
+
+                                <!-- Q2 2025 -->
+                                <div class="schedule-quarter">
+                                    <h4>Q2 2025 Reviews</h4>
+                                    <p class="schedule-period">Review Period: Apr 1 - Jun 30 | Due: Jul 15, 2025</p>
+                                    
+                                    <div class="schedule-employees">
+                                        <div class="employee-chip">Sarah Johnson</div>
+                                        <div class="employee-chip">Mike Chen</div>
+                                        <div class="employee-chip">Emily Rodriguez</div>
+                                        <div class="employee-chip">Alex Turner</div>
+                                        <div class="employee-chip">Lisa Wang</div>
+                                        <div class="employee-chip">+3 more</div>
+                                    </div>
+                                    
+                                    <button class="btn btn-sm btn-outline" onclick="scheduleReviewCycle('q2-2025')">
+                                        ⚙️ Configure Cycle
+                                    </button>
+                                </div>
+
+                                <!-- Mid-Year 2025 -->
+                                <div class="schedule-quarter highlight">
+                                    <h4>Mid-Year Reviews 2025 🌟</h4>
+                                    <p class="schedule-period">Review Period: Jan 1 - Jun 30 | Due: Jul 31, 2025</p>
+                                    
+                                    <div class="schedule-employees">
+                                        <div class="employee-chip">All Team Members (8)</div>
+                                    </div>
+                                    
+                                    <div style="padding: 12px; background: var(--warning-light); border-radius: 4px; margin-top: 12px;">
+                                        <p style="margin: 0; font-size: 13px; color: var(--warning-color);">
+                                            ⚠️ Comprehensive mid-year review includes: performance assessment, compensation review, and goal setting for H2
+                                        </p>
+                                    </div>
+                                    
+                                    <button class="btn btn-sm btn-outline" onclick="scheduleReviewCycle('mid-2025')">
+                                        ⚙️ Configure Cycle
+                                    </button>
+                                </div>
+
+                                <!-- Q3 2025 -->
+                                <div class="schedule-quarter">
+                                    <h4>Q3 2025 Reviews</h4>
+                                    <p class="schedule-period">Review Period: Jul 1 - Sep 30 | Due: Oct 15, 2025</p>
+                                    
+                                    <div class="schedule-employees">
+                                        <div class="employee-chip">Sarah Johnson</div>
+                                        <div class="employee-chip">Mike Chen</div>
+                                        <div class="employee-chip">Emily Rodriguez</div>
+                                        <div class="employee-chip">Alex Turner</div>
+                                        <div class="employee-chip">Lisa Wang</div>
+                                        <div class="employee-chip">+3 more</div>
+                                    </div>
+                                    
+                                    <button class="btn btn-sm btn-outline" onclick="scheduleReviewCycle('q3-2025')">
+                                        ⚙️ Configure Cycle
+                                    </button>
+                                </div>
+
+                                <!-- Q4 2025 -->
+                                <div class="schedule-quarter">
+                                    <h4>Q4 2025 Reviews</h4>
+                                    <p class="schedule-period">Review Period: Oct 1 - Dec 31 | Due: Jan 15, 2026</p>
+                                    
+                                    <div class="schedule-employees">
+                                        <div class="employee-chip">Sarah Johnson</div>
+                                        <div class="employee-chip">Mike Chen</div>
+                                        <div class="employee-chip">Emily Rodriguez</div>
+                                        <div class="employee-chip">Alex Turner</div>
+                                        <div class="employee-chip">Lisa Wang</div>
+                                        <div class="employee-chip">+3 more</div>
+                                    </div>
+                                    
+                                    <button class="btn btn-sm btn-outline" onclick="scheduleReviewCycle('q4-2025')">
+                                        ⚙️ Configure Cycle
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/manager-performance.js"></script>
+</body>
+</html>

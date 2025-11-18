@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="employee-dashboard.html" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="employee-profile.html" class="nav-item">
+                    <span class="icon">👤</span>
+                    <span class="text">My Profile</span>
+                </a>
+                <a href="employee-leave.html" class="nav-item">
+                    <span class="icon">🏖️</span>
+                    <span class="text">Leave & Time Off</span>
+                </a>
+                <a href="employee-documents.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Documents</span>
+                </a>
+                <a href="employee-benefits.html" class="nav-item">
+                    <span class="icon">💼</span>
+                    <span class="text">Benefits</span>
+                </a>
+                <a href="employee-performance.html" class="nav-item">
+                    <span class="icon">🎯</span>
+                    <span class="text">Performance</span>
+                </a>
+                <a href="employee-learning.html" class="nav-item">
+                    <span class="icon">📚</span>
+                    <span class="text">Learning</span>
+                </a>
+                <a href="employee-payroll.html" class="nav-item">
+                    <span class="icon">💰</span>
+                    <span class="text">Payroll</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Dashboard</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="notifications">
+                        <button class="icon-btn" onclick="toggleNotifications()">
+                            🔔
+                            <span class="badge">3</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Notifications</h3>
+                                <a href="#">Mark all read</a>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">✅</div>
+                                <div class="notification-content">
+                                    <p><strong>Leave Approved</strong></p>
+                                    <p>Your vacation request for Dec 20-25 has been approved</p>
+                                    <span class="time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">📚</div>
+                                <div class="notification-content">
+                                    <p><strong>Training Reminder</strong></p>
+                                    <p>Complete "Cybersecurity Awareness" by Nov 30</p>
+                                    <span class="time">1 day ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon">💰</div>
+                                <div class="notification-content">
+                                    <p><strong>Payslip Available</strong></p>
+                                    <p>Your November payslip is ready to download</p>
+                                    <span class="time">3 days ago</span>
+                                </div>
+                            </div>
+                            <a href="#" class="dropdown-footer">View all notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">John Smith</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <p>Software Engineer</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="employee-profile.html">My Profile</a>
+                            <a href="#">Settings</a>
+                            <a href="#">Help & Support</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="content">
+                <!-- Welcome Section -->
+                <div class="welcome-banner">
+                    <div>
+                        <h2>Welcome back, John! 👋</h2>
+                        <p>Here's what's happening with your account today.</p>
+                    </div>
+                    <div class="welcome-actions">
+                        <button class="btn btn-primary" onclick="showModal('requestLeaveModal')">Request Leave</button>
+                        <button class="btn btn-outline" onclick="showModal('requestDocumentModal')">Request Document</button>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #EEF2FF; color: #4F46E5;">🏖️</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Available Leave</p>
+                            <h3 class="stat-value">18 days</h3>
+                            <p class="stat-change positive">+2 accrued this month</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FEF3C7; color: #D97706;">⏰</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Hours This Month</p>
+                            <h3 class="stat-value">152 hrs</h3>
+                            <p class="stat-change">8 hrs overtime</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #D1FAE5; color: #059669;">📚</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Training Progress</p>
+                            <h3 class="stat-value">75%</h3>
+                            <p class="stat-change">3 of 4 completed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FCE7F3; color: #DB2777;">🎯</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Goal Progress</p>
+                            <h3 class="stat-value">80%</h3>
+                            <p class="stat-change positive">On track</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content Grid -->
+                <div class="dashboard-grid">
+                    <!-- Upcoming Events -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Upcoming Events</h3>
+                            <a href="#" class="card-action">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">
+                                        <span class="day">20</span>
+                                        <span class="month">Dec</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Vacation Leave</h4>
+                                        <p>5 days approved</p>
+                                        <span class="badge badge-success">Approved</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">
+                                        <span class="day">30</span>
+                                        <span class="month">Nov</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Mandatory Training Deadline</h4>
+                                        <p>Cybersecurity Awareness</p>
+                                        <span class="badge badge-warning">Due Soon</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">
+                                        <span class="day">15</span>
+                                        <span class="month">Dec</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Performance Review</h4>
+                                        <p>Year-end review with manager</p>
+                                        <span class="badge badge-info">Scheduled</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pending Actions -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pending Actions</h3>
+                            <span class="badge">4</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="action-list">
+                                <div class="action-item">
+                                    <div class="action-icon">📝</div>
+                                    <div class="action-content">
+                                        <h4>Complete Self Assessment</h4>
+                                        <p>Due by December 10, 2025</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-primary">Start</button>
+                                </div>
+                                
+                                <div class="action-item">
+                                    <div class="action-icon">📋</div>
+                                    <div class="action-content">
+                                        <h4>Update Emergency Contacts</h4>
+                                        <p>Information outdated</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline">Update</button>
+                                </div>
+                                
+                                <div class="action-item">
+                                    <div class="action-icon">✍️</div>
+                                    <div class="action-content">
+                                        <h4>Sign Updated Handbook</h4>
+                                        <p>Acknowledge new policies</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline">Review</button>
+                                </div>
+                                
+                                <div class="action-item">
+                                    <div class="action-icon">💳</div>
+                                    <div class="action-content">
+                                        <h4>Benefits Enrollment</h4>
+                                        <p>Open enrollment ends Nov 30</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline">Enroll</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Requests -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Requests</h3>
+                            <a href="#" class="card-action">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="request-list">
+                                <div class="request-item">
+                                    <div class="request-info">
+                                        <h4>Vacation Leave Request</h4>
+                                        <p>Dec 20-25, 2025 (5 days)</p>
+                                        <span class="request-date">Submitted Nov 15</span>
+                                    </div>
+                                    <span class="badge badge-success">Approved</span>
+                                </div>
+                                
+                                <div class="request-item">
+                                    <div class="request-info">
+                                        <h4>Employment Verification Letter</h4>
+                                        <p>For apartment rental application</p>
+                                        <span class="request-date">Submitted Nov 10</span>
+                                    </div>
+                                    <span class="badge badge-success">Completed</span>
+                                </div>
+                                
+                                <div class="request-item">
+                                    <div class="request-info">
+                                        <h4>Training Request</h4>
+                                        <p>AWS Solutions Architect Course</p>
+                                        <span class="request-date">Submitted Nov 8</span>
+                                    </div>
+                                    <span class="badge badge-warning">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Quick Links</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="quick-links">
+                                <a href="#" class="quick-link-item">
+                                    <span class="icon">💰</span>
+                                    <span>Download Payslip</span>
+                                </a>
+                                <a href="#" class="quick-link-item">
+                                    <span class="icon">📄</span>
+                                    <span>Tax Documents</span>
+                                </a>
+                                <a href="#" class="quick-link-item">
+                                    <span class="icon">👥</span>
+                                    <span>Team Directory</span>
+                                </a>
+                                <a href="#" class="quick-link-item">
+                                    <span class="icon">📖</span>
+                                    <span>Company Handbook</span>
+                                </a>
+                                <a href="#" class="quick-link-item">
+                                    <span class="icon">🏥</span>
+                                    <span>Health Benefits</span>
+                                </a>
+                                <a href="#" class="quick-link-item">
+                                    <span class="icon">❓</span>
+                                    <span>Help Center</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Company Announcements -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Company Announcements</h3>
+                        <a href="#" class="card-action">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="announcements">
+                            <div class="announcement-item">
+                                <div class="announcement-icon">🎉</div>
+                                <div class="announcement-content">
+                                    <h4>Year-End Holiday Schedule</h4>
+                                    <p>The office will be closed from December 24-26 and January 1. Enjoy your holidays!</p>
+                                    <span class="announcement-meta">Posted by HR Team • 2 days ago</span>
+                                </div>
+                            </div>
+                            
+                            <div class="announcement-item">
+                                <div class="announcement-icon">💼</div>
+                                <div class="announcement-content">
+                                    <h4>Benefits Open Enrollment</h4>
+                                    <p>Don't forget to review and update your benefits selections before November 30th.</p>
+                                    <span class="announcement-meta">Posted by Benefits Team • 5 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modals -->
+    <div id="requestLeaveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Request Leave</h3>
+                <button class="close-btn" onclick="closeModal('requestLeaveModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Leave Type</label>
+                        <select required>
+                            <option value="">Select leave type</option>
+                            <option value="vacation">Vacation Leave</option>
+                            <option value="sick">Sick Leave</option>
+                            <option value="personal">Personal Day</option>
+                            <option value="unpaid">Unpaid Leave</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <textarea rows="3" placeholder="Enter reason for leave"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('requestLeaveModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="requestDocumentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Request Document</h3>
+                <button class="close-btn" onclick="closeModal('requestDocumentModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Document Type</label>
+                        <select required>
+                            <option value="">Select document type</option>
+                            <option value="employment">Employment Verification Letter</option>
+                            <option value="salary">Salary Certificate</option>
+                            <option value="experience">Experience Letter</option>
+                            <option value="reference">Reference Letter</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Purpose</label>
+                        <input type="text" placeholder="e.g., Loan application, Visa, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Notes</label>
+                        <textarea rows="3" placeholder="Any specific requirements or notes"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('requestDocumentModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

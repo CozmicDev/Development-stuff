@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benefits - Employee Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏢 HR Portal</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="employee-dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="employee-profile.html" class="nav-item">
+                    <span>👤</span> My Profile
+                </a>
+                <a href="employee-leave.html" class="nav-item">
+                    <span>🏖️</span> Leave Management
+                </a>
+                <a href="employee-benefits.html" class="nav-item active">
+                    <span>💼</span> Benefits
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📈</span> Performance
+                </a>
+                <a href="#" class="nav-item">
+                    <span>🎓</span> Learning & Development
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📄</span> Documents
+                </a>
+                <a href="#" class="nav-item">
+                    <span>💰</span> Payroll
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                <div class="top-bar-right">
+                    <button class="icon-btn" onclick="toggleNotifications()">
+                        🔔
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="dropdown">
+                        <button class="user-menu" onclick="toggleDropdown()">
+                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User">
+                            <span>John Smith</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h1>Benefits & Enrollment</h1>
+                        <p class="text-secondary">Manage your health, retirement, and other benefits</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline" onclick="showModal('benefitsGuideModal')">
+                            📖 Benefits Guide
+                        </button>
+                        <button class="btn btn-primary" onclick="showModal('enrollmentModal')">
+                            ➕ Enroll in Benefits
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enrollment Status Alert -->
+                <div class="alert alert-info">
+                    <div style="display: flex; align-items: start; gap: 12px;">
+                        <span style="font-size: 24px;">ℹ️</span>
+                        <div>
+                            <strong>Open Enrollment Period</strong>
+                            <p style="margin-top: 4px;">The annual benefits enrollment period is now open until December 15, 2024. Make sure to review and update your benefit selections.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs" style="margin: 24px 0;">
+                    <button class="tab-btn active" onclick="switchBenefitsTab('current-benefits')">My Benefits</button>
+                    <button class="tab-btn" onclick="switchBenefitsTab('available-plans')">Available Plans</button>
+                    <button class="tab-btn" onclick="switchBenefitsTab('beneficiaries')">Beneficiaries</button>
+                    <button class="tab-btn" onclick="switchBenefitsTab('cost-calculator')">Cost Calculator</button>
+                </div>
+
+                <!-- Current Benefits Tab -->
+                <div id="current-benefits-tab" class="tab-content active">
+                    <div class="grid grid-4">
+                        <div class="stat-card">
+                            <div class="stat-label">Health Insurance</div>
+                            <div class="stat-value">PPO Gold</div>
+                            <div class="stat-change positive">Active</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Dental Insurance</div>
+                            <div class="stat-value">Premium</div>
+                            <div class="stat-change positive">Active</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Vision Insurance</div>
+                            <div class="stat-value">Standard</div>
+                            <div class="stat-change positive">Active</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">401(k) Plan</div>
+                            <div class="stat-value">6%</div>
+                            <div class="stat-change">Contributing</div>
+                        </div>
+                    </div>
+
+                    <!-- Current Enrollment Details -->
+                    <div class="grid grid-2" style="margin-top: 24px;">
+                        <!-- Health Insurance -->
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                                <div>
+                                    <h3>🏥 Health Insurance</h3>
+                                    <p class="badge badge-success" style="margin-top: 4px;">Active - PPO Gold Plan</p>
+                                </div>
+                                <button class="btn btn-outline btn-sm" onclick="showPlanDetails('health')">View Details</button>
+                            </div>
+                            <div style="display: grid; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Coverage Type:</span>
+                                    <strong>Employee + Family</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Monthly Premium:</span>
+                                    <strong>$450.00</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Deductible:</span>
+                                    <strong>$1,500 (Used: $350)</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Out-of-Pocket Max:</span>
+                                    <strong>$5,000</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Effective Date:</span>
+                                    <strong>Jan 1, 2024</strong>
+                                </div>
+                            </div>
+                            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                                <strong style="font-size: 14px;">Covered Dependents:</strong>
+                                <ul style="margin-top: 8px; padding-left: 20px;">
+                                    <li>Jane Smith (Spouse)</li>
+                                    <li>Emily Smith (Daughter)</li>
+                                    <li>Michael Smith (Son)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Dental Insurance -->
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                                <div>
+                                    <h3>🦷 Dental Insurance</h3>
+                                    <p class="badge badge-success" style="margin-top: 4px;">Active - Premium Plan</p>
+                                </div>
+                                <button class="btn btn-outline btn-sm" onclick="showPlanDetails('dental')">View Details</button>
+                            </div>
+                            <div style="display: grid; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Coverage Type:</span>
+                                    <strong>Employee + Family</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Monthly Premium:</span>
+                                    <strong>$85.00</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Annual Maximum:</span>
+                                    <strong>$2,000 per person</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Preventive Care:</span>
+                                    <strong>100% Covered</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Basic Services:</span>
+                                    <strong>80% Covered</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vision Insurance -->
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                                <div>
+                                    <h3>👓 Vision Insurance</h3>
+                                    <p class="badge badge-success" style="margin-top: 4px;">Active - Standard Plan</p>
+                                </div>
+                                <button class="btn btn-outline btn-sm" onclick="showPlanDetails('vision')">View Details</button>
+                            </div>
+                            <div style="display: grid; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Coverage Type:</span>
+                                    <strong>Employee + Family</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Monthly Premium:</span>
+                                    <strong>$25.00</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Eye Exam:</span>
+                                    <strong>$10 copay (annual)</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Frames Allowance:</span>
+                                    <strong>$150 (every 2 years)</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Contact Lens Allowance:</span>
+                                    <strong>$120 (annual)</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 401(k) Retirement -->
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                                <div>
+                                    <h3>🏦 401(k) Retirement Plan</h3>
+                                    <p class="badge badge-info" style="margin-top: 4px;">Contributing 6%</p>
+                                </div>
+                                <button class="btn btn-outline btn-sm" onclick="showPlanDetails('401k')">Manage</button>
+                            </div>
+                            <div style="display: grid; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Your Contribution:</span>
+                                    <strong>6% ($450/month)</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Company Match:</span>
+                                    <strong>50% up to 6% ($225/month)</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Current Balance:</span>
+                                    <strong>$45,280</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">YTD Contributions:</span>
+                                    <strong>$8,100</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span class="text-secondary">Investment Mix:</span>
+                                    <strong>Target Date 2055</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Benefits -->
+                    <div class="card" style="margin-top: 24px;">
+                        <h3 style="margin-bottom: 16px;">Additional Benefits</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Benefit</th>
+                                        <th>Status</th>
+                                        <th>Coverage</th>
+                                        <th>Cost</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Life Insurance</strong></td>
+                                        <td><span class="badge badge-success">Active</span></td>
+                                        <td>$150,000 (2x Salary)</td>
+                                        <td>Company Paid</td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="showPlanDetails('life')">Details</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Disability Insurance</strong></td>
+                                        <td><span class="badge badge-success">Active</span></td>
+                                        <td>60% of Salary</td>
+                                        <td>Company Paid</td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="showPlanDetails('disability')">Details</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>FSA (Healthcare)</strong></td>
+                                        <td><span class="badge badge-info">Enrolled</span></td>
+                                        <td>$2,750 Annual</td>
+                                        <td>$229/month</td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="showPlanDetails('fsa')">Manage</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Commuter Benefits</strong></td>
+                                        <td><span class="badge badge-warning">Not Enrolled</span></td>
+                                        <td>Pre-tax Transit/Parking</td>
+                                        <td>Employee Paid</td>
+                                        <td><button class="btn btn-sm btn-primary" onclick="enrollInBenefit('commuter')">Enroll</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Employee Assistance (EAP)</strong></td>
+                                        <td><span class="badge badge-success">Active</span></td>
+                                        <td>Counseling & Support</td>
+                                        <td>Company Paid</td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="showPlanDetails('eap')">Details</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Available Plans Tab -->
+                <div id="available-plans-tab" class="tab-content">
+                    <h2 style="margin-bottom: 16px;">Compare Health Insurance Plans</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>PPO Bronze</th>
+                                    <th>PPO Silver</th>
+                                    <th style="background: var(--primary-light);">PPO Gold ⭐</th>
+                                    <th>HMO Standard</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Monthly Premium (Employee + Family)</strong></td>
+                                    <td>$285</td>
+                                    <td>$365</td>
+                                    <td style="background: var(--primary-light);"><strong>$450</strong></td>
+                                    <td>$320</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Deductible</strong></td>
+                                    <td>$3,000</td>
+                                    <td>$2,000</td>
+                                    <td style="background: var(--primary-light);"><strong>$1,500</strong></td>
+                                    <td>$1,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Out-of-Pocket Maximum</strong></td>
+                                    <td>$8,000</td>
+                                    <td>$6,500</td>
+                                    <td style="background: var(--primary-light);"><strong>$5,000</strong></td>
+                                    <td>$4,500</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Primary Care Visit</strong></td>
+                                    <td>$50 copay</td>
+                                    <td>$30 copay</td>
+                                    <td style="background: var(--primary-light);"><strong>$20 copay</strong></td>
+                                    <td>$15 copay</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Specialist Visit</strong></td>
+                                    <td>$75 copay</td>
+                                    <td>$50 copay</td>
+                                    <td style="background: var(--primary-light);"><strong>$40 copay</strong></td>
+                                    <td>$30 copay (referral required)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Emergency Room</strong></td>
+                                    <td>$500 copay</td>
+                                    <td>$350 copay</td>
+                                    <td style="background: var(--primary-light);"><strong>$250 copay</strong></td>
+                                    <td>$200 copay</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Generic Drugs</strong></td>
+                                    <td>$20 copay</td>
+                                    <td>$15 copay</td>
+                                    <td style="background: var(--primary-light);"><strong>$10 copay</strong></td>
+                                    <td>$10 copay</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Network</strong></td>
+                                    <td>PPO - Wide</td>
+                                    <td>PPO - Wide</td>
+                                    <td style="background: var(--primary-light);"><strong>PPO - Wide</strong></td>
+                                    <td>HMO - Limited</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Action</strong></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="selectPlan('bronze')">Select</button></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="selectPlan('silver')">Select</button></td>
+                                    <td style="background: var(--primary-light);"><span class="badge badge-success">Current Plan</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="selectPlan('hmo')">Select</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Other Benefits -->
+                    <div class="grid grid-3" style="margin-top: 32px;">
+                        <div class="card">
+                            <h3 style="margin-bottom: 12px;">🦷 Dental Plans</h3>
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong>Basic Plan</strong>
+                                    <span>$45/mo</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong>Premium Plan ⭐</strong>
+                                    <span>$85/mo</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-block" onclick="comparePlans('dental')">Compare Plans</button>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="margin-bottom: 12px;">👓 Vision Plans</h3>
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong>Standard Plan ⭐</strong>
+                                    <span>$25/mo</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong>Premium Plan</strong>
+                                    <span>$45/mo</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-block" onclick="comparePlans('vision')">Compare Plans</button>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="margin-bottom: 12px;">💰 Supplemental</h3>
+                            <div style="margin-bottom: 16px;">
+                                <div style="margin-bottom: 8px;">
+                                    <strong>Additional Life Insurance</strong>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <strong>Accident Insurance</strong>
+                                </div>
+                                <div>
+                                    <strong>Critical Illness</strong>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-block" onclick="comparePlans('supplemental')">View Options</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beneficiaries Tab -->
+                <div id="beneficiaries-tab" class="tab-content">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <div>
+                                <h3>Primary Beneficiaries</h3>
+                                <p class="text-secondary" style="margin-top: 4px;">Designate who receives your life insurance benefits</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="addBeneficiary('primary')">Add Beneficiary</button>
+                        </div>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Relationship</th>
+                                        <th>Date of Birth</th>
+                                        <th>Allocation</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="primaryBeneficiariesTable">
+                                    <tr>
+                                        <td><strong>Jane Smith</strong></td>
+                                        <td>Spouse</td>
+                                        <td>March 12, 1992</td>
+                                        <td><span class="badge badge-primary">60%</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="editBeneficiary(1)">Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="deleteBeneficiary(1)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Emily Smith</strong></td>
+                                        <td>Daughter</td>
+                                        <td>June 8, 2015</td>
+                                        <td><span class="badge badge-primary">20%</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="editBeneficiary(2)">Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="deleteBeneficiary(2)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Michael Smith</strong></td>
+                                        <td>Son</td>
+                                        <td>September 22, 2018</td>
+                                        <td><span class="badge badge-primary">20%</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" onclick="editBeneficiary(3)">Edit</button>
+                                            <button class="btn btn-sm btn-outline" onclick="deleteBeneficiary(3)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="alert alert-info" style="margin-top: 20px;">
+                            <strong>Note:</strong> Total allocation must equal 100%. Current total: <strong>100%</strong>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 24px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <div>
+                                <h3>Contingent Beneficiaries</h3>
+                                <p class="text-secondary" style="margin-top: 4px;">Secondary beneficiaries if primary beneficiaries cannot receive benefits</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="addBeneficiary('contingent')">Add Contingent</button>
+                        </div>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Relationship</th>
+                                        <th>Date of Birth</th>
+                                        <th>Allocation</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contingentBeneficiariesTable">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                                            No contingent beneficiaries added. Click "Add Contingent" to designate backup beneficiaries.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Calculator Tab -->
+                <div id="cost-calculator-tab" class="tab-content">
+                    <div class="card">
+                        <h3 style="margin-bottom: 16px;">Benefits Cost Calculator</h3>
+                        <p class="text-secondary" style="margin-bottom: 24px;">Estimate your total benefits cost based on your selections</p>
+
+                        <div class="grid grid-2">
+                            <div>
+                                <label class="form-label">Health Insurance Plan</label>
+                                <select class="form-control" id="calcHealthPlan" onchange="calculateTotalCost()">
+                                    <option value="0">None</option>
+                                    <option value="285">PPO Bronze - $285/mo</option>
+                                    <option value="365">PPO Silver - $365/mo</option>
+                                    <option value="450" selected>PPO Gold - $450/mo</option>
+                                    <option value="320">HMO Standard - $320/mo</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Coverage Type</label>
+                                <select class="form-control" id="calcCoverageType" onchange="calculateTotalCost()">
+                                    <option value="1">Employee Only</option>
+                                    <option value="1.5">Employee + Spouse</option>
+                                    <option value="1.8">Employee + Children</option>
+                                    <option value="2" selected>Employee + Family</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Dental Plan</label>
+                                <select class="form-control" id="calcDentalPlan" onchange="calculateTotalCost()">
+                                    <option value="0">None</option>
+                                    <option value="45">Basic Plan - $45/mo</option>
+                                    <option value="85" selected>Premium Plan - $85/mo</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Vision Plan</label>
+                                <select class="form-control" id="calcVisionPlan" onchange="calculateTotalCost()">
+                                    <option value="0">None</option>
+                                    <option value="25" selected>Standard Plan - $25/mo</option>
+                                    <option value="45">Premium Plan - $45/mo</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label">401(k) Contribution (%)</label>
+                                <input type="number" class="form-control" id="calc401k" value="6" min="0" max="15" onchange="calculateTotalCost()">
+                            </div>
+
+                            <div>
+                                <label class="form-label">FSA Contribution (Annual)</label>
+                                <input type="number" class="form-control" id="calcFSA" value="2750" min="0" max="3050" onchange="calculateTotalCost()">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 32px; padding: 24px; background: var(--background); border-radius: 8px;">
+                            <h3 style="margin-bottom: 20px;">Cost Summary</h3>
+                            
+                            <div style="display: grid; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                    <span>Health Insurance:</span>
+                                    <strong id="costHealth">$450.00</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                    <span>Dental Insurance:</span>
+                                    <strong id="costDental">$85.00</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                    <span>Vision Insurance:</span>
+                                    <strong id="costVision">$25.00</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                    <span>401(k) Contribution (6%):</span>
+                                    <strong id="cost401k">$450.00</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                    <span>FSA Contribution:</span>
+                                    <strong id="costFSA">$229.17</strong>
+                                </div>
+                                <hr>
+                                <div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 18px;">
+                                    <strong>Total Monthly Cost:</strong>
+                                    <strong style="color: var(--primary);" id="costTotal">$1,239.17</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0; color: var(--text-secondary);">
+                                    <span>Annual Cost:</span>
+                                    <span id="costAnnual">$14,870.04</span>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info" style="margin-top: 20px;">
+                                <strong>Tax Savings:</strong> Your pre-tax contributions (401k, FSA) save you approximately <strong>$2,037/year</strong> in taxes (estimated at 24% tax rate).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollmentModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>Enroll in Benefits</h2>
+                <button class="modal-close" onclick="closeModal('enrollmentModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="enrollmentForm">
+                    <div class="form-group">
+                        <label class="form-label">Benefit Type</label>
+                        <select class="form-control" required>
+                            <option value="">Select a benefit...</option>
+                            <option value="health">Health Insurance</option>
+                            <option value="dental">Dental Insurance</option>
+                            <option value="vision">Vision Insurance</option>
+                            <option value="fsa">Healthcare FSA</option>
+                            <option value="commuter">Commuter Benefits</option>
+                            <option value="supplemental">Supplemental Life Insurance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Plan Selection</label>
+                        <select class="form-control" required>
+                            <option value="">Select a plan...</option>
+                            <option value="bronze">PPO Bronze</option>
+                            <option value="silver">PPO Silver</option>
+                            <option value="gold">PPO Gold</option>
+                            <option value="hmo">HMO Standard</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Coverage Type</label>
+                        <select class="form-control" required>
+                            <option value="employee">Employee Only</option>
+                            <option value="spouse">Employee + Spouse</option>
+                            <option value="children">Employee + Children</option>
+                            <option value="family">Employee + Family</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Effective Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" required>
+                            <span>I acknowledge that I have reviewed the plan details and summary of benefits</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('enrollmentModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitEnrollment()">Submit Enrollment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Guide Modal -->
+    <div id="benefitsGuideModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2>2024 Benefits Guide</h2>
+                <button class="modal-close" onclick="closeModal('benefitsGuideModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <h3>Important Dates</h3>
+                <ul>
+                    <li><strong>Open Enrollment:</strong> November 1 - December 15, 2024</li>
+                    <li><strong>Coverage Effective Date:</strong> January 1, 2025</li>
+                    <li><strong>Changes Allowed:</strong> During open enrollment or within 30 days of qualifying life event</li>
+                </ul>
+
+                <h3 style="margin-top: 24px;">Qualifying Life Events</h3>
+                <ul>
+                    <li>Marriage or divorce</li>
+                    <li>Birth or adoption of a child</li>
+                    <li>Death of a dependent</li>
+                    <li>Loss of other coverage</li>
+                    <li>Change in employment status</li>
+                </ul>
+
+                <h3 style="margin-top: 24px;">Contact Information</h3>
+                <ul>
+                    <li><strong>Benefits Team:</strong> benefits@company.com</li>
+                    <li><strong>Phone:</strong> 1-800-555-BENEFITS</li>
+                    <li><strong>Hours:</strong> Monday - Friday, 8am - 6pm EST</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal('benefitsGuideModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/benefits-management.js"></script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Logs - Admin - HRPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">HR</div>
+                <span class="logo-text">HRPro</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="text">Users & Roles</span>
+                </a>
+                <a href="admin-system.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">System Config</span>
+                </a>
+                <a href="admin-integrations.html" class="nav-item">
+                    <span class="icon">🔗</span>
+                    <span class="text">Integrations</span>
+                </a>
+                <a href="admin-security.html" class="nav-item">
+                    <span class="icon">🔒</span>
+                    <span class="text">Security</span>
+                </a>
+                <a href="admin-workflows.html" class="nav-item">
+                    <span class="icon">🔄</span>
+                    <span class="text">Workflows</span>
+                </a>
+                <a href="admin-templates.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Templates</span>
+                </a>
+                <a href="admin-audit.html" class="nav-item active">
+                    <span class="icon">📋</span>
+                    <span class="text">Audit Logs</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="icon">🚪</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Audit Logs</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search logs...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">Robert Anderson</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="page-header">
+                    <div>
+                        <h2>System Audit Logs</h2>
+                        <p>Track all system activities and user actions</p>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-outline" onclick="clearOldLogs()">
+                            <span>🗑️</span> Clear Old Logs
+                        </button>
+                        <button class="btn btn-primary" onclick="exportAuditLogs()">
+                            <span>📥</span> Export Logs
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #EEF2FF; color: #4F46E5;">📋</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Log Entries</p>
+                            <h3 class="stat-value">12,458</h3>
+                            <p class="stat-change">Last 30 days</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #D1FAE5; color: #059669;">✅</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Successful Actions</p>
+                            <h3 class="stat-value">12,234</h3>
+                            <p class="stat-change positive">98.2% success rate</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FEE2E2; color: #DC2626;">❌</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Failed Actions</p>
+                            <h3 class="stat-value">224</h3>
+                            <p class="stat-change">1.8% failure rate</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FEF3C7; color: #D97706;">⚠️</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Security Events</p>
+                            <h3 class="stat-value">18</h3>
+                            <p class="stat-change">Requires attention</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3>Activity Log</h3>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Complete audit trail of all system activities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-bar">
+                        <div class="search-box">
+                            <input type="text" id="searchLogs" placeholder="Search by user, action, or description..." onkeyup="filterLogs()" style="width: 400px;">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <select id="actionFilter" onchange="filterLogs()">
+                                <option value="all">All Actions</option>
+                                <option value="user_login">User Login</option>
+                                <option value="user_logout">User Logout</option>
+                                <option value="user_created">User Created</option>
+                                <option value="user_updated">User Updated</option>
+                                <option value="leave_request">Leave Request</option>
+                                <option value="approval">Approval</option>
+                                <option value="system_config">System Config</option>
+                                <option value="security">Security Event</option>
+                            </select>
+                            
+                            <select id="severityFilter" onchange="filterLogs()">
+                                <option value="all">All Severity</option>
+                                <option value="info">Info</option>
+                                <option value="warning">Warning</option>
+                                <option value="error">Error</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                            
+                            <input type="date" id="dateFrom" onchange="filterLogs()" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                            
+                            <input type="date" id="dateTo" onchange="filterLogs()" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                            
+                            <button class="btn btn-outline" onclick="resetLogFilters()">Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body" style="padding: 0;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>User</th>
+                                    <th>Action</th>
+                                    <th>Description</th>
+                                    <th>IP Address</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="auditLogsTable">
+                                <tr data-action="user_login" data-severity="info">
+                                    <td>Nov 17, 2024 14:23:15</td>
+                                    <td><strong>john.smith</strong></td>
+                                    <td><span class="badge badge-info">User Login</span></td>
+                                    <td>Successful login from web browser</td>
+                                    <td>192.168.1.45</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-001')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="leave_request" data-severity="info">
+                                    <td>Nov 17, 2024 14:18:42</td>
+                                    <td><strong>emily.chen</strong></td>
+                                    <td><span class="badge badge-primary">Leave Request</span></td>
+                                    <td>Submitted vacation leave request for 5 days</td>
+                                    <td>192.168.1.67</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-002')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="approval" data-severity="info">
+                                    <td>Nov 17, 2024 14:15:08</td>
+                                    <td><strong>sarah.manager</strong></td>
+                                    <td><span class="badge badge-success">Approval</span></td>
+                                    <td>Approved leave request LR-2024-1234</td>
+                                    <td>192.168.1.89</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-003')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="user_updated" data-severity="info">
+                                    <td>Nov 17, 2024 14:10:33</td>
+                                    <td><strong>hr.admin</strong></td>
+                                    <td><span class="badge">User Updated</span></td>
+                                    <td>Updated employee profile for EMP042</td>
+                                    <td>192.168.1.22</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-004')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="security" data-severity="warning">
+                                    <td>Nov 17, 2024 13:45:22</td>
+                                    <td><strong>unknown</strong></td>
+                                    <td><span class="badge badge-warning">Security Event</span></td>
+                                    <td>Failed login attempt (3rd attempt)</td>
+                                    <td>203.45.67.89</td>
+                                    <td><span class="badge badge-warning">Warning</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-005')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="system_config" data-severity="info">
+                                    <td>Nov 17, 2024 13:30:15</td>
+                                    <td><strong>admin</strong></td>
+                                    <td><span class="badge badge-danger">System Config</span></td>
+                                    <td>Updated security settings: MFA enabled</td>
+                                    <td>192.168.1.10</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-006')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="user_created" data-severity="info">
+                                    <td>Nov 17, 2024 12:55:40</td>
+                                    <td><strong>hr.admin</strong></td>
+                                    <td><span class="badge badge-success">User Created</span></td>
+                                    <td>Created new user account: lisa.anderson</td>
+                                    <td>192.168.1.22</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-007')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="user_logout" data-severity="info">
+                                    <td>Nov 17, 2024 12:30:18</td>
+                                    <td><strong>michael.brown</strong></td>
+                                    <td><span class="badge">User Logout</span></td>
+                                    <td>User logged out (session duration: 4h 23m)</td>
+                                    <td>192.168.1.56</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-008')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="security" data-severity="error">
+                                    <td>Nov 17, 2024 11:45:33</td>
+                                    <td><strong>unknown</strong></td>
+                                    <td><span class="badge badge-danger">Security Event</span></td>
+                                    <td>Blocked IP after 5 failed login attempts</td>
+                                    <td>203.45.67.89</td>
+                                    <td><span class="badge badge-danger">Error</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-009')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="approval" data-severity="info">
+                                    <td>Nov 17, 2024 11:20:55</td>
+                                    <td><strong>sarah.manager</strong></td>
+                                    <td><span class="badge badge-danger">Approval</span></td>
+                                    <td>Rejected expense report EXP-2024-567</td>
+                                    <td>192.168.1.89</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-010')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="user_updated" data-severity="info">
+                                    <td>Nov 17, 2024 10:45:12</td>
+                                    <td><strong>john.smith</strong></td>
+                                    <td><span class="badge">User Updated</span></td>
+                                    <td>Updated personal profile information</td>
+                                    <td>192.168.1.45</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-011')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="system_config" data-severity="warning">
+                                    <td>Nov 17, 2024 09:15:00</td>
+                                    <td><strong>system</strong></td>
+                                    <td><span class="badge badge-warning">System Config</span></td>
+                                    <td>Automatic database backup completed</td>
+                                    <td>127.0.0.1</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-012')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="leave_request" data-severity="info">
+                                    <td>Nov 17, 2024 08:30:45</td>
+                                    <td><strong>david.wilson</strong></td>
+                                    <td><span class="badge badge-primary">Leave Request</span></td>
+                                    <td>Cancelled leave request LR-2024-1230</td>
+                                    <td>192.168.1.78</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-013')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="user_login" data-severity="info">
+                                    <td>Nov 17, 2024 08:05:22</td>
+                                    <td><strong>hr.admin</strong></td>
+                                    <td><span class="badge badge-info">User Login</span></td>
+                                    <td>Successful login from web browser</td>
+                                    <td>192.168.1.22</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-014')">View</button></td>
+                                </tr>
+                                
+                                <tr data-action="security" data-severity="critical">
+                                    <td>Nov 17, 2024 02:15:00</td>
+                                    <td><strong>system</strong></td>
+                                    <td><span class="badge badge-danger">Security Event</span></td>
+                                    <td>SSL certificate renewed successfully</td>
+                                    <td>127.0.0.1</td>
+                                    <td><span class="badge badge-success">Success</span></td>
+                                    <td><button class="btn btn-sm btn-outline" onclick="viewLogDetails('LOG-015')">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            Showing <strong id="logCount">15</strong> of <strong>12,458</strong> log entries
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-sm btn-outline" onclick="loadMoreLogs()">Load More</button>
+                            <button class="btn btn-sm btn-outline" onclick="autoRefreshLogs()">
+                                🔄 Auto Refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Top User Activity</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>john.smith</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Employee</p>
+                                    </div>
+                                    <span class="badge badge-primary">142 actions</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>sarah.manager</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Manager</p>
+                                    </div>
+                                    <span class="badge badge-primary">128 actions</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>hr.admin</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">HR Staff</p>
+                                    </div>
+                                    <span class="badge badge-primary">95 actions</span>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--background); border-radius: 8px;">
+                                    <div>
+                                        <strong>emily.chen</strong>
+                                        <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Employee</p>
+                                    </div>
+                                    <span class="badge badge-primary">87 actions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Action Breakdown</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span>User Logins</span>
+                                        <strong>3,245 (26%)</strong>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--primary-color); width: 26%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span>Leave Requests</span>
+                                        <strong>2,890 (23%)</strong>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--secondary-color); width: 23%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span>Approvals</span>
+                                        <strong>2,134 (17%)</strong>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--info-color); width: 17%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span>Profile Updates</span>
+                                        <strong>1,876 (15%)</strong>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--warning-color); width: 15%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span>Security Events</span>
+                                        <strong>234 (2%)</strong>
+                                    </div>
+                                    <div style="background: var(--background); height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="background: var(--danger-color); width: 2%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Log Details Modal -->
+    <div id="logDetailsModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3>Log Entry Details</h3>
+                <button class="close-btn" onclick="closeModal('logDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="logDetailsContent">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/admin-audit.js"></script>
+</body>
+</html>

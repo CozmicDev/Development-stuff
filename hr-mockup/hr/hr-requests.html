@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requests Processing - HR Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏢 HR Portal</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="hr-dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="hr-employees.html" class="nav-item">
+                    <span>👥</span> Employees
+                </a>
+                <a href="hr-requests.html" class="nav-item active">
+                    <span>📋</span> Requests
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📄</span> Documents
+                </a>
+                <a href="#" class="nav-item">
+                    <span>🎓</span> Training & Compliance
+                </a>
+                <a href="#" class="nav-item">
+                    <span>💼</span> Benefits Administration
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📈</span> Reports & Analytics
+                </a>
+                <a href="#" class="nav-item">
+                    <span>⚙️</span> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                <div class="top-bar-right">
+                    <button class="icon-btn" onclick="toggleNotifications()">
+                        🔔
+                        <span class="notification-badge">18</span>
+                    </button>
+                    <div class="dropdown">
+                        <button class="user-menu" onclick="toggleDropdown()">
+                            <img src="https://ui-avatars.com/api/?name=HR+Admin&background=4F46E5&color=fff" alt="User">
+                            <span>HR Admin</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h1>Request Processing Center</h1>
+                        <p class="text-secondary">Process and manage employee requests</p>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-outline" onclick="showModal('quickApproveModal')">
+                            ⚡ Quick Approve
+                        </button>
+                        <button class="btn btn-outline" onclick="exportRequests()">
+                            📥 Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="grid grid-4" style="margin-bottom: 24px;">
+                    <div class="stat-card">
+                        <div class="stat-label">Pending Requests</div>
+                        <div class="stat-value">18</div>
+                        <div class="stat-change warning">Needs attention</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Processed Today</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-change positive">+4 vs yesterday</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Avg Response Time</div>
+                        <div class="stat-value">2.3h</div>
+                        <div class="stat-change positive">↓ 18% this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Approval Rate</div>
+                        <div class="stat-value">87%</div>
+                        <div class="stat-change">Last 30 days</div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <div style="display: flex; gap: 12px; align-items: end; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <label class="form-label">Search Requests</label>
+                            <input type="text" class="form-control" id="searchRequests" placeholder="Employee name, request type..." onkeyup="filterHRRequests()">
+                        </div>
+                        <div style="min-width: 180px;">
+                            <label class="form-label">Request Type</label>
+                            <select class="form-control" id="requestTypeFilter" onchange="filterHRRequests()">
+                                <option value="all">All Types</option>
+                                <option value="leave">Leave Requests</option>
+                                <option value="document">Document Requests</option>
+                                <option value="timeoff">Time Off Adjustments</option>
+                                <option value="benefits">Benefits Changes</option>
+                                <option value="payroll">Payroll Changes</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div style="min-width: 180px;">
+                            <label class="form-label">Priority</label>
+                            <select class="form-control" id="requestPriorityFilter" onchange="filterHRRequests()">
+                                <option value="all">All Priorities</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="high">High</option>
+                                <option value="normal">Normal</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div style="min-width: 180px;">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" id="requestStatusFilter" onchange="filterHRRequests()">
+                                <option value="pending">Pending</option>
+                                <option value="in-review">In Review</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline" onclick="resetHRRequestFilters()">Clear</button>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs" style="margin-bottom: 20px;">
+                    <button class="tab-btn active" onclick="switchHRTab('pending')">
+                        Pending (18)
+                    </button>
+                    <button class="tab-btn" onclick="switchHRTab('in-review')">
+                        In Review (5)
+                    </button>
+                    <button class="tab-btn" onclick="switchHRTab('processed')">
+                        Recently Processed
+                    </button>
+                </div>
+
+                <!-- Pending Requests Tab -->
+                <div id="pending-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="table-container">
+                            <table id="hrRequestsTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 40px;">
+                                            <input type="checkbox" id="selectAllHR" onchange="toggleSelectAllHR()">
+                                        </th>
+                                        <th>Request ID</th>
+                                        <th>Employee</th>
+                                        <th>Type</th>
+                                        <th>Details</th>
+                                        <th>Submitted</th>
+                                        <th>Priority</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="hrRequestsTableBody">
+                                    <!-- Leave Request -->
+                                    <tr data-type="leave" data-priority="urgent" data-status="pending" data-req-id="REQ001">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ001"></td>
+                                        <td><strong>REQ001</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" 
+                                                     alt="John Smith" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>John Smith</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>
+                                            <strong>Vacation Leave</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Dec 20-27 (6 days)</span>
+                                        </td>
+                                        <td>1 hour ago</td>
+                                        <td><span class="badge badge-danger">Urgent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ001')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ001')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ001')">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Document Request -->
+                                    <tr data-type="document" data-priority="high" data-status="pending" data-req-id="REQ002">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ002"></td>
+                                        <td><strong>REQ002</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Emily+Chen&background=10B981&color=fff" 
+                                                     alt="Emily Chen" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Emily Chen</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Document Request</span></td>
+                                        <td>
+                                            <strong>Employment Verification</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">For mortgage application</span>
+                                        </td>
+                                        <td>2 hours ago</td>
+                                        <td><span class="badge badge-warning">High</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ002')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ002')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ002')">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Benefit Change -->
+                                    <tr data-type="benefits" data-priority="urgent" data-status="pending" data-req-id="REQ003">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ003"></td>
+                                        <td><strong>REQ003</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Sarah+Davis&background=8B5CF6&color=fff" 
+                                                     alt="Sarah Davis" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Sarah Davis</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Benefits Change</span></td>
+                                        <td>
+                                            <strong>Add Dependent</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">New baby - Qualifying event</span>
+                                        </td>
+                                        <td>3 hours ago</td>
+                                        <td><span class="badge badge-danger">Urgent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ003')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ003')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ003')">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Document Request -->
+                                    <tr data-type="document" data-priority="normal" data-status="pending" data-req-id="REQ004">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ004"></td>
+                                        <td><strong>REQ004</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Michael+Brown&background=F59E0B&color=fff" 
+                                                     alt="Michael Brown" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Michael Brown</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Document Request</span></td>
+                                        <td>
+                                            <strong>Tax Document (W-2)</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">2024 Tax Year</span>
+                                        </td>
+                                        <td>5 hours ago</td>
+                                        <td><span class="badge">Normal</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ004')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ004')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ004')">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Payroll Change -->
+                                    <tr data-type="payroll" data-priority="high" data-status="pending" data-req-id="REQ005">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ005"></td>
+                                        <td><strong>REQ005</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Lisa+Anderson&background=06B6D4&color=fff" 
+                                                     alt="Lisa Anderson" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Lisa Anderson</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">Payroll Change</span></td>
+                                        <td>
+                                            <strong>Direct Deposit Update</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">New bank account</span>
+                                        </td>
+                                        <td>6 hours ago</td>
+                                        <td><span class="badge badge-warning">High</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ005')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ005')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ005')">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Time Off Adjustment -->
+                                    <tr data-type="timeoff" data-priority="normal" data-status="pending" data-req-id="REQ006">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ006"></td>
+                                        <td><strong>REQ006</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=David+Wilson&background=EF4444&color=fff" 
+                                                     alt="David Wilson" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>David Wilson</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Time Off Adjustment</span></td>
+                                        <td>
+                                            <strong>Leave Balance Correction</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Incorrect deduction from Oct</span>
+                                        </td>
+                                        <td>1 day ago</td>
+                                        <td><span class="badge">Normal</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ006')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ006')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ006')">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Leave Request -->
+                                    <tr data-type="leave" data-priority="urgent" data-status="pending" data-req-id="REQ007">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ007"></td>
+                                        <td><strong>REQ007</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Jennifer+Martinez&background=8B5CF6&color=fff" 
+                                                     alt="Jennifer Martinez" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Jennifer Martinez</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td>
+                                            <strong>Maternity Leave</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">Starting Jan 15 (12 weeks)</span>
+                                        </td>
+                                        <td>1 day ago</td>
+                                        <td><span class="badge badge-danger">Urgent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ007')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ007')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ007')">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Document Request -->
+                                    <tr data-type="document" data-priority="low" data-status="pending" data-req-id="REQ008">
+                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ008"></td>
+                                        <td><strong>REQ008</strong></td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <img src="https://ui-avatars.com/api/?name=Robert+Johnson&background=F59E0B&color=fff" 
+                                                     alt="Robert Johnson" style="width: 32px; height: 32px; border-radius: 50%;">
+                                                <strong>Robert Johnson</strong>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Document Request</span></td>
+                                        <td>
+                                            <strong>Salary History Letter</strong><br>
+                                            <span style="font-size: 12px; color: var(--text-secondary);">For personal records</span>
+                                        </td>
+                                        <td>2 days ago</td>
+                                        <td><span class="badge">Low</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ008')">✓</button>
+                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ008')">✗</button>
+                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ008')">View</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- In Review Tab -->
+                <div id="in-review-tab" class="tab-content">
+                    <div class="card">
+                        <h3 style="margin-bottom: 16px;">Requests Currently Under Review</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Request ID</th>
+                                        <th>Employee</th>
+                                        <th>Type</th>
+                                        <th>Reviewer</th>
+                                        <th>Started</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>REQ009</strong></td>
+                                        <td>Sarah Williams</td>
+                                        <td><span class="badge badge-primary">Benefits Change</span></td>
+                                        <td>HR Admin</td>
+                                        <td>30 minutes ago</td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ009')">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>REQ010</strong></td>
+                                        <td>David Brown</td>
+                                        <td><span class="badge badge-success">Payroll Change</span></td>
+                                        <td>Payroll Team</td>
+                                        <td>1 hour ago</td>
+                                        <td><button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ010')">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processed Tab -->
+                <div id="processed-tab" class="tab-content">
+                    <div class="card">
+                        <h3 style="margin-bottom: 16px;">Recently Processed Requests (Last 7 Days)</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Request ID</th>
+                                        <th>Employee</th>
+                                        <th>Type</th>
+                                        <th>Decision</th>
+                                        <th>Processed By</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>REQ011</strong></td>
+                                        <td>Amanda Taylor</td>
+                                        <td><span class="badge badge-info">Leave Request</span></td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>HR Admin</td>
+                                        <td>Nov 16, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>REQ012</strong></td>
+                                        <td>James Wilson</td>
+                                        <td><span class="badge badge-warning">Document Request</span></td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>HR Admin</td>
+                                        <td>Nov 16, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>REQ013</strong></td>
+                                        <td>Michael Davis</td>
+                                        <td><span class="badge badge-primary">Benefits Change</span></td>
+                                        <td><span class="badge badge-danger">Rejected</span></td>
+                                        <td>Benefits Team</td>
+                                        <td>Nov 15, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>REQ014</strong></td>
+                                        <td>Lisa Anderson</td>
+                                        <td><span class="badge badge-info">Time Off Adjustment</span></td>
+                                        <td><span class="badge badge-success">Approved</span></td>
+                                        <td>HR Manager</td>
+                                        <td>Nov 14, 2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Request Details Modal -->
+    <div id="hrRequestDetailsModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2 id="hrReqModalTitle">Request Details</h2>
+                <button class="modal-close" onclick="closeModal('hrRequestDetailsModal')">×</button>
+            </div>
+            <div class="modal-body" id="hrReqModalBody">
+                <!-- Details populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="rejectHRRequest()">✗ Reject</button>
+                <button class="btn btn-success" onclick="approveHRRequest()">✓ Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Approve Modal -->
+    <div id="quickApproveModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2>Quick Approve</h2>
+                <button class="modal-close" onclick="closeModal('quickApproveModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p><strong><span id="quickApproveCount">0</span> request(s) selected</strong></p>
+                <p style="margin: 16px 0;">This will approve all selected requests instantly. Are you sure?</p>
+                <div style="display: grid; gap: 12px;">
+                    <button class="btn btn-success btn-block" onclick="bulkApproveHR()">
+                        ✓ Approve All Selected
+                    </button>
+                    <button class="btn btn-danger btn-block" onclick="bulkRejectHR()">
+                        ✗ Reject All Selected
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('quickApproveModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/hr-requests.js"></script>
+</body>
+</html>
