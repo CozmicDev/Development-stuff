@@ -116,7 +116,7 @@
                       "type": "TEXT",
                       "width": 1200,
                       "height": 72,
-                      "characters": "Welcome to HRPro",
+                      "characters": "Welcome to Human Capital",
                       "fontSize": 64,
                       "fontName": {"family": "Inter", "style": "Bold"},
                       "textAlignHorizontal": "CENTER",

@@ -55,7 +55,7 @@ function loadSystemSettings() {
 function getDefaultSettings() {
     return {
         general: {
-            systemName: 'HRPro',
+            systemName: 'Human Capital',
             language: 'en',
             timezone: 'America/Los_Angeles',
             dateFormat: 'MM/DD/YYYY',

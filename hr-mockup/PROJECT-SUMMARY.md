@@ -1,4 +1,4 @@
-# 🎉 HRPro - Project Completion Summary
+# 🎉 Human Capital - Project Completion Summary
 
 ## ✅ All Tasks Completed Successfully!
 

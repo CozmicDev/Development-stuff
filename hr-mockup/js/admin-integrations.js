@@ -44,7 +44,7 @@ function configureIntegration(integrationId) {
             fields: [
                 { label: 'Identity Provider', type: 'select', options: ['Okta', 'Azure AD', 'OneLogin', 'Auth0'], value: 'Okta' },
                 { label: 'SSO URL', type: 'text', value: 'https://acme.okta.com/sso/saml' },
-                { label: 'Entity ID', type: 'text', value: 'https://hrpro.acmecorp.com' },
+                { label: 'Entity ID', type: 'text', value: 'https://humancapital.acmecorp.com' },
                 { label: 'X.509 Certificate', type: 'textarea', value: '-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAL...' }
             ]
         },
@@ -222,7 +222,7 @@ function connectIntegration(integrationId) {
                 <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
             </div>
             <div class="modal-body">
-                <p>You will be redirected to authorize HRPro to access your ${integrationId} account.</p>
+                <p>You will be redirected to authorize Human Capital to access your ${integrationId} account.</p>
                 <div style="padding: 16px; background: var(--background); border-radius: 8px; margin-top: 16px;">
                     <p style="margin: 0; font-size: 13px; color: var(--text-secondary);"><strong>Permissions requested:</strong></p>
                     <ul style="margin: 8px 0 0 0; font-size: 13px; color: var(--text-secondary);">

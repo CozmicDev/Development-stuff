@@ -1,4 +1,4 @@
-# HRPro - HR Management System Mockup
+# Human Capital - HR Management System Mockup
 
 ## ✅ PROJECT STATUS: 100% COMPLETE
 

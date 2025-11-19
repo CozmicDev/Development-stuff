@@ -1,4 +1,4 @@
-# HRPro - Comprehensive HR Management System 🚀
+# Human Capital - Comprehensive HR Management System 🚀
 
 A **fully functional** HR management system demo built with pure HTML5, CSS3, and Vanilla JavaScript. Features complete CRUD operations, data persistence, real-time updates, and advanced filtering capabilities across 13+ interactive pages.
 

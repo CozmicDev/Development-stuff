@@ -322,7 +322,7 @@ Shadow XL (Modal)
 
 **Logo Section:**
 - Icon: 32px emoji or logo
-- Text: "HRPro" (24px Bold)
+- Text: "Human Capital" (24px Bold)
 - 16px gap between
 
 **Nav Links:**
@@ -529,7 +529,7 @@ Use Figma's built-in shape tools or plugins:
 3. Position: Y: 200
 4. Auto Layout vertical, 60px gap
 5. Content:
-   - "Welcome to HRPro" (64px Bold, White)
+   - "Welcome to Human Capital" (64px Bold, White)
    - "Your Complete HR Management Solution" (24px Regular, White 90%)
    - Both center-aligned
 

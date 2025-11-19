@@ -4,19 +4,19 @@
 const DataService = {
     // Storage keys
     KEYS: {
-        USER_SESSION: 'hrpro_user_session',
-        LEAVE_REQUESTS: 'hrpro_leave_requests',
-        LEAVE_BALANCES: 'hrpro_leave_balances',
-        USER_PROFILE: 'hrpro_user_profile',
-        EMERGENCY_CONTACTS: 'hrpro_emergency_contacts',
-        BENEFITS_ENROLLMENT: 'hrpro_benefits',
-        BENEFICIARIES: 'hrpro_beneficiaries',
-        TEAM_DATA: 'hrpro_team_data',
-        APPROVAL_REQUESTS: 'hrpro_approvals',
-        HR_EMPLOYEES: 'hrpro_hr_employees',
-        HR_REQUESTS: 'hrpro_hr_requests',
-        SYSTEM_SETTINGS: 'hrpro_system_settings',
-        AUDIT_LOG: 'hrpro_audit_log'
+        USER_SESSION: 'humancapital_user_session',
+        LEAVE_REQUESTS: 'humancapital_leave_requests',
+        LEAVE_BALANCES: 'humancapital_leave_balances',
+        USER_PROFILE: 'humancapital_user_profile',
+        EMERGENCY_CONTACTS: 'humancapital_emergency_contacts',
+        BENEFITS_ENROLLMENT: 'humancapital_benefits',
+        BENEFICIARIES: 'humancapital_beneficiaries',
+        TEAM_DATA: 'humancapital_team_data',
+        APPROVAL_REQUESTS: 'humancapital_approvals',
+        HR_EMPLOYEES: 'humancapital_hr_employees',
+        HR_REQUESTS: 'humancapital_hr_requests',
+        SYSTEM_SETTINGS: 'humancapital_system_settings',
+        AUDIT_LOG: 'humancapital_audit_log'
     },
 
     // User Session Management
