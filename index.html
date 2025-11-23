@@ -10,7 +10,7 @@
     <div class="login-container">
         <div class="login-box">
             <div class="logo">
-                <div class="logo-icon">HR</div>
+                <div class="logo-icon">HC</div>
                 <h1>Human Capital</h1>
                 <p class="tagline">Your Complete HR Solution</p>
             </div>
@@ -35,24 +35,6 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                
-                <div class="quick-login">
-                    <p class="divider"><span>Quick Demo Login</span></p>
-                    <div class="demo-buttons">
-                        <button type="button" class="btn btn-outline" onclick="quickLogin('employee')">
-                            <span class="icon">👤</span> Employee
-                        </button>
-                        <button type="button" class="btn btn-outline" onclick="quickLogin('manager')">
-                            <span class="icon">👔</span> Manager
-                        </button>
-                        <button type="button" class="btn btn-outline" onclick="quickLogin('hr')">
-                            <span class="icon">👥</span> HR Staff
-                        </button>
-                        <button type="button" class="btn btn-outline" onclick="quickLogin('admin')">
-                            <span class="icon">⚙️</span> Admin
-                        </button>
-                    </div>
-                </div>
             </form>
             
             <div class="login-footer">
@@ -62,18 +44,90 @@
         
         <div class="login-banner">
             <div class="banner-content">
-                <h2>Welcome to Human Capital</h2>
-                <p>Streamline your HR operations with our comprehensive management system</p>
-                <ul class="features-list">
-                    <li>✓ Self-Service Portal</li>
-                    <li>✓ Automated Workflows</li>
-                    <li>✓ Performance Management</li>
-                    <li>✓ Analytics & Insights</li>
-                    <li>✓ Mobile Access</li>
-                </ul>
+                <h2>Quick Access Portals</h2>
+                <p style="margin-bottom: 32px;">Choose your portal to get started</p>
+                
+                <div class="portal-buttons">
+                    <button type="button" class="portal-btn" onclick="quickLogin('employee')">
+                        <div class="portal-btn-icon">👤</div>
+                        <div class="portal-btn-content">
+                            <span class="portal-btn-title">Employee Portal</span>
+                            <span class="portal-btn-desc">Access your profile & benefits</span>
+                        </div>
+                    </button>
+                    
+                    <button type="button" class="portal-btn" onclick="quickLogin('manager')">
+                        <div class="portal-btn-icon">👔</div>
+                        <div class="portal-btn-content">
+                            <span class="portal-btn-title">Manager Portal</span>
+                            <span class="portal-btn-desc">Manage team & approvals</span>
+                        </div>
+                    </button>
+                    
+                    <button type="button" class="portal-btn" onclick="quickLogin('hr')">
+                        <div class="portal-btn-icon">👥</div>
+                        <div class="portal-btn-content">
+                            <span class="portal-btn-title">HR Staff Portal</span>
+                            <span class="portal-btn-desc">Employee & payroll management</span>
+                        </div>
+                    </button>
+                    
+                    <button type="button" class="portal-btn" onclick="quickLogin('admin')">
+                        <div class="portal-btn-icon">⚙️</div>
+                        <div class="portal-btn-content">
+                            <span class="portal-btn-title">Admin Portal</span>
+                            <span class="portal-btn-desc">System configuration & security</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <h3 style="font-size: 20px; margin-bottom: 20px;">Key Features</h3>
+                    <ul class="features-list">
+                        <li>Self-Service Portal</li>
+                        <li>Automated Workflows</li>
+                        <li>Performance Management</li>
+                        <li>Analytics & Insights</li>
+                        <li>Mobile Access</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+    
+    <script>
+        // Theme Toggle Function
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            const themeText = document.querySelector('.theme-text');
+            
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Load saved theme preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.querySelector('.theme-icon');
+            const themeText = document.querySelector('.theme-text');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light Mode';
+            }
+        });
+    </script>
     
     <script src="js/app.js"></script>
     <script src="js/login.js"></script>

@@ -7,70 +7,87 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="app-container">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2>📊 HR Portal</h2>
-                <p>Employee Portal</p>
+                <div class="logo-small">HC</div>
+                <span class="logo-text">Human Capital</span>
             </div>
             
             <nav class="sidebar-nav">
-                <a href="employee-dashboard.html">
+                <a href="employee-dashboard.html" class="nav-item">
                     <span class="icon">📊</span>
-                    <span>Dashboard</span>
+                    <span class="text">Dashboard</span>
                 </a>
-                <a href="employee-profile.html">
+                <a href="employee-profile.html" class="nav-item">
                     <span class="icon">👤</span>
-                    <span>My Profile</span>
+                    <span class="text">My Profile</span>
                 </a>
-                <a href="employee-timesheet.html">
-                    <span class="icon">🕐</span>
-                    <span>Time & Attendance</span>
-                </a>
-                <a href="employee-leave.html">
+                <a href="employee-leave.html" class="nav-item">
                     <span class="icon">🏖️</span>
-                    <span>Leave Management</span>
+                    <span class="text">Leave & Time Off</span>
                 </a>
-                <a href="employee-documents.html" class="active">
+                <a href="employee-documents.html" class="nav-item active">
                     <span class="icon">📄</span>
-                    <span>Documents</span>
+                    <span class="text">Documents</span>
                 </a>
-                <a href="employee-performance.html">
+                <a href="employee-benefits.html" class="nav-item">
+                    <span class="icon">�</span>
+                    <span class="text">Benefits</span>
+                </a>
+                <a href="employee-performance.html" class="nav-item">
                     <span class="icon">🎯</span>
-                    <span>Performance</span>
+                    <span class="text">Performance</span>
                 </a>
-                <a href="employee-learning.html">
+                <a href="employee-learning.html" class="nav-item">
                     <span class="icon">📚</span>
-                    <span>Learning & Development</span>
+                    <span class="text">Learning</span>
                 </a>
-                <a href="employee-benefits.html">
-                    <span class="icon">💰</span>
-                    <span>Benefits</span>
+                <a href="employee-timesheet.html" class="nav-item">
+                    <span class="icon">�</span>
+                    <span class="text">Timesheet</span>
                 </a>
             </nav>
             
             <div class="sidebar-footer">
-                <a href="../index.html">
+                <a href="../index.html" class="nav-item" onclick="logout()">
                     <span class="icon">🚪</span>
-                    <span>Logout</span>
+                    <span class="text">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="main-header">
-                <div>
-                    <h1>My Documents</h1>
-                    <p>Access and request official documents</p>
+            <!-- Top Navigation Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">My Documents</h1>
                 </div>
-                <div class="header-actions">
-                    <button class="btn btn-primary" onclick="requestDocument()">
-                        📄 Request Document
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <button class="icon-btn">
+                        🔔
+                        <span class="badge">3</span>
+                    </button>
+                    
+                    <button class="user-btn">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=00A99D&color=fff" alt="User" class="user-avatar">
+                        <span class="user-name">John Doe</span>
+                        <span class="dropdown-arrow">▼</span>
                     </button>
                 </div>
             </header>
+
+            <!-- Main Content Area -->
+            <div class="content">
 
             <!-- Stats Cards -->
             <div class="stats-grid">
@@ -549,9 +566,11 @@
                     </div>
                 </div>
             </div>
+            </div>
         </main>
     </div>
 
+    <script src="../js/app.js"></script>
     <script src="../js/employee-documents.js"></script>
 </body>
 </html>

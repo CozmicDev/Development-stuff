@@ -9,82 +9,91 @@
 <body>
     <div class="app-container">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2>🏢 HR Portal</h2>
+                <div class="logo-small">HC</div>
+                <span class="logo-text">Human Capital</span>
             </div>
             <nav class="sidebar-nav">
                 <a href="employee-dashboard.html" class="nav-item">
-                    <span>📊</span> Dashboard
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
                 </a>
                 <a href="employee-profile.html" class="nav-item">
-                    <span>👤</span> My Profile
+                    <span class="icon">👤</span>
+                    <span class="text">My Profile</span>
                 </a>
                 <a href="employee-leave.html" class="nav-item">
-                    <span>🏖️</span> Leave Management
+                    <span class="icon">🏖️</span>
+                    <span class="text">Leave & Time Off</span>
+                </a>
+                <a href="employee-documents.html" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span class="text">Documents</span>
                 </a>
                 <a href="employee-benefits.html" class="nav-item active">
-                    <span>💼</span> Benefits
+                    <span class="icon">💼</span>
+                    <span class="text">Benefits</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span>📈</span> Performance
+                <a href="employee-performance.html" class="nav-item">
+                    <span class="icon">🎯</span>
+                    <span class="text">Performance</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span>🎓</span> Learning & Development
+                <a href="employee-learning.html" class="nav-item">
+                    <span class="icon">📚</span>
+                    <span class="text">Learning</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span>📄</span> Documents
-                </a>
-                <a href="#" class="nav-item">
-                    <span>💰</span> Payroll
+                <a href="employee-timesheet.html" class="nav-item">
+                    <span class="icon">�</span>
+                    <span class="text">Timesheet</span>
                 </a>
             </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../index.html" class="nav-item" onclick="logout()">
+                    <span class="icon">�</span>
+                    <span class="text">Logout</span>
+                </a>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar -->
-            <header class="top-bar">
-                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-                <div class="top-bar-right">
+            <!-- Top Navigation Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Benefits & Enrollment</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
                     <button class="icon-btn" onclick="toggleNotifications()">
                         🔔
-                        <span class="notification-badge">3</span>
+                        <span class="badge">3</span>
                     </button>
-                    <div class="dropdown">
-                        <button class="user-menu" onclick="toggleDropdown()">
-                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff" alt="User">
-                            <span>John Smith</span>
-                        </button>
-                    </div>
+                    
+                    <button class="user-btn">
+                        <img src="https://ui-avatars.com/api/?name=John+Smith&background=00A99D&color=fff" alt="User" class="user-avatar">
+                        <span class="user-name">John Smith</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
                 </div>
             </header>
 
-            <!-- Page Content -->
-            <div class="page-content">
-                <!-- Page Header -->
-                <div class="page-header">
-                    <div>
-                        <h1>Benefits & Enrollment</h1>
-                        <p class="text-secondary">Manage your health, retirement, and other benefits</p>
-                    </div>
-                    <div>
-                        <button class="btn btn-outline" onclick="showModal('benefitsGuideModal')">
-                            📖 Benefits Guide
-                        </button>
-                        <button class="btn btn-primary" onclick="showModal('enrollmentModal')">
-                            ➕ Enroll in Benefits
-                        </button>
-                    </div>
-                </div>
-
+            <!-- Main Content Area -->
+            <div class="content">
                 <!-- Enrollment Status Alert -->
-                <div class="alert alert-info">
+                <div class="alert alert-info" style="background: linear-gradient(135deg, #E0F2F1, #B2DFDB); border-left: 4px solid var(--primary-color); padding: 20px; border-radius: 12px; margin-bottom: 24px;">
                     <div style="display: flex; align-items: start; gap: 12px;">
                         <span style="font-size: 24px;">ℹ️</span>
                         <div>
-                            <strong>Open Enrollment Period</strong>
-                            <p style="margin-top: 4px;">The annual benefits enrollment period is now open until December 15, 2024. Make sure to review and update your benefit selections.</p>
+                            <strong style="color: var(--text-primary); font-size: 16px;">Open Enrollment Period</strong>
+                            <p style="margin-top: 4px; color: var(--text-secondary);">The annual benefits enrollment period is now open until December 15, 2024. Make sure to review and update your benefit selections.</p>
                         </div>
                     </div>
                 </div>
@@ -645,6 +654,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </main>
     </div>
