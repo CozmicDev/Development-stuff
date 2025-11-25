@@ -136,9 +136,6 @@
                     <button class="tab-btn" onclick="switchTab('personal')">
                         Personal Documents (4)
                     </button>
-                    <button class="tab-btn" onclick="switchTab('tax')">
-                        Tax Forms (3)
-                    </button>
                 </div>
 
                 <!-- Available Documents Tab -->
@@ -166,25 +163,6 @@
                                             👁️ Preview
                                         </button>
                                         <button class="btn btn-sm btn-primary" onclick="downloadDocument('employment-cert')">
-                                            ⬇️ Download
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Salary Certificate -->
-                                <div class="document-card">
-                                    <div class="document-icon">💰</div>
-                                    <div class="document-info">
-                                        <h4>Salary Certificate</h4>
-                                        <p class="doc-type">Certificate</p>
-                                        <p class="doc-date">Generated: Dec 10, 2024</p>
-                                        <p class="doc-desc">Official salary verification document</p>
-                                    </div>
-                                    <div class="document-actions">
-                                        <button class="btn btn-sm btn-outline" onclick="previewDocument('salary-cert')">
-                                            👁️ Preview
-                                        </button>
-                                        <button class="btn btn-sm btn-primary" onclick="downloadDocument('salary-cert')">
                                             ⬇️ Download
                                         </button>
                                     </div>
@@ -223,25 +201,6 @@
                                             👁️ Preview
                                         </button>
                                         <button class="btn btn-sm btn-primary" onclick="downloadDocument('appointment-letter')">
-                                            ⬇️ Download
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Payslips -->
-                                <div class="document-card">
-                                    <div class="document-icon">💵</div>
-                                    <div class="document-info">
-                                        <h4>Payslips (Last 6 Months)</h4>
-                                        <p class="doc-type">Payroll</p>
-                                        <p class="doc-date">Latest: Dec 2024</p>
-                                        <p class="doc-desc">Monthly salary slips archive</p>
-                                    </div>
-                                    <div class="document-actions">
-                                        <button class="btn btn-sm btn-outline" onclick="viewPayslips()">
-                                            📂 View All
-                                        </button>
-                                        <button class="btn btn-sm btn-primary" onclick="downloadPayslips()">
                                             ⬇️ Download
                                         </button>
                                     </div>
@@ -343,16 +302,6 @@
                                         <td><span class="badge badge-warning">Pending Review</span></td>
                                         <td>
                                             <button class="btn btn-sm btn-outline" onclick="viewRequestDetails('DOC-2024-089')">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>DOC-2024-087</strong></td>
-                                        <td>Salary Certificate</td>
-                                        <td>Bank Loan</td>
-                                        <td>Dec 15, 2024</td>
-                                        <td><span class="badge badge-warning">Pending Review</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline" onclick="viewRequestDetails('DOC-2024-087')">View</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -481,90 +430,6 @@
                     </div>
                 </div>
 
-                <!-- Tax Forms Tab -->
-                <div id="tax-tab" class="tab-content">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Tax Documents</h3>
-                            <div class="filter-group">
-                                <select onchange="filterTaxYear(this.value)">
-                                    <option value="2024">Tax Year 2024</option>
-                                    <option value="2023">Tax Year 2023</option>
-                                    <option value="2022">Tax Year 2022</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="document-grid">
-                                <!-- W-2 Form -->
-                                <div class="document-card">
-                                    <div class="document-icon">📋</div>
-                                    <div class="document-info">
-                                        <h4>W-2 Form - 2023</h4>
-                                        <p class="doc-type">Tax Form</p>
-                                        <p class="doc-date">Generated: Jan 31, 2024</p>
-                                        <p class="doc-desc">Wage and Tax Statement</p>
-                                    </div>
-                                    <div class="document-actions">
-                                        <button class="btn btn-sm btn-outline" onclick="previewTaxForm('w2-2023')">
-                                            👁️ Preview
-                                        </button>
-                                        <button class="btn btn-sm btn-primary" onclick="downloadTaxForm('w2-2023')">
-                                            ⬇️ Download
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Tax Declaration -->
-                                <div class="document-card">
-                                    <div class="document-icon">💼</div>
-                                    <div class="document-info">
-                                        <h4>Tax Declaration Form</h4>
-                                        <p class="doc-type">Declaration</p>
-                                        <p class="doc-date">Submitted: Feb 15, 2024</p>
-                                        <p class="doc-desc">Annual tax declaration</p>
-                                    </div>
-                                    <div class="document-actions">
-                                        <button class="btn btn-sm btn-outline" onclick="previewTaxForm('declaration-2024')">
-                                            👁️ Preview
-                                        </button>
-                                        <button class="btn btn-sm btn-primary" onclick="downloadTaxForm('declaration-2024')">
-                                            ⬇️ Download
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Investment Proofs -->
-                                <div class="document-card">
-                                    <div class="document-icon">📊</div>
-                                    <div class="document-info">
-                                        <h4>Investment Proof Submissions</h4>
-                                        <p class="doc-type">Supporting Documents</p>
-                                        <p class="doc-date">Uploaded: Mar 20, 2024</p>
-                                        <p class="doc-desc">Tax saving investments</p>
-                                    </div>
-                                    <div class="document-actions">
-                                        <button class="btn btn-sm btn-outline" onclick="viewInvestmentProofs()">
-                                            📂 View All
-                                        </button>
-                                        <button class="btn btn-sm btn-primary" onclick="downloadInvestmentProofs()">
-                                            ⬇️ Download
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style="margin-top: 24px; padding: 16px; background: var(--primary-light); border-radius: 8px; border-left: 4px solid var(--primary-color);">
-                                <h4 style="margin: 0 0 8px 0;">📅 Important Tax Deadlines</h4>
-                                <ul style="margin: 8px 0 0 20px; line-height: 1.8; color: var(--text-secondary);">
-                                    <li><strong>Jan 31, 2025:</strong> W-2 forms available</li>
-                                    <li><strong>Apr 15, 2025:</strong> Federal tax filing deadline</li>
-                                    <li><strong>Mar 31, 2025:</strong> Investment proof submission deadline</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             </div>
         </main>

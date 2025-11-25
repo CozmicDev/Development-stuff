@@ -435,7 +435,6 @@ function viewEmployeeDetails(empId) {
         <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
             <button class="btn btn-outline" onclick="viewPerformanceReviews('${employee.id}')">Performance Reviews</button>
             <button class="btn btn-outline" onclick="viewLeaveHistory('${employee.id}')">Leave History</button>
-            <button class="btn btn-outline" onclick="viewPayrollInfo('${employee.id}')">Payroll Info</button>
             <button class="btn btn-outline" onclick="generateReport('${employee.id}')">Generate Report</button>
         </div>
     `;
@@ -540,10 +539,6 @@ function viewPerformanceReviews(empId) {
 
 function viewLeaveHistory(empId) {
     showSuccessNotification(`Loading leave history for ${empId}...`);
-}
-
-function viewPayrollInfo(empId) {
-    showSuccessNotification(`Loading payroll information for ${empId}...`);
 }
 
 function generateReport(empId) {

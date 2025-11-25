@@ -290,13 +290,6 @@ function viewOnboardingDetails(employeeId) {
                         <div class="activity-item">
                             <div class="activity-icon">✓</div>
                             <div class="activity-content">
-                                <strong>W-4 Tax Form completed</strong>
-                                <span>Dec 16, 2024 at 10:15 AM</span>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon">✓</div>
-                            <div class="activity-content">
                                 <strong>I-9 Form verified</strong>
                                 <span>Dec 15, 2024 at 2:00 PM</span>
                             </div>

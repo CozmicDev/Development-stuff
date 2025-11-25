@@ -222,9 +222,9 @@ const dummyData = {
         },
         {
             id: 2,
-            type: 'Salary Certificate',
+            type: 'Experience Certificate',
             requestedBy: 'Emily Chen',
-            purpose: 'Bank loan',
+            purpose: 'Job application',
             status: 'Pending',
             requestDate: '2025-11-16',
             completedDate: null

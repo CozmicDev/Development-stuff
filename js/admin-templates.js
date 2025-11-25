@@ -33,7 +33,6 @@ function getDefaultTemplates() {
         ],
         document: [
             { id: 'employment_certificate', name: 'Employment Certificate', lastUsed: '2 days ago' },
-            { id: 'salary_certificate', name: 'Salary Certificate', lastUsed: '1 week ago' },
             { id: 'experience_letter', name: 'Experience Letter', lastUsed: '3 days ago' }
         ],
         offer: [

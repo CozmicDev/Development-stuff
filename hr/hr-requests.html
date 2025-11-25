@@ -117,7 +117,6 @@
                                 <option value="document">Document Requests</option>
                                 <option value="timeoff">Time Off Adjustments</option>
                                 <option value="benefits">Benefits Changes</option>
-                                <option value="payroll">Payroll Changes</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -277,31 +276,6 @@
                                         </td>
                                     </tr>
 
-                                    <!-- Payroll Change -->
-                                    <tr data-type="payroll" data-priority="high" data-status="pending" data-req-id="REQ005">
-                                        <td><input type="checkbox" class="hr-req-checkbox" value="REQ005"></td>
-                                        <td><strong>REQ005</strong></td>
-                                        <td>
-                                            <div style="display: flex; align-items: center; gap: 8px;">
-                                                <img src="https://ui-avatars.com/api/?name=Lisa+Anderson&background=06B6D4&color=fff" 
-                                                     alt="Lisa Anderson" style="width: 32px; height: 32px; border-radius: 50%;">
-                                                <strong>Lisa Anderson</strong>
-                                            </div>
-                                        </td>
-                                        <td><span class="badge badge-success">Payroll Change</span></td>
-                                        <td>
-                                            <strong>Direct Deposit Update</strong><br>
-                                            <span style="font-size: 12px; color: var(--text-secondary);">New bank account</span>
-                                        </td>
-                                        <td>6 hours ago</td>
-                                        <td><span class="badge badge-warning">High</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-success" onclick="quickApproveHR('REQ005')">✓</button>
-                                            <button class="btn btn-sm btn-danger" onclick="quickRejectHR('REQ005')">✗</button>
-                                            <button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ005')">View</button>
-                                        </td>
-                                    </tr>
-
                                     <!-- Time Off Adjustment -->
                                     <tr data-type="timeoff" data-priority="normal" data-status="pending" data-req-id="REQ006">
                                         <td><input type="checkbox" class="hr-req-checkbox" value="REQ006"></td>
@@ -365,7 +339,7 @@
                                         </td>
                                         <td><span class="badge badge-warning">Document Request</span></td>
                                         <td>
-                                            <strong>Salary History Letter</strong><br>
+                                            <strong>Employment History Letter</strong><br>
                                             <span style="font-size: 12px; color: var(--text-secondary);">For personal records</span>
                                         </td>
                                         <td>2 days ago</td>
@@ -406,14 +380,6 @@
                                         <td>HR Admin</td>
                                         <td>30 minutes ago</td>
                                         <td><button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ009')">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>REQ010</strong></td>
-                                        <td>David Brown</td>
-                                        <td><span class="badge badge-success">Payroll Change</span></td>
-                                        <td>Payroll Team</td>
-                                        <td>1 hour ago</td>
-                                        <td><button class="btn btn-sm btn-outline" onclick="viewHRRequestDetails('REQ010')">View</button></td>
                                     </tr>
                                 </tbody>
                             </table>

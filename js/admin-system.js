@@ -85,7 +85,6 @@ function getDefaultSettings() {
             performanceManagement: true,
             learningDevelopment: true,
             recruitment: true,
-            payroll: false,
             expenseManagement: true
         },
         notifications: {

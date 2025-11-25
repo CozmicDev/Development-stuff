@@ -28,7 +28,6 @@ function getDefaultDocumentData() {
     return {
         available: [
             { id: 'employment-cert', name: 'Employment Certificate', type: 'Certificate', date: 'Dec 15, 2024' },
-            { id: 'salary-cert', name: 'Salary Certificate', type: 'Certificate', date: 'Dec 10, 2024' },
             { id: 'offer-letter', name: 'Offer Letter', type: 'Employment', date: 'Jan 15, 2023' }
         ],
         requests: [],
@@ -54,7 +53,6 @@ function requestDocument() {
                     <select id="docType" onchange="updateDocumentOptions(this.value)">
                         <option value="">Select document type...</option>
                         <option value="employment">Employment Certificate</option>
-                        <option value="salary">Salary Certificate</option>
                         <option value="experience">Experience Certificate</option>
                         <option value="noc">No Objection Certificate</option>
                         <option value="relieving">Relieving Letter</option>
@@ -221,58 +219,6 @@ function previewDocument(docId) {
                 </div>
             `
         },
-        'salary-cert': {
-            title: 'Salary Certificate',
-            content: `
-                <div style="padding: 40px; background: white; max-width: 800px; margin: 0 auto;">
-                    <div style="text-align: center; margin-bottom: 40px;">
-                        <h2 style="color: var(--primary-color); margin: 0;">ACME CORPORATION</h2>
-                        <p style="color: var(--text-secondary); margin: 8px 0;">123 Business Street, San Francisco, CA 94105</p>
-                    </div>
-                    
-                    <h3 style="text-align: center; margin: 30px 0;">SALARY CERTIFICATE</h3>
-                    
-                    <p style="line-height: 1.8; color: var(--text-primary);">Date: December 10, 2024</p>
-                    
-                    <p style="line-height: 1.8; color: var(--text-primary); margin-top: 30px;">
-                        To Whom It May Concern,
-                    </p>
-                    
-                    <p style="line-height: 1.8; color: var(--text-primary); margin-top: 20px;">
-                        This is to certify that <strong>Sarah Johnson</strong> (Employee ID: E12345) is employed with 
-                        ACME Corporation as a <strong>Senior Software Engineer</strong> since <strong>January 20, 2023</strong>.
-                    </p>
-                    
-                    <div style="margin: 30px 0; padding: 20px; background: var(--background); border-radius: 8px;">
-                        <h4 style="margin: 0 0 16px 0;">Compensation Details:</h4>
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr>
-                                <td style="padding: 8px 0; border-bottom: 1px solid #E5E7EB;">Base Salary</td>
-                                <td style="padding: 8px 0; border-bottom: 1px solid #E5E7EB; text-align: right;"><strong>$120,000 per annum</strong></td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 8px 0; border-bottom: 1px solid #E5E7EB;">Annual Bonus</td>
-                                <td style="padding: 8px 0; border-bottom: 1px solid #E5E7EB; text-align: right;"><strong>Up to $15,000</strong></td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 8px 0;">Other Benefits</td>
-                                <td style="padding: 8px 0; text-align: right;"><strong>As per company policy</strong></td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <p style="line-height: 1.8; color: var(--text-primary);">
-                        This certificate is issued upon their request for official banking purposes.
-                    </p>
-                    
-                    <div style="margin-top: 60px;">
-                        <p style="margin: 0;"><strong>Jennifer Smith</strong></p>
-                        <p style="margin: 4px 0; color: var(--text-secondary);">HR Manager</p>
-                        <p style="margin: 4px 0; color: var(--text-secondary);">ACME Corporation</p>
-                    </div>
-                </div>
-            `
-        },
         'offer-letter': {
             title: 'Offer Letter',
             content: `
@@ -369,89 +315,6 @@ function downloadDocument(docId) {
             severity: 'info'
         });
     }
-}
-
-// View Payslips
-function viewPayslips() {
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.style.display = 'flex';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 700px;">
-            <div class="modal-header">
-                <h3>Payslips - Last 6 Months</h3>
-                <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Gross Salary</th>
-                            <th>Net Salary</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>December 2024</strong></td>
-                            <td>$12,500.00</td>
-                            <td>$10,000.00</td>
-                            <td><button class="btn btn-sm btn-primary" onclick="downloadPayslip('dec-2024')">Download</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>November 2024</strong></td>
-                            <td>$12,500.00</td>
-                            <td>$10,000.00</td>
-                            <td><button class="btn btn-sm btn-primary" onclick="downloadPayslip('nov-2024')">Download</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>October 2024</strong></td>
-                            <td>$12,500.00</td>
-                            <td>$10,000.00</td>
-                            <td><button class="btn btn-sm btn-primary" onclick="downloadPayslip('oct-2024')">Download</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>September 2024</strong></td>
-                            <td>$12,500.00</td>
-                            <td>$10,000.00</td>
-                            <td><button class="btn btn-sm btn-primary" onclick="downloadPayslip('sep-2024')">Download</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>August 2024</strong></td>
-                            <td>$12,500.00</td>
-                            <td>$10,000.00</td>
-                            <td><button class="btn btn-sm btn-primary" onclick="downloadPayslip('aug-2024')">Download</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>July 2024</strong></td>
-                            <td>$12,500.00</td>
-                            <td>$10,000.00</td>
-                            <td><button class="btn btn-sm btn-primary" onclick="downloadPayslip('jul-2024')">Download</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" onclick="this.closest('.modal').remove()">Close</button>
-                <button class="btn btn-primary" onclick="downloadAllPayslips()">Download All</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-}
-
-function downloadPayslip(month) {
-    showSuccessNotification(`✓ Downloading payslip for ${month}...`);
-}
-
-function downloadPayslips() {
-    showSuccessNotification('✓ Downloading all payslips...');
-}
-
-function downloadAllPayslips() {
-    document.querySelector('.modal').remove();
-    showSuccessNotification('✓ Downloading all payslips as ZIP file...');
 }
 
 // Filter Requests
@@ -602,27 +465,6 @@ function deletePersonalDoc(docId) {
     if (confirm('Are you sure you want to delete this document? This action cannot be undone.')) {
         showSuccessNotification('✓ Document deleted successfully');
     }
-}
-
-// Tax Forms
-function filterTaxYear(year) {
-    showSuccessNotification(`Loading tax documents for ${year}...`);
-}
-
-function previewTaxForm(formId) {
-    showSuccessNotification('Opening tax form preview...');
-}
-
-function downloadTaxForm(formId) {
-    showSuccessNotification('✓ Downloading tax form...');
-}
-
-function viewInvestmentProofs() {
-    showSuccessNotification('Opening investment proofs...');
-}
-
-function downloadInvestmentProofs() {
-    showSuccessNotification('✓ Downloading investment proofs...');
 }
 
 // Success Notification

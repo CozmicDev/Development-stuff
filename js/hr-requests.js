@@ -43,21 +43,10 @@ const hrRequestDetails = {
         id: 'REQ004',
         employee: 'Michael Brown',
         type: 'Document Request',
-        documentType: 'W-2 Tax Form',
-        taxYear: '2024',
+        documentType: 'Employment Certificate',
+        purpose: 'Visa application',
         deliveryMethod: 'Email',
         submitted: '5 hours ago'
-    },
-    'REQ005': {
-        id: 'REQ005',
-        employee: 'Lisa Anderson',
-        type: 'Payroll Change',
-        changeType: 'Direct Deposit Update',
-        bankName: 'Chase Bank',
-        accountType: 'Checking',
-        effectiveDate: 'Next pay period (Dec 1)',
-        documentation: 'Voided check attached',
-        submitted: '6 hours ago'
     },
     'REQ006': {
         id: 'REQ006',
@@ -347,44 +336,6 @@ function viewHRRequestDetails(reqId) {
                 
                 <div style="padding: 16px; background: var(--background); border-radius: 8px;">
                     <strong>⚠️ Important:</strong> This is a qualifying life event. Process within 30 days of event date.
-                </div>
-            </div>
-        `;
-    } else if (request.type === 'Payroll Change') {
-        bodyContent = `
-            <div style="display: grid; gap: 16px;">
-                <div>
-                    <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Employee</div>
-                    <strong style="font-size: 16px;">${request.employee}</strong>
-                </div>
-                
-                <div>
-                    <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Change Type</div>
-                    <strong>${request.changeType}</strong>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                    <div>
-                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Bank Name</div>
-                        <strong>${request.bankName}</strong>
-                    </div>
-                    <div>
-                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Account Type</div>
-                        <strong>${request.accountType}</strong>
-                    </div>
-                </div>
-                
-                <div>
-                    <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Effective Date</div>
-                    <strong>${request.effectiveDate}</strong>
-                </div>
-                
-                <div style="padding: 16px; background: var(--primary-light); border-radius: 8px;">
-                    <strong>📎 ${request.documentation}</strong>
-                </div>
-                
-                <div style="padding: 16px; background: var(--background); border-radius: 8px;">
-                    <strong>⚠️ Important:</strong> Coordinate with Payroll team to ensure changes are reflected before next pay period.
                 </div>
             </div>
         `;

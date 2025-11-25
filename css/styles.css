@@ -158,6 +158,97 @@ body {
     font-size: 16px;
 }
 
+/* SSO Login Styles */
+.sso-login-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sso-btn {
+    width: 100%;
+    padding: 16px 24px;
+    margin-bottom: 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .sso-btn {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #FFFFFF;
+}
+
+.sso-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.sso-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.microsoft-btn {
+    color: #2F2F2F;
+}
+
+.microsoft-btn:hover {
+    background: #F5F5F5;
+    border-color: #2F2F2F;
+}
+
+.dark-mode .microsoft-btn:hover {
+    background: #3a3a3a;
+    border-color: #5a5a5a;
+}
+
+.uaepass-btn {
+    color: #00843D;
+}
+
+.uaepass-btn:hover {
+    background: #F0F9F4;
+    border-color: #00843D;
+}
+
+.dark-mode .uaepass-btn:hover {
+    background: #1a3a2a;
+    border-color: #00843D;
+}
+
+.sso-divider {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.sso-divider::before,
+.sso-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sso-divider span {
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .login-form {
     flex: 1;
 }

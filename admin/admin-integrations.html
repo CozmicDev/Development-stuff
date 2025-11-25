@@ -179,28 +179,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Payroll Integration -->
-                            <div class="integration-item">
-                                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
-                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #2DCE89 0%, #11CDEF 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                                        💰
-                                    </div>
-                                    <div style="flex: 1;">
-                                        <h4 style="margin: 0 0 4px 0;">Payroll System</h4>
-                                        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">ADP Workforce Now</p>
-                                        <div style="margin-top: 6px; display: flex; align-items: center; gap: 12px;">
-                                            <span class="badge badge-success">Active</span>
-                                            <span style="font-size: 12px; color: var(--text-secondary);">Last payroll: Dec 15, 2024</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="display: flex; gap: 8px;">
-                                    <button class="btn btn-sm btn-outline" onclick="configureIntegration('payroll')">⚙️ Configure</button>
-                                    <button class="btn btn-sm btn-outline" onclick="testIntegration('payroll')">🧪 Test</button>
-                                    <button class="btn btn-sm btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);" onclick="disconnectIntegration('payroll')">✕ Disconnect</button>
-                                </div>
-                            </div>
-                            
                             <!-- Slack Integration -->
                             <div class="integration-item">
                                 <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
@@ -301,18 +279,6 @@
                                 </div>
                                 <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Electronic signature for documents</p>
                                 <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('docusign')">+ Connect</button>
-                            </div>
-                            
-                            <!-- QuickBooks -->
-                            <div class="available-integration-card">
-                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #2CA01C 0%, #028A0F 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-                                        📊
-                                    </div>
-                                    <h4 style="margin: 0;">QuickBooks</h4>
-                                </div>
-                                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0;">Sync payroll with accounting</p>
-                                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="connectIntegration('quickbooks')">+ Connect</button>
                             </div>
                             
                             <!-- BambooHR -->

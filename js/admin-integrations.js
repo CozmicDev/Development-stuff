@@ -16,7 +16,6 @@ function getDefaultIntegrations() {
             { id: 'sso', name: 'Single Sign-On (SSO)', provider: 'Okta', status: 'active', lastSync: new Date().toISOString() },
             { id: 'email', name: 'Email Service', provider: 'SendGrid', status: 'active', emailsSent: 1247 },
             { id: 'calendar', name: 'Calendar Sync', provider: 'Google Calendar', status: 'warning', issue: 'API quota limit reached' },
-            { id: 'payroll', name: 'Payroll System', provider: 'ADP Workforce Now', status: 'active', lastPayroll: 'Dec 15, 2024' },
             { id: 'slack', name: 'Slack', provider: 'Slack', status: 'active', channel: '#hr-notifications' },
             { id: 'background', name: 'Background Checks', provider: 'Checkr', status: 'disconnected', issue: 'API key expired' }
         ],
@@ -25,7 +24,6 @@ function getDefaultIntegrations() {
             { id: 'zoom', name: 'Zoom', description: 'Schedule and manage video interviews' },
             { id: 'linkedin', name: 'LinkedIn', description: 'Post jobs and import candidate profiles' },
             { id: 'docusign', name: 'DocuSign', description: 'Electronic signature for documents' },
-            { id: 'quickbooks', name: 'QuickBooks', description: 'Sync payroll with accounting' },
             { id: 'bamboohr', name: 'BambooHR', description: 'Import employee data and sync records' }
         ],
         apiKeys: [
@@ -64,15 +62,6 @@ function configureIntegration(integrationId) {
                 { label: 'Client ID', type: 'text', value: '1234567890-abcdefghijklmnop.apps.googleusercontent.com' },
                 { label: 'Client Secret', type: 'password', value: '****************************' },
                 { label: 'Sync Frequency', type: 'select', options: ['Real-time', 'Every 5 minutes', 'Every 15 minutes', 'Hourly'], value: 'Every 15 minutes' }
-            ]
-        },
-        'payroll': {
-            title: 'Configure Payroll',
-            fields: [
-                { label: 'Provider', type: 'select', options: ['ADP Workforce Now', 'Gusto', 'Paychex'], value: 'ADP Workforce Now' },
-                { label: 'API Key', type: 'password', value: '****************************' },
-                { label: 'Company Code', type: 'text', value: 'ACME001' },
-                { label: 'Auto-sync', type: 'checkbox', value: true }
             ]
         },
         'slack': {
@@ -274,7 +263,7 @@ function showAddIntegrationModal() {
             <div class="modal-body">
                 <div class="form-group">
                     <label>Integration Name *</label>
-                    <input type="text" placeholder="e.g., Custom Payroll System">
+                    <input type="text" placeholder="e.g., Custom HR System">
                 </div>
                 
                 <div class="form-group">
@@ -283,7 +272,6 @@ function showAddIntegrationModal() {
                         <option value="">Select type...</option>
                         <option value="sso">Single Sign-On</option>
                         <option value="hr">HR System</option>
-                        <option value="payroll">Payroll</option>
                         <option value="recruiting">Recruiting</option>
                         <option value="communication">Communication</option>
                         <option value="other">Other</option>
