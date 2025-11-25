@@ -48,7 +48,7 @@ function initiateOffboarding() {
                     <label>Select Employee *</label>
                     <select id="exitEmployee">
                         <option value="">Choose employee...</option>
-                        <option value="sarah">Sarah Johnson - Senior Software Engineer</option>
+                        <option value="fatima">Fatima Al Mazrouei - Senior Software Engineer</option>
                         <option value="mike">Mike Chen - Software Engineer</option>
                         <option value="emily">Emily Rodriguez - Junior Software Engineer</option>
                         <option value="alex">Alex Turner - Software Engineer</option>

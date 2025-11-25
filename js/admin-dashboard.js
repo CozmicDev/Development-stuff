@@ -31,7 +31,7 @@ const integrations = [
 
 // Admin activity log
 let adminActivities = [
-    { action: 'User Role Updated', detail: 'Changed John Smith from Employee to Manager', time: '10 min ago' },
+    { action: 'User Role Updated', detail: 'Changed Mohammed Al Hashimi from Employee to Manager', time: '10 min ago' },
     { action: 'System Backup Completed', detail: 'Full database backup (2.3 GB)', time: '2 hours ago' },
     { action: 'Integration Configured', detail: 'Connected new SSO provider', time: '5 hours ago' },
     { action: 'Security Policy Updated', detail: 'Enabled MFA for all users', time: '1 day ago' }

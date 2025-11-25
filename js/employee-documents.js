@@ -191,7 +191,7 @@ function previewDocument(docId) {
                     </p>
                     
                     <p style="line-height: 1.8; color: var(--text-primary); margin-top: 20px;">
-                        This is to certify that <strong>Sarah Johnson</strong> is currently employed with ACME Corporation 
+                        This is to certify that <strong>Mohammed Al Hashimi</strong> is currently employed with ACME Corporation 
                         as a <strong>Senior Software Engineer</strong> in the Engineering Department since 
                         <strong>January 20, 2023</strong>.
                     </p>
@@ -231,7 +231,7 @@ function previewDocument(docId) {
                     <p style="line-height: 1.8; color: var(--text-primary);">January 10, 2023</p>
                     
                     <p style="line-height: 1.8; color: var(--text-primary); margin-top: 30px;">
-                        Dear Sarah Johnson,
+                        Dear Mohammed Al Hashimi,
                     </p>
                     
                     <p style="line-height: 1.8; color: var(--text-primary); margin-top: 20px;">

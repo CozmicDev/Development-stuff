@@ -6,7 +6,7 @@ let currentRequestType = null;
 // Request details data
 const requestDetails = {
     1: {
-        employee: 'John Smith',
+        employee: 'Mohammed Al Hashimi',
         type: 'Leave Request',
         leaveType: 'Vacation Leave',
         startDate: 'December 20, 2024',
@@ -15,11 +15,11 @@ const requestDetails = {
         reason: 'Holiday vacation with family',
         status: 'Pending',
         submitted: '2 hours ago',
-        coverage: 'Michael Brown (confirmed)',
+        coverage: 'Youssef Al Doori (confirmed)',
         notes: 'All project deliverables will be completed before departure'
     },
     2: {
-        employee: 'Emily Chen',
+        employee: 'Amira Al Qasimi',
         type: 'Expense Report',
         expenseType: 'Conference Travel',
         date: 'November 10-12, 2024',
@@ -35,7 +35,7 @@ const requestDetails = {
         submitted: '5 hours ago'
     },
     3: {
-        employee: 'Sarah Davis',
+        employee: 'Hessa Al Nuaimi',
         type: 'Leave Request',
         leaveType: 'Personal Leave',
         startDate: 'November 25, 2024',
@@ -44,11 +44,11 @@ const requestDetails = {
         reason: 'Family event - Thanksgiving',
         status: 'Pending',
         submitted: '1 day ago',
-        coverage: 'Emily Chen (confirmed)',
+        coverage: 'Amira Al Qasimi (confirmed)',
         notes: 'Remote availability if urgent issues arise'
     },
     4: {
-        employee: 'David Wilson',
+        employee: 'Ahmed Al Mheiri',
         type: 'Equipment Request',
         equipment: '27" 4K Display Monitor',
         justification: 'Current monitor is 1080p and insufficient for development work with multiple windows',
@@ -57,7 +57,7 @@ const requestDetails = {
         submitted: '1 day ago'
     },
     5: {
-        employee: 'Michael Brown',
+        employee: 'Youssef Al Doori',
         type: 'Leave Request',
         leaveType: 'Sick Leave',
         startDate: 'November 18, 2024',
@@ -66,11 +66,11 @@ const requestDetails = {
         reason: 'Feeling unwell, need to rest',
         status: 'Pending',
         submitted: '3 hours ago',
-        coverage: 'John Smith (confirmed)',
+        coverage: 'Mohammed Al Hashimi (confirmed)',
         notes: 'Will monitor email for critical issues'
     },
     6: {
-        employee: 'Lisa Anderson',
+        employee: 'Noura Al Blooshi',
         type: 'Expense Report',
         expenseType: 'Client Meeting',
         date: 'November 5, 2024',
@@ -86,7 +86,7 @@ const requestDetails = {
         submitted: '2 days ago'
     },
     7: {
-        employee: 'John Smith',
+        employee: 'Mohammed Al Hashimi',
         type: 'Leave Request',
         leaveType: 'Remote Work',
         startDate: 'December 1, 2024',
@@ -99,7 +99,7 @@ const requestDetails = {
         notes: 'Will attend all meetings via video conference'
     },
     8: {
-        employee: 'Sarah Davis',
+        employee: 'Hessa Al Nuaimi',
         type: 'Time Off Request',
         leaveType: 'Half Day',
         startDate: 'November 22, 2024',
@@ -109,7 +109,7 @@ const requestDetails = {
         reason: 'Personal appointment',
         status: 'Pending',
         submitted: '4 days ago',
-        coverage: 'John Smith (confirmed)',
+        coverage: 'Mohammed Al Hashimi (confirmed)',
         notes: 'Morning tasks will be completed before leaving'
     }
 };

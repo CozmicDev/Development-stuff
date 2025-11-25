@@ -75,9 +75,9 @@ function getDefaultSettings() {
             industry: 'technology',
             size: '201-500',
             website: 'https://www.acmecorp.com',
-            phone: '+1 (555) 123-4567',
+            phone: '+971 50 123 4567',
             email: 'hr@acmecorp.com',
-            address: '123 Business Street\nSan Francisco, CA 94105\nUnited States'
+            address: '123 Business Street\nDubai, UAE\nUnited Arab Emirates'
         },
         modules: {
             leaveManagement: true,

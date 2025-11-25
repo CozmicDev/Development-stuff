@@ -112,7 +112,7 @@ function addNewHire() {
                     <label>Assign Onboarding Buddy</label>
                     <select id="buddy">
                         <option value="">Select buddy (optional)...</option>
-                        <option value="sarah">Sarah Johnson - Senior Software Engineer</option>
+                        <option value="fatima">Fatima Al Mazrouei - Senior Software Engineer</option>
                         <option value="mike">Mike Chen - Software Engineer</option>
                         <option value="emily">Emily Rodriguez - Junior Software Engineer</option>
                         <option value="alex">Alex Turner - Software Engineer</option>
@@ -124,7 +124,7 @@ function addNewHire() {
                     <label>Manager *</label>
                     <select id="manager">
                         <option value="">Select reporting manager...</option>
-                        <option value="john-smith">John Smith - Engineering Manager</option>
+                        <option value="mohammed-alhashimi">Mohammed Al Hashimi - Engineering Manager</option>
                         <option value="jane-doe">Jane Doe - Design Manager</option>
                         <option value="bob-wilson">Bob Wilson - Product Manager</option>
                     </select>
@@ -214,11 +214,11 @@ function viewOnboardingDetails(employeeId) {
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Manager:</span>
-                            <span>John Smith</span>
+                            <span>Mohammed Al Hashimi</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Onboarding Buddy:</span>
-                            <span>Sarah Johnson</span>
+                            <span>Fatima Al Mazrouei</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Days Onboarding:</span>
@@ -317,7 +317,7 @@ function viewOnboardingDetails(employeeId) {
                         </div>
                         <div class="note-item">
                             <div class="note-header">
-                                <strong>Sarah Johnson (Buddy)</strong>
+                                <strong>Fatima Al Mazrouei (Buddy)</strong>
                                 <span>Dec 16, 2024</span>
                             </div>
                             <p>David is adjusting well to the team. Very eager to learn and asking great questions about our systems.</p>

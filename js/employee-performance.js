@@ -472,7 +472,7 @@ function viewFullReview(reviewId) {
                 <div style="padding: 20px; background: var(--background); border-radius: 8px; margin-bottom: 24px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <h4 style="margin: 0 0 8px 0;">Employee: Sarah Johnson</h4>
+                            <h4 style="margin: 0 0 8px 0;">Employee: Fatima Al Mazrouei</h4>
                             <p style="margin: 0; color: var(--text-secondary);">Position: Senior Software Engineer</p>
                             <p style="margin: 4px 0 0 0; color: var(--text-secondary);">Review Period: Oct 1 - Dec 31, 2024</p>
                         </div>

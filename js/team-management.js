@@ -2,18 +2,18 @@
 
 // Employee data
 const employeeData = {
-    'john-smith': {
-        name: 'John Smith',
+    'mohammed-alhashimi': {
+        name: 'Mohammed Al Hashimi',
         role: 'Senior Developer',
-        email: 'john.smith@company.com',
-        phone: '+1 (555) 123-4567',
+        email: 'mohammed.alhashimi@company.com',
+        phone: '+971 50 123 4567',
         hireDate: 'Jan 15, 2020',
         tenure: '5.8 years',
         status: 'Active',
         performance: 4.8,
         department: 'Engineering',
-        location: 'San Francisco, CA',
-        manager: 'Sarah Manager',
+        location: 'Dubai, UAE',
+        manager: 'Fatima Al Mazrouei',
         upcomingLeave: 'Dec 20-27, 2024',
         skills: ['JavaScript', 'Python', 'React', 'Node.js', 'Team Leadership'],
         recentProjects: [
@@ -23,18 +23,18 @@ const employeeData = {
         ],
         notes: 'Top performer, excellent mentor for junior developers. Leading the new microservices initiative.'
     },
-    'emily-chen': {
-        name: 'Emily Chen',
+    'amira-alqasimi': {
+        name: 'Amira Al Qasimi',
         role: 'Software Developer',
-        email: 'emily.chen@company.com',
-        phone: '+1 (555) 234-5678',
+        email: 'amira.alqasimi@company.com',
+        phone: '+971 50 234 5678',
         hireDate: 'Mar 10, 2021',
         tenure: '3.6 years',
         status: 'On Leave',
         performance: 4.5,
         department: 'Engineering',
-        location: 'Remote - Austin, TX',
-        manager: 'Sarah Manager',
+        location: 'Abu Dhabi, UAE',
+        manager: 'Fatima Al Mazrouei',
         upcomingLeave: 'Currently on leave (returns Nov 18)',
         skills: ['JavaScript', 'React', 'TypeScript', 'CSS', 'UI/UX'],
         recentProjects: [
@@ -44,18 +44,18 @@ const employeeData = {
         ],
         notes: 'Strong frontend skills. Currently on vacation, returns tomorrow.'
     },
-    'michael-brown': {
-        name: 'Michael Brown',
+    'youssef-aldoori': {
+        name: 'Youssef Al Doori',
         role: 'Senior Developer',
-        email: 'michael.brown@company.com',
-        phone: '+1 (555) 345-6789',
+        email: 'youssef.aldoori@company.com',
+        phone: '+971 50 345 6789',
         hireDate: 'Aug 5, 2019',
         tenure: '6.2 years',
         status: 'Active',
         performance: 4.9,
         department: 'Engineering',
-        location: 'San Francisco, CA',
-        manager: 'Sarah Manager',
+        location: 'Dubai, UAE',
+        manager: 'Fatima Al Mazrouei',
         upcomingLeave: 'None scheduled',
         skills: ['Python', 'JavaScript', 'Node.js', 'SQL', 'DevOps', 'Architecture'],
         recentProjects: [
@@ -65,18 +65,18 @@ const employeeData = {
         ],
         notes: 'Exceptional technical skills. Great problem solver and system architect.'
     },
-    'sarah-davis': {
-        name: 'Sarah Davis',
+    'hessa-alnuaimi': {
+        name: 'Hessa Al Nuaimi',
         role: 'Software Developer',
-        email: 'sarah.davis@company.com',
-        phone: '+1 (555) 456-7890',
+        email: 'hessa.alnuaimi@company.com',
+        phone: '+971 50 456 7890',
         hireDate: 'Jun 20, 2022',
         tenure: '2.4 years',
         status: 'Remote',
         performance: 4.3,
         department: 'Engineering',
-        location: 'Remote - Seattle, WA',
-        manager: 'Sarah Manager',
+        location: 'Sharjah, UAE',
+        manager: 'Fatima Al Mazrouei',
         upcomingLeave: 'Nov 25-26 (Thanksgiving)',
         skills: ['React', 'JavaScript', 'Node.js', 'GraphQL'],
         recentProjects: [
@@ -86,18 +86,18 @@ const employeeData = {
         ],
         notes: 'Works remotely full-time. Reliable and self-motivated.'
     },
-    'david-wilson': {
-        name: 'David Wilson',
+    'ahmed-almheiri': {
+        name: 'Ahmed Al Mheiri',
         role: 'Junior Developer',
-        email: 'david.wilson@company.com',
-        phone: '+1 (555) 567-8901',
+        email: 'ahmed.almheiri@company.com',
+        phone: '+971 50 567 8901',
         hireDate: 'Feb 1, 2024',
         tenure: '0.8 years',
         status: 'Active',
         performance: 4.0,
         department: 'Engineering',
-        location: 'San Francisco, CA',
-        manager: 'Sarah Manager',
+        location: 'Dubai, UAE',
+        manager: 'Fatima Al Mazrouei',
         upcomingLeave: 'None scheduled',
         skills: ['JavaScript', 'React', 'HTML/CSS'],
         recentProjects: [
@@ -111,7 +111,7 @@ const employeeData = {
         name: 'Lisa Anderson',
         role: 'QA Engineer',
         email: 'lisa.anderson@company.com',
-        phone: '+1 (555) 678-9012',
+        phone: '+971 50 678 9012',
         hireDate: 'Sep 12, 2021',
         tenure: '3.2 years',
         status: 'Active',

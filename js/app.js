@@ -116,52 +116,52 @@ const dummyData = {
     employees: [
         {
             id: 1,
-            name: 'John Smith',
+            name: 'Mohammed Al Hashimi',
             email: 'john.smith@company.com',
             position: 'Software Engineer',
             department: 'Engineering',
-            manager: 'Sarah Johnson',
+            manager: 'Fatima Al Mazrouei',
             hireDate: '2022-03-15',
             status: 'Active',
             leaveBalance: 18
         },
         {
             id: 2,
-            name: 'Emily Chen',
+            name: 'Amira Al Qasimi',
             email: 'emily.chen@company.com',
             position: 'Product Manager',
             department: 'Product',
-            manager: 'Michael Brown',
+            manager: 'Youssef Al Doori',
             hireDate: '2021-06-01',
             status: 'Active',
             leaveBalance: 22
         },
         {
             id: 3,
-            name: 'Michael Davis',
-            email: 'michael.davis@company.com',
+            name: 'Abdullah Al Shamsi',
+            email: 'abdullah.alshamsi@company.com',
             position: 'Senior Designer',
             department: 'Design',
-            manager: 'Sarah Johnson',
+            manager: 'Fatima Al Mazrouei',
             hireDate: '2020-09-12',
             status: 'Active',
             leaveBalance: 15
         },
         {
             id: 4,
-            name: 'Sarah Johnson',
+            name: 'Fatima Al Mazrouei',
             email: 'sarah.johnson@company.com',
             position: 'Engineering Manager',
             department: 'Engineering',
-            manager: 'David Wilson',
+            manager: 'Ahmed Al Mheiri',
             hireDate: '2019-01-20',
             status: 'Active',
             leaveBalance: 25
         },
         {
             id: 5,
-            name: 'David Wilson',
-            email: 'david.wilson@company.com',
+            name: 'Ahmed Al Mheiri',
+            email: 'ahmed.almheiri@company.com',
             position: 'VP of Engineering',
             department: 'Engineering',
             manager: 'CEO',
@@ -175,7 +175,7 @@ const dummyData = {
         {
             id: 1,
             employeeId: 1,
-            employeeName: 'John Smith',
+            employeeName: 'Mohammed Al Hashimi',
             type: 'Vacation',
             startDate: '2025-12-20',
             endDate: '2025-12-25',
@@ -187,7 +187,7 @@ const dummyData = {
         {
             id: 2,
             employeeId: 2,
-            employeeName: 'Emily Chen',
+            employeeName: 'Amira Al Qasimi',
             type: 'Sick',
             startDate: '2025-11-18',
             endDate: '2025-11-19',
@@ -199,7 +199,7 @@ const dummyData = {
         {
             id: 3,
             employeeId: 3,
-            employeeName: 'Michael Davis',
+            employeeName: 'Abdullah Al Shamsi',
             type: 'Personal',
             startDate: '2025-12-15',
             endDate: '2025-12-15',
@@ -214,7 +214,7 @@ const dummyData = {
         {
             id: 1,
             type: 'Employment Letter',
-            requestedBy: 'John Smith',
+            requestedBy: 'Mohammed Al Hashimi',
             purpose: 'Apartment rental',
             status: 'Completed',
             requestDate: '2025-11-10',
@@ -223,7 +223,7 @@ const dummyData = {
         {
             id: 2,
             type: 'Experience Certificate',
-            requestedBy: 'Emily Chen',
+            requestedBy: 'Amira Al Qasimi',
             purpose: 'Job application',
             status: 'Pending',
             requestDate: '2025-11-16',

@@ -5,19 +5,19 @@ let originalFormData = {};
 
 // Load profile data from localStorage or use defaults
 let profileData = JSON.parse(localStorage.getItem('profileData')) || {
-    firstName: 'John',
-    lastName: 'Smith',
+    firstName: 'Mohammed',
+    lastName: 'Al Hashimi',
     dob: '1990-05-15',
     gender: 'male',
-    email: 'john.smith@company.com',
-    phone: '+1 (555) 123-4567',
-    personalEmail: 'john.smith.personal@email.com',
-    mobile: '+1 (555) 987-6543',
-    address: '123 Main Street',
-    city: 'San Francisco',
-    state: 'California',
-    zip: '94105',
-    country: 'United States'
+    email: 'mohammed.alhashimi@company.com',
+    phone: '+971 50 123 4567',
+    personalEmail: 'mohammed.alhashimi@email.com',
+    mobile: '+971 56 789 1234',
+    address: '123 Sheikh Zayed Road',
+    city: 'Dubai',
+    state: 'Dubai',
+    zip: '00000',
+    country: 'United Arab Emirates'
 };
 
 // Save profile data

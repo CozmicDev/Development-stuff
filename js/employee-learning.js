@@ -451,7 +451,7 @@ function viewCertificate(certId) {
                     <h2 style="color: white; margin: 0 0 16px 0; font-size: 32px;">CERTIFICATE OF COMPLETION</h2>
                     <p style="color: rgba(255,255,255,0.9); margin: 0 0 40px 0;">This certifies that</p>
                     
-                    <h1 style="color: white; margin: 0 0 40px 0; font-size: 48px; font-weight: 700;">Sarah Johnson</h1>
+                    <h1 style="color: white; margin: 0 0 40px 0; font-size: 48px; font-weight: 700;">Mohammed Al Hashimi</h1>
                     
                     <p style="color: rgba(255,255,255,0.9); margin: 0 0 16px 0;">has successfully completed</p>
                     

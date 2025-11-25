@@ -283,7 +283,7 @@ function viewCandidate(candidateId) {
                         <div class="profile-info">
                             <h3>John Doe</h3>
                             <p class="profile-title">Senior Software Engineer</p>
-                            <p class="profile-contact">📧 john.doe@email.com | 📞 (555) 123-4567</p>
+                            <p class="profile-contact">📧 john.doe@email.com | 📞 +971 50 123 4567</p>
                             <p class="profile-location">📍 San Francisco, CA</p>
                         </div>
                         <div class="profile-rating">

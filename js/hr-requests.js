@@ -6,7 +6,7 @@ let currentHRRequestId = null;
 const hrRequestDetails = {
     'REQ001': {
         id: 'REQ001',
-        employee: 'John Smith',
+        employee: 'Mohammed Al Hashimi',
         type: 'Leave Request',
         leaveType: 'Vacation Leave',
         startDate: 'December 20, 2024',
@@ -14,13 +14,13 @@ const hrRequestDetails = {
         days: 6,
         reason: 'Holiday vacation with family',
         managerApproval: 'Approved by Sarah Manager',
-        coverage: 'Michael Brown (confirmed)',
+        coverage: 'Youssef Al Doori (confirmed)',
         remainingBalance: '15 days after approval',
         submitted: '1 hour ago'
     },
     'REQ002': {
         id: 'REQ002',
-        employee: 'Emily Chen',
+        employee: 'Amira Al Qasimi',
         type: 'Document Request',
         documentType: 'Employment Verification Letter',
         purpose: 'Mortgage application',
@@ -41,7 +41,7 @@ const hrRequestDetails = {
     },
     'REQ004': {
         id: 'REQ004',
-        employee: 'Michael Brown',
+        employee: 'Youssef Al Doori',
         type: 'Document Request',
         documentType: 'Employment Certificate',
         purpose: 'Visa application',

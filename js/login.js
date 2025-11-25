@@ -10,12 +10,12 @@ function loginWithMicrosoft() {
         
         // For demo, simulate successful authentication and default to employee portal
         const user = {
-            name: 'John Smith',
+            name: 'Mohammed Al Hashimi',
             role: 'employee',
-            email: 'john.smith@company.com',
+            email: 'mohammed.alhashimi@company.com',
             position: 'Software Engineer',
             department: 'Engineering',
-            avatar: 'https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff',
+            avatar: 'https://ui-avatars.com/api/?name=Mohammed+Al+Hashimi&background=4F46E5&color=fff',
             authMethod: 'microsoft'
         };
         
@@ -146,36 +146,36 @@ document.head.appendChild(style);
 function quickLogin(role) {
     const users = {
         employee: {
-            name: 'John Smith',
+            name: 'Mohammed Al Hashimi',
             role: 'employee',
-            email: 'john.smith@company.com',
+            email: 'mohammed.alhashimi@company.com',
             position: 'Software Engineer',
             department: 'Engineering',
-            avatar: 'https://ui-avatars.com/api/?name=John+Smith&background=4F46E5&color=fff'
+            avatar: 'https://ui-avatars.com/api/?name=Mohammed+Al+Hashimi&background=4F46E5&color=fff'
         },
         manager: {
-            name: 'Sarah Johnson',
+            name: 'Fatima Al Mazrouei',
             role: 'manager',
-            email: 'sarah.johnson@company.com',
+            email: 'fatima.almazrouei@company.com',
             position: 'Engineering Manager',
             department: 'Engineering',
-            avatar: 'https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff'
+            avatar: 'https://ui-avatars.com/api/?name=Fatima+Al+Mazrouei&background=10B981&color=fff'
         },
         hr: {
-            name: 'Jennifer Williams',
+            name: 'Aisha Al Mansoori',
             role: 'hr',
-            email: 'jennifer.williams@company.com',
+            email: 'aisha.almansoori@company.com',
             position: 'HR Manager',
             department: 'Human Resources',
-            avatar: 'https://ui-avatars.com/api/?name=Jennifer+Williams&background=F59E0B&color=fff'
+            avatar: 'https://ui-avatars.com/api/?name=Aisha+Al+Mansoori&background=F59E0B&color=fff'
         },
         admin: {
-            name: 'Robert Anderson',
+            name: 'Omar Al Zaabi',
             role: 'admin',
-            email: 'robert.anderson@company.com',
+            email: 'omar.alzaabi@company.com',
             position: 'System Administrator',
             department: 'IT',
-            avatar: 'https://ui-avatars.com/api/?name=Robert+Anderson&background=EF4444&color=fff'
+            avatar: 'https://ui-avatars.com/api/?name=Omar+Al+Zaabi&background=EF4444&color=fff'
         }
     };
     
