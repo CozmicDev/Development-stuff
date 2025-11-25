@@ -299,7 +299,7 @@ function initPerformanceCharts() {
         goalsChart = new Chart(goalsCtx, {
             type: 'bar',
             data: {
-                labels: ['Sarah Johnson', 'Alex Turner', 'Mike Chen', 'Lisa Wang', 'Emily Rodriguez'],
+                labels: ['Fatima Al Mazrouei', 'Rashid Al Shamsi', 'Khalid Al Shamsi', 'Layla Al Zarooni', 'Mariam Al Ketbi'],
                 datasets: [{
                     label: 'Achieved',
                     data: [12, 10, 9, 8, 6],

@@ -2092,7 +2092,9 @@ textarea:focus-visible {
 }
 
 .tab-container {
-    margin-top: 32px;
+    margin-top: 24px;
+    margin-left: 260px;
+    padding: 0 32px;
 }
 
 .tab-buttons {
@@ -2153,6 +2155,11 @@ textarea:focus-visible {
 @media (max-width: 768px) {
     .document-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .tab-container {
+        margin-left: 0;
+        padding: 0 16px;
     }
     
     .tab-buttons {

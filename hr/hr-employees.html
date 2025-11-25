@@ -44,24 +44,81 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Top Bar -->
-            <header class="top-bar">
-                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-                <div class="top-bar-right">
-                    <button class="icon-btn" onclick="toggleNotifications()">
-                        🔔
-                        <span class="notification-badge">12</span>
-                    </button>
-                    <div class="dropdown">
-                        <button class="user-menu" onclick="toggleDropdown()">
-                            <img src="https://ui-avatars.com/api/?name=HR+Admin&background=4F46E5&color=fff" alt="User">
-                            <span>HR Admin</span>
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 class="page-title">Employee Management</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="notifications">
+                        <button class="icon-btn" onclick="toggleNotifications()">
+                            🔔
+                            <span class="badge">12</span>
                         </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Notifications</h3>
+                                <a href="#">Mark all read</a>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">👤</div>
+                                <div class="notification-content">
+                                    <p><strong>New Employee Added</strong></p>
+                                    <p>New hire documentation pending review</p>
+                                    <span class="time">10 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">📋</div>
+                                <div class="notification-content">
+                                    <p><strong>Leave Request</strong></p>
+                                    <p>5 pending leave requests need approval</p>
+                                    <span class="time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <a href="#" class="dropdown-footer">View all notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <img src="https://ui-avatars.com/api/?name=HR+Admin&background=4F46E5&color=fff" alt="User" class="user-avatar">
+                            <span class="user-name">HR Admin</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <img src="https://ui-avatars.com/api/?name=HR+Admin&background=4F46E5&color=fff" alt="User">
+                                <div>
+                                    <strong>HR Admin</strong>
+                                    <p>HR Manager</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#">My Profile</a>
+                            <a href="#">Settings</a>
+                            <button class="theme-toggle-dropdown" onclick="toggleTheme()">
+                                <div class="theme-toggle-content">
+                                    <span class="theme-icon">🌙</span>
+                                    <span class="theme-text">Dark Mode</span>
+                                </div>
+                            </button>
+                            <a href="#">Help & Support</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
                     </div>
                 </div>
             </header>
 
             <!-- Page Content -->
-            <div class="page-content">
+            <div class="content">
                 <!-- Page Header -->
                 <div class="page-header">
                     <div>

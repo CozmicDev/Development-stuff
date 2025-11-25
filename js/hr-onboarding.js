@@ -115,7 +115,7 @@ function addNewHire() {
                         <option value="fatima">Fatima Al Mazrouei - Senior Software Engineer</option>
                         <option value="mike">Mike Chen - Software Engineer</option>
                         <option value="emily">Emily Rodriguez - Junior Software Engineer</option>
-                        <option value="alex">Alex Turner - Software Engineer</option>
+                        <option value="rashid">Rashid Al Shamsi - Software Engineer</option>
                         <option value="lisa">Lisa Wang - UI/UX Designer</option>
                     </select>
                 </div>
@@ -125,7 +125,7 @@ function addNewHire() {
                     <select id="manager">
                         <option value="">Select reporting manager...</option>
                         <option value="mohammed-alhashimi">Mohammed Al Hashimi - Engineering Manager</option>
-                        <option value="jane-doe">Jane Doe - Design Manager</option>
+                        <option value="mariam-alketbi">Mariam Al Ketbi - Design Manager</option>
                         <option value="bob-wilson">Bob Wilson - Product Manager</option>
                     </select>
                 </div>

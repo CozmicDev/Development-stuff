@@ -400,7 +400,7 @@ function requestFeedback() {
                         <option value="manager">David Johnson (Manager)</option>
                         <option value="peer1">Mike Chen (Peer)</option>
                         <option value="peer2">Emily Rodriguez (Peer)</option>
-                        <option value="peer3">Alex Turner (Peer)</option>
+                        <option value="peer3">Rashid Al Shamsi (Peer)</option>
                         <option value="peer4">Lisa Wang (Peer)</option>
                     </select>
                 </div>

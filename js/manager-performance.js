@@ -56,7 +56,7 @@ function startNewReview() {
                         <option value="sarah">Sarah Johnson - Senior Software Engineer</option>
                         <option value="mike">Mike Chen - Software Engineer</option>
                         <option value="emily">Emily Rodriguez - Junior Software Engineer</option>
-                        <option value="alex">Alex Turner - Software Engineer</option>
+                        <option value="rashid">Rashid Al Shamsi - Software Engineer</option>
                         <option value="lisa">Lisa Wang - UI/UX Designer</option>
                     </select>
                 </div>

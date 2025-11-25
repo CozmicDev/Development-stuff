@@ -281,7 +281,7 @@ function viewCandidate(candidateId) {
                     <div class="profile-header">
                         <div class="profile-avatar-large">JD</div>
                         <div class="profile-info">
-                            <h3>John Doe</h3>
+                            <h3>Ahmed Al Mansouri</h3>
                             <p class="profile-title">Senior Software Engineer</p>
                             <p class="profile-contact">📧 john.doe@email.com | 📞 +971 50 123 4567</p>
                             <p class="profile-location">📍 San Francisco, CA</p>
@@ -490,7 +490,7 @@ function makeOffer(candidateId) {
                 <form id="makeOfferForm">
                     <div class="form-group">
                         <label>Candidate</label>
-                        <input type="text" value="Tom Wilson" readonly>
+                        <input type="text" value="Salem Al Kaabi" readonly>
                     </div>
 
                     <div class="form-group">
